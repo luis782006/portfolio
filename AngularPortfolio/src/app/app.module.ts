@@ -5,11 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './componentes/header/header.component';
+import { NavComponent } from './componentes/header/nav/nav.component';
+import { LogoComponent } from './componentes/header/logo/logo.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    NavComponent,
+    LogoComponent,
+   
   ],
   imports: [
     BrowserModule,
