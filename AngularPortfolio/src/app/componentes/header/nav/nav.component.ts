@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons';
+
 
 @Component({
   selector: 'app-nav',
@@ -7,13 +8,19 @@ import {faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @Output()loginVisible=new EventEmitter<any>();
+
+  //loginVisible:boolean=true;
 
   faGithub=faGithub
   faLinkedin=faLinkedin
 
-  constructor() { }
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
   }
 
+ 
 }

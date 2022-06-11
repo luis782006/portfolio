@@ -1,0 +1,30 @@
+form{
+   width:300px;
+   margin:0 auto;
+   background-color: #1B1B32;
+   border-radius: 10px;
+   padding:10px 0px 10px 25px;
+   color: #FFBC2F;
+   font-size:1em;
+   
+}
+input{
+    outline: none;
+    border:0;   
+}
+.textField{
+    padding:5px;
+    margin-bottom: 10px;
+    
+}
+button{
+    margin:0px;
+    height:40px;
+    width:80px;
+    border-radius: 10px;
+    background-color: #FFBC2F;
+    border: 0;
+    margin-left: 60%;
+    
+    
+}

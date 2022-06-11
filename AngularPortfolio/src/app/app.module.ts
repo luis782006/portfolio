@@ -7,6 +7,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './componentes/header/header.component';
 import { NavComponent } from './componentes/header/nav/nav.component';
 import { LogoComponent } from './componentes/header/logo/logo.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { BannerComponent } from './componentes/banner/banner.component';
+
+
 
 
 @NgModule({
@@ -15,6 +19,10 @@ import { LogoComponent } from './componentes/header/logo/logo.component';
     HeaderComponent,
     NavComponent,
     LogoComponent,
+    LoginComponent,
+    BannerComponent,
+  
+  
    
   ],
   imports: [
