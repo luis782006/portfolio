@@ -8,8 +8,10 @@ form{
    font-size:1em;
    position: absolute;
    margin-top: 5%;
-   
-   
+   z-index: 100; 
+}
+.header-card{
+    background-color: #0A0A23;
 }
 input{
     outline: none;

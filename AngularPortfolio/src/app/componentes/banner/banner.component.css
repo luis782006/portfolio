@@ -1,5 +1,5 @@
 .banner{
-    background:linear-gradient(0deg, rgba(202, 163, 36, 0.712) 0%, rgba(253,165,45,0.43881302521008403) 100%), url(../../../assets/banner.jpg) center center no-repeat;
+    background: url(../../../assets/banner.jpg) center center no-repeat;
     background-size:150vmin ;
     /* height: calc(100vh - 60px); */
     display:flex;
