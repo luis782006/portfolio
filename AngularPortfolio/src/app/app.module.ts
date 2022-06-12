@@ -9,6 +9,7 @@ import { NavComponent } from './componentes/header/nav/nav.component';
 import { LogoComponent } from './componentes/header/logo/logo.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { BannerComponent } from './componentes/banner/banner.component';
+import { AcercaComponent } from './componentes/acerca/acerca.component';
 
 
 
@@ -21,6 +22,7 @@ import { BannerComponent } from './componentes/banner/banner.component';
     LogoComponent,
     LoginComponent,
     BannerComponent,
+    AcercaComponent,
   
   
    

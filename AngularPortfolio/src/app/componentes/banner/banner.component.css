@@ -1,7 +1,7 @@
 .banner{
-    background:linear-gradient(0deg, rgba(193,195,34,0.36878501400560226) 0%, rgba(253,165,45,0.43881302521008403) 100%), url(../../../assets/banner.jpg) center center no-repeat;
+    background:linear-gradient(0deg, rgba(202, 163, 36, 0.712) 0%, rgba(253,165,45,0.43881302521008403) 100%), url(../../../assets/banner.jpg) center center no-repeat;
     background-size:150vmin ;
-    height: calc(100vh - 60px);
+    /* height: calc(100vh - 60px); */
     display:flex;
     justify-content:center;
     align-items: center;
@@ -13,13 +13,22 @@
 }
 .banner-text{
     background:url('../../../assets/blob.svg') center center no-repeat;
-    background-size:400px;
-    width:400px;
-    height: 300px;
+    background-size:500px;
+    width:600px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .text{
     color:#F5F6F7;
+}
+.text h1{
+    font-size: 4em;
+    
+}
+.banner-text p{
+    display: flex;
+    justify-content: center;
+
 }
