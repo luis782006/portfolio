@@ -1,17 +1,17 @@
 form{
    width:300px;
    margin:0 auto;
-   background-color: #1B1B32;
+   background-color: var(--color-cajaS);
    border-radius: 10px;
    padding:10px 0px 10px 25px;
-   color: #FFBC2F;
+   color:var(--color-text);
    font-size:1em;
    position: absolute;
    margin-top: 5%;
    z-index: 100; 
 }
 .header-card{
-    background-color: #0A0A23;
+    background-color: var(--color-cajaP)
 }
 input{
     outline: none;
@@ -27,8 +27,9 @@ button{
     height:40px;
     width:80px;
     border-radius: 10px;
-    background-color: #FFBC2F;
+    background-color: var(--color-text-btn);
     border: 0;
+    color:var(--color-cajaP);
     margin-left: 60%;
 }
 @media screen and (min-width:320px) {

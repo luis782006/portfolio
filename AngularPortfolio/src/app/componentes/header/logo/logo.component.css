@@ -1,5 +1,5 @@
  img{
-    background-color: #0A0A23;
+    background-color:var(--color-cajaP);
     height: 100px;
     width:160px;
     

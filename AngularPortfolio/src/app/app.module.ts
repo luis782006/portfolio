@@ -10,6 +10,7 @@ import { LogoComponent } from './componentes/header/logo/logo.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { BannerComponent } from './componentes/banner/banner.component';
 import { AcercaComponent } from './componentes/acerca/acerca.component';
+import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.component';
 
 
 
@@ -23,6 +24,7 @@ import { AcercaComponent } from './componentes/acerca/acerca.component';
     LoginComponent,
     BannerComponent,
     AcercaComponent,
+    EditAcercaComponent,
   
   
    

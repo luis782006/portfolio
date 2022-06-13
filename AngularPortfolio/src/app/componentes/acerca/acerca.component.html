@@ -1,5 +1,5 @@
 
-    <div class="row contenedor-acerca"  *ngIf="visibleAcerca">
+    <div class="row contenedor-acerca"  *ngIf="acercaVisible">
         <div class="col-sm-12 col-md-4 contenedor-img">
             <div class="imagen">
                 <img [src]="pathFoto" alt="">
@@ -8,7 +8,8 @@
         <div class="col-sm-12 col-md-8 texto-acerca">
             <h2>Acerca de mi</h2>
             <h5>{{miNombre}}</h5>
-            <p>{{acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"></fa-icon></span>
+            <p>{{descripcion}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca" (click)="openEditAcerca()" ></fa-icon></span>
         </div>
-       
+        
     </div>
+    <app-edit-acerca class="contenedor-editAcerca" *ngIf="editAcercaVisible" (enviarAcercaEdit)="cambioEditVisible($event)"></app-edit-acerca>

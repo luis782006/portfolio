@@ -1,6 +1,6 @@
 .header{
     width:100%;
-    background-color: #0A0A23;
+    background-color:var(--color-cajaP)
     
     
 }
@@ -12,16 +12,14 @@
     margin: 0;
 }
 
-
 .logo{
     padding:0;
 }
 
 .btn{
-    background-color:#0A0A23;
+    background-color:var(--color-cajaP);
     display: flex;
     justify-content: flex-end;
-    
     align-items: center;
     padding:0px;
 }
@@ -31,13 +29,13 @@
     height:40px;
     width:70px;
     border-radius: 10px;
-    background-color: #FFBC2F;
+    background-color: var(--color-text-btn);
     transition: all 0.2s;
     
 }
 
 .btn  button:hover{
-    background-color: #cc9622;
+    background-color: var(--color-text-btnH);
     
 }
 .login{
@@ -53,13 +51,12 @@
 
 @media screen and (max-width:425px) {
     .btn{
-       background-color: #FFBC2F;
+       background-color: var(--color-text-btn);
        padding:10px 0px;
     }
     .btn button{
         height: 40px;
-        /* background-color: #0A0A23;
-        color:#FFBC2F; */
+        
     }
    
 }

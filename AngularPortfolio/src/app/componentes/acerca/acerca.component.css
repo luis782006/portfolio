@@ -4,10 +4,10 @@
     align-items: center;
 }
 .contenedor-img{
-    background-color: #1B1B32;
+    background-color: var(--color-cajaS)
 }
 .row{
-    background-color: #1B1B32;
+    background-color: var(--color-cajaS);
     width: 100%;
 }
 
@@ -26,8 +26,8 @@
 }
 .texto-acerca{
     padding:40px;
-    background-color: #0A0A23;
-    color:#F5F6F7;
+    background-color: var(--color-cajaP);
+    color:var(--color-text);
     line-height: 25px;
     font-size: 1.2em;
 }
@@ -54,6 +54,7 @@
     border-radius:5px;
     padding:10px;
 }
+
 /* .modal-edicion{
     color:white;
     background-color: #0A0A23;

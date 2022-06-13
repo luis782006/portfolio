@@ -21,7 +21,7 @@
     align-items: center;
 }
 .text{
-    color:#F5F6F7;
+    color:var(--color-text)
 }
 .text h1{
     font-size: 4em;

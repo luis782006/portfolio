@@ -1,0 +1,21 @@
+
+    <div class="row contenedor-editAcerca" >
+        <div class="col-sm-12 col-md-4 contenedor-img">
+            <div class="contenedor-icon">
+                <fa-icon [icon]="faUser" class="iconUser"></fa-icon>
+                <button><input type="file"></button>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 texto-editAcerca">
+            <h2>Acerca de mi</h2>
+            <div class="form"> 
+                <!-- cambiar de div a form cuando logre resolver lo de refrescar despues den boton aceptar del form -->
+                <p><label for="name">Nombre:</label></p>
+                <input type="text" class="textField">
+                <p><label for="textDescripcion">Descripcion:</label></p>
+                <textarea name="" id="" cols="50" rows="5"></textarea>
+                <button (click)="onCierreEditAcerca()">Aceptar</button>
+            </div> 
+        </div>
+     
+    </div>
