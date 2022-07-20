@@ -1,6 +1,6 @@
 .banner{
-    background: url(../../../assets/banner.jpg) center center no-repeat;
-    background-size:150vmin ;
+    background: url(../../../assets/banner.jpg) left center no-repeat;
+    background-size:100vmin ;
     /* height: calc(100vh - 60px); */
     display:flex;
     justify-content:center;
@@ -10,18 +10,21 @@
 }
 .row{
     width:100%;
+    
 }
 .banner-text{
-    background:url('../../../assets/blob.svg') center center no-repeat;
+    background:url('../../../assets/blob.svg') right center no-repeat;
     background-size:500px;
-    width:600px;
-    height: 400px;
+    width:100%;
+    height:50vh;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
+    margin-right:5rem;
 }
 .text{
-    color:var(--color-text)
+    color:var(--color-text);
+    margin-right:8rem;
 }
 .text h1{
     font-size: 4em;

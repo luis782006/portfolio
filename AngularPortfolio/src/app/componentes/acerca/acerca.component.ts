@@ -17,7 +17,7 @@ export class AcercaComponent implements OnInit {
   miNombre:string="Luis F Sanchez Barranco";
   descripcion:string="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, nihil debitis? Mollitia tenetur aspernatur illo corrupti cumque, quos saepe amet molestiae aliquam eum iusto voluptatum iure nihil perspiciatis fugiat dolor!"
   
-  
+ 
 
   constructor() { }
 
@@ -32,4 +32,6 @@ export class AcercaComponent implements OnInit {
     this.editAcercaVisible=e;
     this.acercaVisible=true;
   }
+
+
 }

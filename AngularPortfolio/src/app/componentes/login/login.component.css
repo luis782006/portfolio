@@ -9,6 +9,7 @@ form{
    position: absolute;
    margin-top: 5%;
    z-index: 100; 
+   
 }
 .header-card{
     background-color: var(--color-cajaP)
@@ -22,7 +23,7 @@ input{
     margin-bottom: 10px;
     
 }
-button{
+.button{
     margin:0px;
     height:40px;
     width:80px;
@@ -42,7 +43,7 @@ button{
  @media screen and (min-width:375px) {
     form{
         margin-top: 5%;
-        left:8%;
+        left:10%;
     }
     
 }

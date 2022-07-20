@@ -2,6 +2,7 @@
     display: center;
     justify-content: center;
     align-items: center;
+    margin:auto;
 }
 .contenedor-img{
     background-color: var(--color-cajaS)
