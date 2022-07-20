@@ -1,5 +1,5 @@
 
-    <div class="row contenedor-acerca"  *ngIf="acercaVisible">
+    <div class="row contenedor-acerca"  >
         <div class="col-sm-12 col-md-4 contenedor-img">
             <div class="imagen">
                 <img [src]="pathFoto" alt="">
@@ -8,12 +8,24 @@
         <div class="col-sm-12 col-md-8 texto-acerca">
             <h2>Acerca de mi</h2>
             <h5>{{miNombre}}</h5>
-            <p>{{descripcion}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca()"></fa-icon></span>
+            <p>{{descripcion}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(modalPersona)"></fa-icon></span>
             <!--  -->
         </div>
+        <ng-template #modalPersona let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h3>Editar Persona</h3>
+                <button type="button" class="btn-close" aria-label="Close"  (click)="d('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <p>Formulario para editar persona</p>
+            </div>
+            <div class="modal-footer">
+                <p>Colocar botones para guardar y cancelar</p>
+            </div>
+        </ng-template>
                 
         
 
     </div>
-    <app-edit-acerca class="contenedor-editAcerca" *ngIf="editAcercaVisible" (enviarAcercaEdit)="cambioEditVisible($event)"></app-edit-acerca>
+    <!-- <app-edit-acerca class="contenedor-editAcerca" *ngIf="editAcercaVisible" (enviarAcercaEdit)="cambioEditVisible($event)"></app-edit-acerca> -->
     
