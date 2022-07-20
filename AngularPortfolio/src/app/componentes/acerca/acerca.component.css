@@ -56,33 +56,13 @@
     padding:10px;
 }
 
-/* .modal-edicion{
-    color:white;
-    background-color: #0A0A23;
-    padding: 40px;
-    width: 100%;
-    
+/*estilos ng-template Modal Editar Acerca de mi*/
+.modal-header h3{
+    margin-bottom: 0px;
 }
-.modal-edicion h5{
-    margin-bottom: 20px;
+.form-group{
+    margin: 10px 0px;
 }
-.contenedor-edicion-acerca input{
-    margin:0px 20px;
-    width:80%;
-    
-   
+.modal-body{
+    padding:20px;
 }
-.modal-edicion button{
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: #0A0A23;
-  font-size: 10px;
-  padding: 5px;
-  text-decoration: none;
-  border-radius: 10px;
-  box-shadow: 0px 1px 3px #666666;
-  text-shadow: 1px 1px 3px #666666;
-  margin:5px;
-  margin-right: 20px;
-  float: right;
-  
-} */
