@@ -1,14 +1,14 @@
 
-    <div class="row contenedor-acerca"  >
+    <div class="row contenedor-acerca" *ngFor="let persona of personas" >
         <div class="col-sm-12 col-md-4 contenedor-img">
             <div class="imagen">
-                <img [src]="pathFoto" alt="">
+                <img [src]="persona.photo_url" alt="">
             </div>
         </div>
         <div class="col-sm-12 col-md-8 texto-acerca">
             <h2>Acerca de mi</h2>
-            <h5>{{miNombre}}</h5>
-            <p>{{descripcion}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(modalPersona)"></fa-icon></span>
+            <h5>{{persona.nombre}} {{persona.apellido}}</h5>
+            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>
             <!--  -->
         </div>
         <ng-template #modalPersona let-c="close" let-d="dismiss">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nombre">Foto perfil:</label>
-                        <input type="file" accept=".jpg,.png"  alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="photo_url" >
+                        <input type="file" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="photo_url" >
                     </div>
                     <div class="form-group">
                         <label for="nombre">Link a Github:</label>

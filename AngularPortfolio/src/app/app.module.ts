@@ -18,8 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //Import necesarios para el crud
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 
 @NgModule({
@@ -32,17 +31,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     BannerComponent,
     AcercaComponent,
     EditAcercaComponent,
-  
-  
-   
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
     NgbModule,
+    AlifeFileToBase64Module,
     ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

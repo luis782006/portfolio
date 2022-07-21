@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {faPen} from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Persona} from '../../models/Personas'
 //Import Formularios Reactivos
 import {
   FormGroup,
@@ -9,6 +10,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
 
 @Component({
   selector: 'app-acerca',
@@ -22,26 +24,28 @@ export class AcercaComponent implements OnInit {
       
     //Formulario Reactivo
     form: FormGroup;
+    personas:Persona[];
 
-
-  pathFoto:string="../../../assets/profile-photo.jpg";
-  miNombre:string="Luis F Sanchez Barranco";
-  descripcion:string="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, nihil debitis? Mollitia tenetur aspernatur illo corrupti cumque, quos saepe amet molestiae aliquam eum iusto voluptatum iure nihil perspiciatis fugiat dolor!"
-  
+    //variable para manejar la imagen en base64
+    img:String="";
  
 //Constructor
   constructor(
               private modalEditAcerca:NgbModal,
-              private formBuilder:FormBuilder
+              private formBuilder:FormBuilder,
+              private acercaService:AcercaServiceService,
               ) { 
 
-    this.buildForm();
+    this.buildForm(); // metodo que instancia el formulario
   }
 
 
 //ngOnInit
   ngOnInit(): void {
-    
+    //metodo http get
+    this.acercaService.getPersonas().subscribe((data) => {
+      this.personas = data;
+    });
   }
 
 
@@ -53,16 +57,27 @@ private buildForm() {
     id: [''],
     nombre: ['', [Validators.required]],
     apellido: ['', [Validators.required]],
-    photo_url:['', [Validators.required]],
-    path_git:[""],
-    path_link:['']
+    descripcion_acerca:['Mi descripcion'],
+    photo_url:['Mi url de foto', [Validators.required]],
+    path_git:['Mi url de git'],
+    path_link:['Mi url de linkedin']
   });
 }
 
 
   //abrir modal de edicion AcercaDeMi 
-  openEditAcerca(modalPersona){
+  openEditAcerca(persona:Persona,modalPersona){
       this.modalEditAcerca.open(modalPersona);
+
+    let personaModal:Persona;
+    personaModal=persona
+    this.form.get('id').setValue(personaModal.id);
+    this.form.get('nombre').setValue(personaModal.nombre);
+    this.form.get('apellido').setValue(personaModal.apellido);
+    this.form.get('descripcion_acerca').setValue(personaModal.descripcion_acerca);
+    this.form.get('path_Git').setValue(personaModal.path_git);
+    this.form.get('path_link').setValue(personaModal.path_link);
+    
     }
   
   //cerrar modal de edicion AcercaDeMi
@@ -72,17 +87,29 @@ private buildForm() {
 
   //guardar imagen del input tipo file
   obtener($event:any){
-    //this.base64=$event[0].base64;
-    //this.form.value.photo=this.base64;
-
-
-    //this.persona.photo=$event[0].base64;
-    //this.form.value.photo=this.persona;
+    //let img:String="";
+    this.img=$event[0].base64;
+    this.form.value.photo_url=this.img;
   }
 
   //guardar cambios acercaDeMi
   save(event:Event){
     event.preventDefault();
+    let personaActualizada:Persona;
+   
+    if (this.form.valid){
+      personaActualizada = this.form.value;
+        //httpClient actualizar.
+            this.acercaService.actualizarPersona(personaActualizada)
+              .subscribe(data=>{console.log("Edicion con exito");
+            this.ngOnInit();
+            });
+        //httpClient fin actualizar
+        
+    }else{
+      this.form.markAllAsTouched();
+    }
+    this.modalEditAcerca.dismissAll();
   }
   
 
