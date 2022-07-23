@@ -1,11 +1,46 @@
-.contenedor-acerca{
+.contenedor-img{
+    background-color: var(--color-cajaS);
+    height:15rem;  
+    display:flex;
+    justify-content:center;
+    align-items: center; 
+}
+.contenedor-texto{
+    padding:25px;
+    background-color: var(--color-cajaP);
+    color:var(--color-text);
+    line-height: 25px;
+    font-size: 1.2em;
+}
+.contenedor-texto span{
+    float:right;
+    border:1px solid;
+    border-radius:5px;
+    padding:10px;
+}
+.contenedor-texto p{
+    display:flex;
+    justify-content:center;
+    align-items: center; 
+    width:100%;
+    word-break: break-all;
+    font-size: 0.9em;;
+    line-height: 1.5rem;
+}
+.contenedor-img img{
+    border-radius: 50%;
+    height:90%;
+    width:14rem;
+}
+/* .contenedor-acerca{
     display: center;
     justify-content: center;
     align-items: center;
     margin:auto;
 }
 .contenedor-img{
-    background-color: var(--color-cajaS)
+    background-color: var(--color-cajaS);
+    height:100%;
 }
 .row{
     background-color: var(--color-cajaS);
@@ -24,6 +59,8 @@
 .imagen img{
   border-radius: 50%;
   margin: 10px 0px;
+  height:100%;
+  width:10rem;
 }
 .texto-acerca{
     padding:40px;
@@ -54,7 +91,7 @@
     border:1px solid;
     border-radius:5px;
     padding:10px;
-}
+} */
 
 /*estilos ng-template Modal Editar Acerca de mi*/
 .modal-header h3{

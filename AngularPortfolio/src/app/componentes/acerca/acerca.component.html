@@ -1,16 +1,15 @@
-
-    <div class="row contenedor-acerca" *ngFor="let persona of personas" >
+<div class="container">
+    <div class="row" *ngFor="let persona of personas">
         <div class="col-sm-12 col-md-4 contenedor-img">
-            <div class="imagen">
-                <img [src]="persona.photo_url" alt="">
-            </div>
+            <img [src]="persona.photo_url" alt="" class="imagen">
         </div>
-        <div class="col-sm-12 col-md-8 texto-acerca">
-            <h2>Acerca de mi</h2>
-            <h5>{{persona.nombre}} {{persona.apellido}}</h5>
+        <div class="col-sm-12 col-md-8 contenedor-texto">
+            <h2>Acerca de mi:</h2>
             <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>
-            <!--  -->
+           
         </div>
+    </div>
+</div>
         <ng-template #modalPersona let-c="close" let-d="dismiss">
             <div class="modal-header">
                 <h3>Acerca de mi</h3>
@@ -28,6 +27,11 @@
                     <div class="form-group">
                         <label for="nombre">Apellido:</label>
                         <input type="text" formControlName="apellido" >
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Acerca de mi:</label>
+                        <br>
+                        <textarea type="text" formControlName="descripcion_acerca" ></textarea> 
                     </div>
                     <div class="form-group">
                         <label for="nombre">Foto perfil:</label>
@@ -62,6 +66,6 @@
                 
         
 
-    </div>
+   
     <!-- <app-edit-acerca class="contenedor-editAcerca" *ngIf="editAcercaVisible" (enviarAcercaEdit)="cambioEditVisible($event)"></app-edit-acerca> -->
     

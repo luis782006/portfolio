@@ -15,6 +15,7 @@ import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.compo
 //librerias externas npm
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 //Import necesarios para el crud
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +33,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     AcercaComponent,
     EditAcercaComponent,
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,7 +42,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
     NgbModule,
     AlifeFileToBase64Module,
     ReactiveFormsModule,
-    
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

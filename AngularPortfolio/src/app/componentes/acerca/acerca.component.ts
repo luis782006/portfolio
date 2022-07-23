@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {faPen} from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Persona} from '../../models/Personas'
+import Swal from 'sweetalert2';
 //Import Formularios Reactivos
 import {
   FormGroup,
@@ -34,6 +35,9 @@ export class AcercaComponent implements OnInit {
               private modalEditAcerca:NgbModal,
               private formBuilder:FormBuilder,
               private acercaService:AcercaServiceService,
+             
+                
+              
               ) { 
 
     this.buildForm(); // metodo que instancia el formulario
@@ -58,7 +62,7 @@ private buildForm() {
     nombre: ['', [Validators.required]],
     apellido: ['', [Validators.required]],
     descripcion_acerca:['Mi descripcion'],
-    photo_url:['Mi url de foto', [Validators.required]],
+    photo_url:['', [Validators.required]],
     path_git:['Mi url de git'],
     path_link:['Mi url de linkedin']
   });
@@ -101,7 +105,15 @@ private buildForm() {
       personaActualizada = this.form.value;
         //httpClient actualizar.
             this.acercaService.actualizarPersona(personaActualizada)
-              .subscribe(data=>{console.log("Edicion con exito");
+              .subscribe(data=>{
+                Swal.fire({
+                  title: 'Sweet!',
+                  text: 'Modal with a custom image.',
+                  imageUrl: 'https://unsplash.it/400/200',
+                  imageWidth: 400,
+                  imageHeight: 200,
+                  imageAlt: 'Custom image',
+                });
             this.ngOnInit();
             });
         //httpClient fin actualizar
