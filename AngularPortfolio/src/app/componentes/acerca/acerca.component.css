@@ -1,3 +1,4 @@
+
 .contenedor-img{
     background-color: var(--color-cajaS);
     height:15rem;  
@@ -6,7 +7,7 @@
     align-items: center; 
 }
 .contenedor-texto{
-    padding:25px;
+    padding:20px;
     background-color: var(--color-cajaP);
     color:var(--color-text);
     line-height: 25px;
@@ -20,7 +21,7 @@
 }
 .contenedor-texto p{
     display:flex;
-    justify-content:center;
+    justify-content:flex-start;
     align-items: center; 
     width:100%;
     word-break: break-all;
@@ -31,6 +32,16 @@
     border-radius: 50%;
     height:90%;
     width:14rem;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}
+.hola{
+    color:yellow;
 }
 /* .contenedor-acerca{
     display: center;

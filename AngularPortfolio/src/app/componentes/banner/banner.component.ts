@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Persona } from 'src/app/models/Personas';
+import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
 
 @Component({
   selector: 'app-banner',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  constructor() { }
+  persona:Persona[];
+  nombre:String;
+  apellido:String;
+
+  constructor(private acercaService:AcercaServiceService) { }
 
   ngOnInit(): void {
+        this.acercaService.getPersonas().subscribe((data) => {
+          this.persona= data;
+          if (this.persona.length!=0) 
+          this.nombre=this.persona[0].nombre;
+          this.apellido=this.persona[0].apellido;
+        
+      });
   }
-
 }

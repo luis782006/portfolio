@@ -7,7 +7,8 @@ export class Persona {
     path_git:String;
     path_link:String;
 
-
+   
+   
     constructor(id:number, nombre:String,apellido:String,descripcion_acerca:String, photo_url:String,path_git:String,path_link:String){
         this.id=id;
         this.nombre=nombre;

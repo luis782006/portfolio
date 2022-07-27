@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {faPen} from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Persona} from '../../models/Personas'
+
+//importaciones de terceros
 import Swal from 'sweetalert2';
+
 //Import Formularios Reactivos
 import {
   FormGroup,
@@ -29,6 +32,8 @@ export class AcercaComponent implements OnInit {
 
     //variable para manejar la imagen en base64
     img:String="";
+
+
  
 //Constructor
   constructor(
@@ -47,9 +52,12 @@ export class AcercaComponent implements OnInit {
 //ngOnInit
   ngOnInit(): void {
     //metodo http get
+    
     this.acercaService.getPersonas().subscribe((data) => {
       this.personas = data;
+      
     });
+
   }
 
 
@@ -59,12 +67,12 @@ export class AcercaComponent implements OnInit {
 private buildForm() {
   this.form = this.formBuilder.group({
     id: [''],
-    nombre: ['', [Validators.required]],
-    apellido: ['', [Validators.required]],
-    descripcion_acerca:['Mi descripcion'],
-    photo_url:['', [Validators.required]],
-    path_git:['Mi url de git'],
-    path_link:['Mi url de linkedin']
+    nombre: ['',Validators.required,Validators.maxLength(5)],
+    apellido: ['',Validators.required],
+    descripcion_acerca: [''],
+    photo_url:['',Validators.required],
+    path_git:[''],
+    path_link:['']
   });
 }
 
@@ -79,7 +87,8 @@ private buildForm() {
     this.form.get('nombre').setValue(personaModal.nombre);
     this.form.get('apellido').setValue(personaModal.apellido);
     this.form.get('descripcion_acerca').setValue(personaModal.descripcion_acerca);
-    this.form.get('path_Git').setValue(personaModal.path_git);
+    this.form.get('photo_url').setValue(personaModal.photo_url);
+    this.form.get('path_git').setValue(personaModal.path_git);
     this.form.get('path_link').setValue(personaModal.path_link);
     
     }
@@ -100,29 +109,58 @@ private buildForm() {
   save(event:Event){
     event.preventDefault();
     let personaActualizada:Persona;
-   
+    
     if (this.form.valid){
-      personaActualizada = this.form.value;
+        personaActualizada = this.form.value;
+            
         //httpClient actualizar.
-            this.acercaService.actualizarPersona(personaActualizada)
-              .subscribe(data=>{
-                Swal.fire({
-                  title: 'Sweet!',
-                  text: 'Modal with a custom image.',
-                  imageUrl: 'https://unsplash.it/400/200',
-                  imageWidth: 400,
-                  imageHeight: 200,
-                  imageAlt: 'Custom image',
-                });
-            this.ngOnInit();
-            });
+              Swal.fire({
+                 title:'Actulizar Usuario',
+                 html:
+                 'Nombre: '+ personaActualizada.nombre+' '+personaActualizada.apellido+
+                 '<br>'+
+                 'Github: '+personaActualizada.path_git+
+                 '<br>'+
+                 'LinkedIn: '+personaActualizada.path_link,
+                 icon:'question',
+                 iconColor:'#0A0A23',
+                 confirmButtonColor:'#0A0A23',
+                 showConfirmButton:true,
+                 confirmButtonText:"Guardar",
+                 showCancelButton:true,
+                 cancelButtonText:"Cancelar",
+                 cancelButtonColor:"#1B1B32"
+                  })
+                  .then(guardar=>{
+                    if (guardar.value) {
+                      this.acercaService.actualizarPersona(personaActualizada)
+                      .subscribe(data=>{
+                          Swal.fire({
+                            title:'Usuario actualizado',
+                            text:'Bienvenido '+ personaActualizada.nombre,
+                            icon:'success',
+                            iconColor:'#0A0A23',
+                            timer:2000,
+                            showConfirmButton:false
+                          })
+
+                        this.ngOnInit();
+                      })
+                    }
+                  })
+                 
+
+               
+          
         //httpClient fin actualizar
-        
+       
     }else{
       this.form.markAllAsTouched();
+      
     }
     this.modalEditAcerca.dismissAll();
   }
   
+
 
 }

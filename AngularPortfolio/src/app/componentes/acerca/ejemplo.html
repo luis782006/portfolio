@@ -1,0 +1,60 @@
+<ng-template #modalPersona let-c="close" let-d="dismiss"> <!--#modalPersona: es el nombre del modal-->
+    <div class="modal-header">
+        <h3>Acerca de mi</h3>
+        <!-- <button type="button" class="btn-close" aria-label="Close"  (click)="d('Cross click')"></button> -->
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" novalidate (ngSubmit)="save($event)" >
+            <input type="text" formControlName="id" hidden><!--campo id oculto-->
+            
+                <div class="row mb-8">
+                    <div class="col">
+                        <div class="form-outline">
+                            <input type="text"  class="form-control" formControlName="nombre"/>
+                            <label class="form-label" for="form3Example1">Nombre</label>
+                            <!--alerta nombre-->
+                            <div *ngIf="form.get('nombre').errors && form.get('nombre').touched" class="alert" role="alert">
+                                Ingrese el nombre
+                                <!--Otra forma de controlar el error es preguntando por el validor que se paso
+                                Ejemplo 1:  *ngIf="form.get('nombre')?.error?.('maxLength')"
+                                donde form es el nombre de mi formulario, .get('nombre'): captura el campo del formulario,
+                                si tiene errores: ?.error?, de tipo:.('maxLength')"
+                                Esto evidentemente hay que declararlo en los validadores del formulario en el .ts
+                                Y si hay mas de 2 validadores hay que crear dos alertas y el operador logico &&(y) que se debe
+                                controlar con el form.get('nombre').touched" (si fue tocado)
+                                 En el Ejemplo 2(caso actual):
+                                 *ngIf="form.get('nombre').errors && form.get('nombre').touched"
+                                 le decimos que si el formulario en el campo nombre tiene error y que el campo fue tocado, 
+                                 devuelva TRUE o FALSE. Esta sentencia evalua cualquier error, sea requerido o maxLength
+                                 ¿La pregunta es cuando usar el ejemplo 1 o el ejemplo 2? 
+                                 Pues cuando haya mas de un validador. Hay que decirle al usuario que tipo de error tiene.
+                                  Entonces, si el error esta vacio, dispara la alerta "hey, esta vacio" si el error es
+                                  que que el campo se pasa de 5 caracteres salta la alerta "hey te pasaste de letras".
+                                  Y evidentemente si no cumple ninguna de la dos, pues estas al horno. Se muestran las dos alertas.
+
+                                -->
+                            </div>
+                            <!--alerta nombre-->
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <input type="text" class="form-control" formControlName="apellido"/>
+                            <label class="form-label" for="form3Example2">Apellido</label>
+                              <!--alerta apellido-->
+                              <div *ngIf="form.get('apellido').errors && form.get('apellido').touched" class="alert alert-danger" role="alert">
+                                Ingrese el apellido
+                            </div>
+                            <!--alerta apellido-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"> 
+                    <button type="button"  [disabled]="form.invalid" (click)="save($event)" class="btn btn-dark">Siguiente</button>             
+                    <!-- aca el boton de guardar esta habilitado o no en dependencia de si el formulario es valido o no,
+                    Si tiene errores sera invalido y si no, pues lo contrario -->
+                </div>  
+          </form>
+    </div>
+</ng-template>
