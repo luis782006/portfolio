@@ -15,6 +15,17 @@ export class BannerComponent implements OnInit {
 
   constructor(private acercaService:AcercaServiceService) { }
 
+  // refresBanner(){
+  //   this.ngOnInit()
+  //   this.acercaService.getPersonas().subscribe((data) => {
+  //      this.persona= data;
+  //      this.nombre=this.persona[0].nombre;
+  //      this.apellido=this.persona[0].apellido;
+  //    });
+  
+    
+  // }
+
   ngOnInit(): void {
         this.acercaService.getPersonas().subscribe((data) => {
           this.persona= data;

@@ -5,18 +5,17 @@
         </div>
         <div class="col-sm-12 col-md-8 contenedor-texto">
             <h2>Acerca de mi:</h2>
-            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>
-           
+            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
         </div>
     </div>
-            <ng-template #modalPersona let-c="close" let-d="dismiss">
+      <ng-template #modalPersona let-c="close" let-d="dismiss">
             <div class="modal-header">
                 <h3>Acerca de mi</h3>
                 <!-- <button type="button" class="btn-close" aria-label="Close"  (click)="d('Cross click')"></button> -->
-                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" novalidate (ngSubmit)="save($event)" >
+                <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
                     <input type="text" formControlName="id" hidden>
                      <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-8">
@@ -47,10 +46,10 @@
                                 <label class="form-label" for="form4Example3">Acerca de mi</label>
                             </div>
                             <div class="form-outline">
-                                <input type="file" class="form-control" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="photo_url" />
+                                <input type="file" class="form-control" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)"  />
                                 <label class="form-label" for="form3Example2">Foto <span class="alert">(requerido)</span></label>
                                    <!--alerta foto-->
-                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert alert-danger" role="alert">
+                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
                                     Cargue una foto
                                    </div>
                                 <!--alerta foto-->
@@ -65,14 +64,48 @@
                             </div>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button"  [disabled]="form.invalid" (click)="save($event)" class="btn btn-dark">Siguiente</button>             
-                            <button type="button" class="btn btn-danger"(click)="cerrarModal($event)">Cancelar</button>
+                            <button type="button"  [disabled]="form.invalid" (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
+                            <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
                         </div>  
                   </form>
             </div>
-        </ng-template>
+      </ng-template>
 </div>
-
+    <ng-template #modalPresentacion let-c="close" let-d="dismiss">
+        <div class="modal-header">
+           <h3>Confirmar Experiencia</h3>
+            <fa-icon [icon]="faQuestionCircle" style="font-size:2em;"></fa-icon>
+        </div>
+        <div class="modal-body">
+            <div class="row m-8" style="margin-bottom:10px;">
+                <div class="col ">
+                    <div class="contenedor-img-modal"><img src="{{form.get('photo_url').value}}" alt="" class="imagen"></div>
+                </div>
+                <br>
+                <div class="col contenedor-presentacionModal">
+                    <span><b> Nombre:</b></span><span class="presentacionModal"> {{form.get('nombre').value}}</span>
+                    <br>
+                    <span><b>Apellido:</b></span><span class="presentacionModal">{{form.get('apellido').value}}</span>
+                </div>
+           </div>        
+           <div>
+            <span><b>Acerca de mi:</b></span>
+            <p class="presentacionAcercaDeMi">{{form.get('descripcion_acerca').value}}</p>
+           </div>
+           <hr>
+           <div class="col ">
+            <span><b> Github:</b> </span><span class="presentacionModal">{{form.get('path_git').value}}</span>
+        </div>
+        <br>
+        <div class="col ">
+            <span><b>LinkedIn:</b></span><span class="presentacionModal">{{form.get('path_link').value}}</span>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button"  [disabled]="form.invalid" (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
+            <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
+        </div>
+    </ng-template>
          
 
     

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {faPen} from '@fortawesome/free-solid-svg-icons';
+import {faPen,faQuestionCircle,faFilePen} from '@fortawesome/free-solid-svg-icons';
 import { NgbActiveModal, NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Persona} from '../../models/Personas'
-
+import {BannerComponent} from '../banner/banner.component';
 //importaciones de terceros
 import Swal from 'sweetalert2';
 
@@ -16,16 +16,20 @@ import {
 } from '@angular/forms';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
 
+
 @Component({
   selector: 'app-acerca',
   templateUrl: './acerca.component.html',
   styleUrls: ['./acerca.component.css']
 })
 export class AcercaComponent implements OnInit {
+   bannerComponent:BannerComponent
+
 //Variables
     //Iconos
       faPen = faPen;
-      
+      faQuestionCircle=faQuestionCircle;
+      faFilePen=faFilePen;
     //Formulario Reactivo
     form: FormGroup;
     personas:Persona[];
@@ -33,15 +37,14 @@ export class AcercaComponent implements OnInit {
     //variable para manejar la imagen en base64
     img:String="";
 
-
- 
+  
 //Constructor
   constructor(
               private modalEditAcerca:NgbModal,
               private formBuilder:FormBuilder,
               private acercaService:AcercaServiceService,
+            
              
-                
               
               ) { 
 
@@ -50,6 +53,9 @@ export class AcercaComponent implements OnInit {
 
 
 //ngOnInit
+
+
+
   ngOnInit(): void {
     //metodo http get
     
@@ -58,8 +64,9 @@ export class AcercaComponent implements OnInit {
       
     });
 
+   
+ 
   }
-
 
 //Metodos
 
@@ -67,7 +74,7 @@ export class AcercaComponent implements OnInit {
 private buildForm() {
   this.form = this.formBuilder.group({
     id: [''],
-    nombre: ['',Validators.required,Validators.maxLength(5)],
+    nombre: ['',Validators.required],
     apellido: ['',Validators.required],
     descripcion_acerca: [''],
     photo_url:['',Validators.required],
@@ -105,62 +112,45 @@ private buildForm() {
     this.form.value.photo_url=this.img;
   }
 
-  //guardar cambios acercaDeMi
-  save(event:Event){
+  savePreview(event:Event, modalPresentacion){
     event.preventDefault();
     let personaActualizada:Persona;
-    
-    if (this.form.valid){
-        personaActualizada = this.form.value;
-            
-        //httpClient actualizar.
-              Swal.fire({
-                 title:'Actulizar Usuario',
-                 html:
-                 'Nombre: '+ personaActualizada.nombre+' '+personaActualizada.apellido+
-                 '<br>'+
-                 'Github: '+personaActualizada.path_git+
-                 '<br>'+
-                 'LinkedIn: '+personaActualizada.path_link,
-                 icon:'question',
-                 iconColor:'#0A0A23',
-                 confirmButtonColor:'#0A0A23',
-                 showConfirmButton:true,
-                 confirmButtonText:"Guardar",
-                 showCancelButton:true,
-                 cancelButtonText:"Cancelar",
-                 cancelButtonColor:"#1B1B32"
-                  })
-                  .then(guardar=>{
-                    if (guardar.value) {
-                      this.acercaService.actualizarPersona(personaActualizada)
-                      .subscribe(data=>{
-                          Swal.fire({
-                            title:'Usuario actualizado',
-                            text:'Bienvenido '+ personaActualizada.nombre,
-                            icon:'success',
-                            iconColor:'#0A0A23',
-                            timer:2000,
-                            showConfirmButton:false
-                          })
-
-                        this.ngOnInit();
-                      })
-                    }
-                  })
-                 
-
-               
-          
-        //httpClient fin actualizar
-       
-    }else{
-      this.form.markAllAsTouched();
-      
-    }
     this.modalEditAcerca.dismissAll();
+    this.modalEditAcerca.open(modalPresentacion)
   }
+  //guardar cambios acercaDeMi
+  saveLast(event:Event){
+    event.preventDefault();
+    let personaActualizada:Persona;
+    this.modalEditAcerca.dismissAll();
+     if (this.form.valid){
+       personaActualizada = this.form.value;
+            
+    //    //httpClient actualizar.
+              
+          this.acercaService.actualizarPersona(personaActualizada)
+          .subscribe(data=>{
+              Swal.fire({
+                title:'Usuario actualizado',
+                text:'Bienvenido '+ personaActualizada.nombre,
+                icon:'success',
+                iconColor:'#0A0A23',
+                timer:2000,
+                showConfirmButton:false
+              })
+            this.ngOnInit();
+            //this.bannerComponent.refresBanner();
+            window. location. reload();
+          })
+        }  
+        //httpClient fin actualizar
+        else{
+          this.form.markAllAsTouched();
+          
+        }
+        this.modalEditAcerca.dismissAll();
+    }
+ 
   
 
-
-}
+  }

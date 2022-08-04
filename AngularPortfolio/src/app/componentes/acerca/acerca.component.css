@@ -40,8 +40,44 @@
     padding: 0.2em;
     text-align: center;
 }
-.hola{
-    color:yellow;
+.contenedor-img-modal{
+    height:15rem;  
+    display:flex;
+    justify-content:right;
+    align-items: center;
+    height:12em; 
+    
+}
+.contenedor-img-modal img{
+    border-radius: 50%;
+    height:70%;
+    width:9.5rem;
+}
+.contenedor-presentacionModal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.presentacionModal p{
+  text-align: left;
+  color: var(--color-cajaP);
+}
+.presentacionModal  {
+   border-bottom: 1px solid var(--color-cajaS);
+    color: var(--color-cajaP);
+    padding: 0px 10px;
+    font-size: 0.9em;
+    color: var(--color-cajaP);
+  
+}
+.presentacionAcercaDeMi  {
+    border: 1px solid var(--color-cajaS);
+    color: var(--color-cajaP);
+    padding: 15px 10px;
+    font-size: 0.9em;
+    text-align: justify;
+    
 }
 /* .contenedor-acerca{
     display: center;

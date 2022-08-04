@@ -14,6 +14,7 @@ import { AcercaComponent } from './componentes/acerca/acerca.component';
 import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.component';
 // importaciones de terceros
 
+
 //librerias externas npm
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -35,7 +36,7 @@ import { ExperienciaComponent } from './componentes/experiencia/experiencia.comp
     BannerComponent,
     AcercaComponent,
     EditAcercaComponent,
-    ExperienciaComponent,
+    ExperienciaComponent
   ],
 
   imports: [
@@ -48,7 +49,10 @@ import { ExperienciaComponent } from './componentes/experiencia/experiencia.comp
     ReactiveFormsModule,
  
   ],
-  providers: [],
+  providers: [
+  
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
