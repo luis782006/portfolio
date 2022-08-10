@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
+import { EducacionComponent } from './componentes/educacion/educacion.component';
+import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-skill.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ExperienciaComponent } from './componentes/experiencia/experiencia.comp
     BannerComponent,
     AcercaComponent,
     EditAcercaComponent,
-    ExperienciaComponent
+    ExperienciaComponent,
+    EducacionComponent,
+    HardSoftSkillComponent
   ],
 
   imports: [

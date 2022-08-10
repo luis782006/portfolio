@@ -25,7 +25,6 @@
 <ng-template  id="templateModalExpId" #AgregarExp let-c="close" let-d="dismiss">
     <div class="modal-header miModal-header">
         <h3>Agregar Experiencia</h3>
-        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
         <form [formGroup]="formAgregarExp" novalidate (ngSubmit)="saveNuevaEmpresa($event)"  >
@@ -97,7 +96,7 @@
                 <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
             </span>
             <span>
-                <button type="button"  [disabled]="formAgregarExp.invalid" (click)="saveNuevaEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Siguiente</button>             
+                <button type="button"  [disabled]="formAgregarExp.invalid" (click)="saveNuevaEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
             <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
             </span>
        

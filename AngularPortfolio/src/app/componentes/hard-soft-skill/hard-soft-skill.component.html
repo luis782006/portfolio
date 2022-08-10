@@ -1,0 +1,45 @@
+
+   <div class="container">
+    <div class="row encabezado-hard-softskill">
+        <p>Hard & SoftSkill<span><button class="iconHard-Soft">Agregar Skill</button></span></p>
+    </div>
+    <div class="row contenedor">
+        <div class="col-md-3 col-sm-12 contenedor-card" *ngFor="let lenguaje of lenguajes index as i">
+            <div class="card" title="{{lenguaje.tech}}">
+                <div class="card-header" >
+                    <p>{{lenguaje.tech}}</p>
+                </div>
+                 
+                <div class="card-contenedor">
+                    
+                    <circle-progress
+                    [percent]="lenguaje.porcentaje"
+                    [radius]="50"
+                    [imageSrc]="lenguaje.icon"
+                    [showImage]="true"
+                    [imageWidth]="35"
+                    [imageHeight]="40"
+                    [unitsColor]="'#0A0A23'"
+                    titleFontSize="0.5em"
+                    [titleColor]="'#0A0A23'"
+                    [showSubtitle]="false"
+                    [outerStrokeWidth]="5"
+                    [innerStrokeWidth]="2"
+                    [outerStrokeColor]="'#feac32'"
+                    [innerStrokeColor]="'#F5F6F7'"
+                    [animation]="true"
+                    [animationDuration]="300"
+                  ></circle-progress>
+                  <p>{{lenguaje.porcentaje}}%</p>
+                </div>
+                <div class="card-footer">
+                    <span> <fa-icon [icon]="faPen"   ></fa-icon></span>
+                    <span> <fa-icon [icon]="faTrash"></fa-icon></span>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+   
+  </div>
+

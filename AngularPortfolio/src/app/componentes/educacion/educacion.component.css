@@ -1,0 +1,162 @@
+.container{
+    padding:0px;
+}
+.row{
+    padding:0px;
+    margin: 0px;
+}
+.encabezado-educacion{
+    background-color:#0A0A23;
+    color:#F5F6F7;
+}
+.encabezado-educacion p{
+    margin:0px;
+    margin-left: 20px;
+    padding: 10px 0px;
+    font-size: 1.5em;   
+}
+.encabezado-educacion span{
+    float:right;
+    margin-right: 50px;
+}
+.iconEducacion{
+    border-radius:5px;
+    font-size: 0.6em;  
+}
+.contenedor-educacion{
+    background-color:#1B1B32;
+
+}
+.contenedor-educacion{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+.box-educacion{
+    width:80%;   
+    
+}
+.col-8{
+    padding-right: 0px;
+}
+
+.educacion{
+    background-color: #66687a;
+    color:#F5F6F7;
+    padding:12px;
+    display:flex;
+    margin-top: 20px;
+    font-size: 1.5em;;
+    width: 100%;
+    transition: all 0.2s ease-in;
+} 
+ .col-2{
+    text-align: center;
+}
+
+.educacion:hover{
+    background-color:#F5F6F7;
+    color:#66687a;
+    cursor: pointer;
+}
+.flechas button{
+   background-color: #ffbf00;
+
+}/*
+.educacion button{
+    border: none;
+} */
+.selecionado1{
+    padding:20px;
+    min-width:60%;  
+    /*transition: all 0.5s ease-in;*/
+    display:block;
+    background-color:#F5F6F7;
+    color:#66687a;
+}
+.selecionado2{
+    height:0;
+    
+    display:none; 
+}
+
+/* .descripcionCurso div:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descripcionCurso div:last-child{
+   margin-top: 20px;
+} */
+.edicion-educacion{
+    float: right;
+}
+.contenedor-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.contenedor-img img{
+    /*border-radius: 50%;*/
+    object-fit: cover;
+    height:80%;
+    width:10rem;
+}
+.edicion-educacion span{
+    margin-left:10px;
+    float:right;
+    border: 1px solid;
+    padding:5px 10px;
+    border-radius: 5px;
+    cursor:pointer; 
+}
+.modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    margin-bottom: 15px;
+}
+.modal-footer{
+    float: left;
+    display: flex;
+    justify-content: space-between;
+}
+.contadorCadena{
+    float: right;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}
+@media screen and (max-width:320px) {
+    .educacion{
+        background-color: #66687a;
+        color:#F5F6F7;
+        padding:8px;
+        display:flex;
+        margin-top: 20px;
+        font-size: 1.2em;;
+        min-width: 236px;
+        transition: all 0.2s ease-in;
+    } 
+    .flechas {
+        padding: 0px;
+     
+     }
+     .logo-descripcion{
+        display: flex;
+        min-width: 100px;
+     }
+    
+}

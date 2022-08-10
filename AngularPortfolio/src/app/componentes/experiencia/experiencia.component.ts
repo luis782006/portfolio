@@ -89,8 +89,8 @@ export class ExperienciaComponent implements OnInit {
   }
 
   //abrir modal Agregar Expe
-  openAgregarExp(AgregarExp){
-    this.modalAgregarExp.open(AgregarExp)
+  openAgregarExp(modal){
+    this.modalAgregarExp.open(modal)
     this.formAgregarExp.reset()
     this.formAgregarExp.get('nombre_empresa').setValue("")
     this.formAgregarExp.get('descripcion_empresa').setValue("")
@@ -108,7 +108,7 @@ export class ExperienciaComponent implements OnInit {
         .subscribe(data=>{
             Swal.fire({
               title:'Experiencia',
-              text:'',
+              text:'Experiencia agregada',
               icon:'success',
               iconColor:'#0A0A23',
               timer:2000,
@@ -149,7 +149,7 @@ export class ExperienciaComponent implements OnInit {
       this.formAgregarExp.get('inicio_empresa').setValue(experienciaModal.inicio_empresa)
       this.formAgregarExp.get('fin_empresa').setValue(experienciaModal.inicio_empresa)
       this.ejemplo=this.formAgregarExp.get('inicio_empresa').value;
-      console.log(this.ejemplo);
+      
       
       let fechaNoFormatIn=experienciaModal.inicio_empresa
       if (fechaNoFormatIn!=null) {
@@ -265,9 +265,10 @@ public toogleFechaDisplayOut(value:boolean){
   openELiminarExp(modal,experiencia:Experiencia){
     this.modalEliminarExp.open(modal);
      this.nombreEmpresaEliminar=experiencia.nombre_empresa
-    console.log(experiencia.nombre_empresa);
+    //console.log(experiencia.nombre_empresa);
     this.expeParaEliminar=experiencia
     console.log(this.expeParaEliminar);
+    
   }
  
 eliminarExp(modal){
@@ -275,7 +276,7 @@ eliminarExp(modal){
     this.experienciaService.eliminarExperiencia(this.expeParaEliminar)
     .subscribe(data=>{
         Swal.fire({
-          title:'Experiencia elimianda',
+          title:'Experiencia eliminada',
           text:'Su experiencia a sido elimninada con exito',
           icon:'success',
           iconColor:'#0A0A23',
