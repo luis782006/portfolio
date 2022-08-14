@@ -75,6 +75,21 @@
     font-size: 0.8em;
     color: #feac32;
 }
+
+.contadorCadena{
+    float: right;
+}
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}
 .card-footer{
     background-color: #0A0A23;
     width:100%;

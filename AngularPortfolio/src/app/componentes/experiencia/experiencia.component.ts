@@ -7,9 +7,6 @@ import { ExperienciaServiceService } from 'src/app/Services/experiencia-service.
 import {Experiencia} from '../../models/Experiencias'
 import Swal from 'sweetalert2';
 
-
-
-
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
@@ -148,7 +145,7 @@ export class ExperienciaComponent implements OnInit {
      
       this.formAgregarExp.get('inicio_empresa').setValue(experienciaModal.inicio_empresa)
       this.formAgregarExp.get('fin_empresa').setValue(experienciaModal.inicio_empresa)
-      this.ejemplo=this.formAgregarExp.get('inicio_empresa').value;
+      //this.ejemplo=this.formAgregarExp.get('inicio_empresa').value;
       
       
       let fechaNoFormatIn=experienciaModal.inicio_empresa
@@ -267,7 +264,7 @@ public toogleFechaDisplayOut(value:boolean){
      this.nombreEmpresaEliminar=experiencia.nombre_empresa
     //console.log(experiencia.nombre_empresa);
     this.expeParaEliminar=experiencia
-    console.log(this.expeParaEliminar);
+    //console.log(this.expeParaEliminar);
     
   }
  

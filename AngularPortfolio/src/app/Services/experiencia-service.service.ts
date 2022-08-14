@@ -13,7 +13,7 @@ export class ExperienciaServiceService {
 { }
 //fin constructor
 //variables
-url='http://localhost:8080/experiencia'; //ruta+endpoint"personas""
+url='http://localhost:8080/experiencia'; //ruta+endpoint"experiencia""
 
 //metodos
 //lista todas las personas

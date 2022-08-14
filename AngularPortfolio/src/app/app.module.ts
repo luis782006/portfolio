@@ -18,6 +18,7 @@ import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.compo
 //librerias externas npm
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 //Import necesarios para el crud
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,8 @@ import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-
     EditAcercaComponent,
     ExperienciaComponent,
     EducacionComponent,
-    HardSoftSkillComponent
+    HardSoftSkillComponent,
+    
   ],
 
   imports: [
@@ -51,6 +53,7 @@ import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-
     NgbModule,
     AlifeFileToBase64Module,
     ReactiveFormsModule,
+    NgCircleProgressModule.forRoot({}),
  
   ],
   providers: [

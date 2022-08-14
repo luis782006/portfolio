@@ -1,24 +1,20 @@
 
    <div class="container">
     <div class="row encabezado-hard-softskill">
-        <p>Hard & SoftSkill<span><button class="iconHard-Soft">Agregar Skill</button></span></p>
+        <p>Hard & SoftSkill<span><button class="iconHard-Soft" (click)="openAgregarHardSoft(AgregarHardSoft)">Agregar Skill</button></span></p>
     </div>
     <div class="row contenedor">
-        <div class="col-md-3 col-sm-12 contenedor-card" *ngFor="let lenguaje of lenguajes index as i">
-            <div class="card" title="{{lenguaje.tech}}">
+        <div class="col-md-3 col-sm-12 contenedor-card" *ngFor="let hardSoftSkill of hardSoftSkills">
+            <div class="card" title="{{hardSoftSkill.tipo_habilidad}} ">
                 <div class="card-header" >
-                    <p>{{lenguaje.tech}}</p>
+                    <p>{{hardSoftSkill.tipo_habilidad | uppercase}}</p>
                 </div>
                  
                 <div class="card-contenedor">
                     
                     <circle-progress
-                    [percent]="lenguaje.porcentaje"
+                    [percent]="hardSoftSkill.nivel"
                     [radius]="50"
-                    [imageSrc]="lenguaje.icon"
-                    [showImage]="true"
-                    [imageWidth]="35"
-                    [imageHeight]="40"
                     [unitsColor]="'#0A0A23'"
                     titleFontSize="0.5em"
                     [titleColor]="'#0A0A23'"
@@ -29,12 +25,14 @@
                     [innerStrokeColor]="'#F5F6F7'"
                     [animation]="true"
                     [animationDuration]="300"
+                    [renderOnClick]="true"
+                    
                   ></circle-progress>
-                  <p>{{lenguaje.porcentaje}}%</p>
+                  <p>{{hardSoftSkill.nivel}}%</p>
                 </div>
                 <div class="card-footer">
-                    <span> <fa-icon [icon]="faPen"   ></fa-icon></span>
-                    <span> <fa-icon [icon]="faTrash"></fa-icon></span>
+                    <span (click)="openEditHardSoft(mEditHardSoft,hardSoftSkill)"> <fa-icon [icon]="faPen"   ></fa-icon></span>
+                    <span (click)="openEliminarHardSoft(mEliminarHardSoft,hardSoftSkill)"> <fa-icon [icon]="faTrash"></fa-icon></span>
                 </div>
             </div>
         </div>
@@ -42,4 +40,134 @@
     </div>
    
   </div>
+<!-- Agregar hardsoft -->
+<ng-template #AgregarHardSoft let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h3>Agregar Hard & Soft Skills</h3>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formAgregarHardSoft" novalidate (ngSubmit)="saveNuevaHardSoft($event)"  >
+            <input type="text" formControlName="id" hidden>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text"  class="form-control" formControlName="tipo_habilidad" />
+                    <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Habilidad</label>
+                    <label class="form-label contadorCadena"><small>{{ this.formAgregarHardSoft.get('tipo_habilidad').value.length }}/10</small></label>
+                    <!--alerta nombre empresa-->
+                        <div *ngIf="formAgregarHardSoft.get('tipo_habilidad').errors && formAgregarHardSoft.get('tipo_habilidad').touched">
+                            <p *ngIf="formAgregarHardSoft.get('tipo_habilidad').hasError('required')" class="alert">
+                                Ingrese su Habilidad
+                            </p>
+                            <p *ngIf="formAgregarHardSoft.get('tipo_habilidad').hasError('maxlength')" class="alert">
+                                Maximo de 10 caracteres
+                            </p>
+                        </div>
+                    <!--Alerta nombre empresa--> 
+                    <div class="row mb-8">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form3Example2"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nivel (%)</label>
+                                <input type="range" id="points" formControlName="nivel" min="0" max="100">
+                                <!-- <input type="text" class="form-control" formControlName="nivel"/> -->
+                                
+                                <span>{{formAgregarHardSoft.get('nivel').value}} /100% </span>
+                                <div *ngIf="formAgregarHardSoft.get('nivel').errors && formAgregarHardSoft.get('nivel').touched">
+                                    <p *ngIf="formAgregarHardSoft.get('nivel').hasError('min')" class="alert">
+                                        Ingrese al menos un minimo 10 de conocimiento
+                                    </p>
+                                </div>   
+                             
+                            </div>
+                        </div>
+                      
+                    </div>   
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer ">
+        <span>
+            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+        </span>
+        <span>
+            <button type="button"  [disabled]="formAgregarHardSoft.invalid" (click)="saveNuevaHardSoft($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+        </span>
+    </div>
+</ng-template>
+<!--Fin Agregar hardsoft -->
+<!-- Editar hardsoft -->
+<ng-template #mEditHardSoft let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h3>Editar Hard & Soft Skills</h3>
+        <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="formAgregarHardSoft" novalidate   >
+            <input type="text" formControlName="id" hidden>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text"  class="form-control" formControlName="tipo_habilidad" />
+                    <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Habilidad</label>
+                    <label class="form-label contadorCadena"><small>{{ this.formAgregarHardSoft.get('tipo_habilidad').value.length }}/50</small></label>
+                    <!--alerta nombre empresa-->
+                        <div *ngIf="formAgregarHardSoft.get('tipo_habilidad').errors && formAgregarHardSoft.get('tipo_habilidad').touched">
+                            <p *ngIf="formAgregarHardSoft.get('tipo_habilidad').hasError('required')" class="alert">
+                                Ingrese su Habilidad
+                            </p>
+                            <p *ngIf="formAgregarHardSoft.get('tipo_habilidad').hasError('maxlength')" class="alert">
+                                Maximo de 50 caracteres
+                            </p>
+                        </div>
+                    <!--Alerta nombre empresa--> 
+                    <div class="row mb-8">
+                        <div class="col">
+                            <div class="form-outline">
+                                <label class="form-label" for="form3Example2"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nivel (%)</label>
+                                <input type="range" id="points" formControlName="nivel" min="0" max="100">
+                                <!-- <input type="text" class="form-control" formControlName="nivel"/> -->
+                                
+                                <span>{{formAgregarHardSoft.get('nivel').value}} /100% </span>
+                                <div *ngIf="formAgregarHardSoft.get('nivel').errors && formAgregarHardSoft.get('nivel').touched">
+                                    <p *ngIf="formAgregarHardSoft.get('nivel').hasError('required')" class="alert">
+                                        Ingrese al menos un minimo de conocimiento
+                                    </p>
+                                </div>   
+                            </div>
+                        </div>
+                      
+                    </div>   
+                </div>
+            </div>
 
+        </form>
+    </div>
+    <div class="modal-footer">
+        <span>
+            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+        </span>
+        <span>
+            <button type="button"  [disabled]="formAgregarHardSoft.invalid" (click)="saveEditHardSoft($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+        </span>
+    </div>
+</ng-template>
+<!--Fin Editar hardsoft -->
+<!-- Eliminar hardsoft -->
+<ng-template #mEliminarHardSoft>
+        <div class="modal-header">
+            <h3>Eliminar Habilidades</h3>
+            <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
+        </div>
+        <div class="modal-body">
+            <p><b>¿Desea eliminar?</b></p>
+            <span><b> Habilidad:</b></span><span class="presentacionModal"> {{nombreHabilidadEliminar}}</span>
+        </div>
+        <div class="modal-footer">
+            <span>
+                <button type="button" (click)="eliminarHardSoft($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
+                <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+                </span>
+        </div>
+</ng-template>
+<!--Fin Eliminar hardsoft -->
