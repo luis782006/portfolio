@@ -1,0 +1,95 @@
+.container{
+    padding:0px;
+}
+.row{
+    padding:0px;
+    margin: 0px;
+}
+.row-proyectos{
+    background-color: var(--color-cajaS);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.encabezado-proyectos{
+    background-color:#0A0A23;
+    color:#F5F6F7;
+}
+.encabezado-proyectos p{
+    margin:0px;
+    margin-left: 20px;
+    padding: 10px 0px;
+    font-size: 1.5em;   
+}
+.encabezado-proyectos span{
+    float:right;
+    margin-right: 50px;
+}
+.iconProyectos{
+    border-radius:5px;
+    font-size: 0.6em; 
+    cursor: pointer; 
+}
+.contenedor-card{
+    padding: 20px;
+    display:flex;
+    justify-content:center;
+     
+}
+.card{
+    margin-top: 20px;
+    min-height: 400px;
+    
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-end;
+    background-color: #1B1B32;  
+    box-shadow:  6px 10px 26px -2px #060624;
+    
+}
+.card-foto{
+   width:100%;
+    height:60%;
+    overflow: hidden;
+}
+.card-foto img{
+    object-fit: fill;
+    width:100%;
+    height:260px;
+    margin: 0px; 
+}
+.card-contenedor{
+    margin-bottom: 10px;;
+    padding:40px;
+    color:#F5F6F7;
+    
+}
+.card-footer span{
+    margin-left:20px;
+    float:right;
+    border: 1px solid;
+    padding:5px 10px;
+    border-radius: 5px;
+}
+.miModal-headerFooter{
+    background-color: var(--color-text);  
+}
+.contadorCadena{
+    float: right;
+}
+.alertaCamposRequeridos{
+    float: left;
+}
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}

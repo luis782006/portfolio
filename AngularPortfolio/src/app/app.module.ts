@@ -27,6 +27,8 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
 import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-skill.component';
+import { ProyectoComponent } from './componentes/proyecto/proyecto.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-
     ExperienciaComponent,
     EducacionComponent,
     HardSoftSkillComponent,
+    ProyectoComponent,
+    RegistroComponent,
     
   ],
 

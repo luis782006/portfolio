@@ -274,7 +274,7 @@ eliminarExp(modal){
     .subscribe(data=>{
         Swal.fire({
           title:'Experiencia eliminada',
-          text:'Su experiencia a sido elimninada con exito',
+          text:'Su experiencia ha sido elimninada con exito',
           icon:'success',
           iconColor:'#0A0A23',
           timer:2000,

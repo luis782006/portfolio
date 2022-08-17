@@ -1,5 +1,5 @@
 export class Proyectos{
-    id?:number;
+    id:number;
     nombre_proyecto:String;
     descripcion_proyecto:String;
     photo_url:String;
