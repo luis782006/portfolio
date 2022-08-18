@@ -10,9 +10,9 @@ import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  @Output()loginVisible=new EventEmitter<any>();
+  
 
-  //loginVisible:boolean=true;
+ 
 
   faGithub=faGithub
   faLinkedin=faLinkedin

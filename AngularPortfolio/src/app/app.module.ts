@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { NavComponent } from './componentes/header/nav/nav.component';
 import { LogoComponent } from './componentes/header/logo/logo.component';
-import { LoginComponent } from './componentes/login/login.component';
+
 import { BannerComponent } from './componentes/banner/banner.component';
 import { AcercaComponent } from './componentes/acerca/acerca.component';
 import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.component';
@@ -22,13 +22,17 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 
 //Import necesarios para el crud
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
 import { EducacionComponent } from './componentes/educacion/educacion.component';
 import { HardSoftSkillComponent } from './componentes/hard-soft-skill/hard-soft-skill.component';
 import { ProyectoComponent } from './componentes/proyecto/proyecto.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { interceptorProvider } from './interceptors/persona-interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './componentes/login/login.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 
 @NgModule({
@@ -37,7 +41,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     HeaderComponent,
     NavComponent,
     LogoComponent,
-    LoginComponent,
+   
     BannerComponent,
     AcercaComponent,
     EditAcercaComponent,
@@ -46,11 +50,14 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     HardSoftSkillComponent,
     ProyectoComponent,
     RegistroComponent,
+    LoginComponent,
+    HomeComponent,
     
   ],
 
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
@@ -58,10 +65,13 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     AlifeFileToBase64Module,
     ReactiveFormsModule,
     NgCircleProgressModule.forRoot({}),
+    ToastrModule.forRoot()
+    
+    
  
   ],
   providers: [
-  
+  interceptorProvider
 
   ],
   bootstrap: [AppComponent]
