@@ -66,9 +66,6 @@ import { HomeComponent } from './componentes/home/home.component';
     ReactiveFormsModule,
     NgCircleProgressModule.forRoot({}),
     ToastrModule.forRoot()
-    
-    
- 
   ],
   providers: [
   interceptorProvider

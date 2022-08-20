@@ -1,14 +1,11 @@
 <div class="container">
     <div class="row" *ngFor="let persona of personas">
         <div class="col-sm-12 col-md-4 contenedor-img">
-            <img [src]='persona.photo_url' alt="" class="imagen">
+            <img [src]="persona.photo_url" alt="" class="imagen">
         </div>
         <div class="col-sm-12 col-md-8 contenedor-texto">
             <h2>Acerca de mi:</h2>
-            <p>{{persona.descripcion_acerca}}</p>
-            <span (click)="openEditAcerca(persona,modalPersona)">
-                <fa-icon [icon]="faPen" class="iconAcerca"></fa-icon>
-            </span>   
+            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
         </div>
     </div>
       <ng-template #modalPersona let-c="close" let-d="dismiss">
@@ -18,7 +15,7 @@
                 <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" novalidate  (ngSubmit)="saveLast($event)">
+                <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
                     <input type="text" formControlName="id" hidden>
                      <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-8">
@@ -27,11 +24,9 @@
                                     <input type="text"  class="form-control" formControlName="nombre"/>
                                     <label class="form-label" for="form3Example1">Nombre</label>
                                     <!--alerta nombre-->
-                                    <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
-                                        <p *ngIf="form.get('nombre').hasError('required')" class="alert">
-                                            Ingrese el nombre
-                                        </p>
-                                     </div>   
+                                    <div *ngIf="form.get('nombre').errors && form.get('nombre').touched" class="alert" role="alert">
+                                        Ingrese el nombre
+                                    </div>
                                     <!--alerta nombre-->
                                 </div>
                             </div>
@@ -40,11 +35,9 @@
                                     <input type="text" class="form-control" formControlName="apellido"/>
                                     <label class="form-label" for="form3Example2">Apellido</label>
                                       <!--alerta apellido-->
-                                      <div *ngIf="form.get('apellido').errors && form.get('apellido').touched">
-                                        <p *ngIf="form.get('apellido').hasError('required')" class="alert">
-                                            Ingrese un apellido
-                                        </p>
-                                      </div>
+                                      <div *ngIf="form.get('apellido').errors && form.get('apellido').touched" class="alert alert-danger" role="alert">
+                                        Ingrese el apellido
+                                    </div>
                                     <!--alerta apellido-->
                                 </div>
                             </div>
@@ -54,14 +47,11 @@
                             </div>
                             <div class="form-outline">
                                 <input type="file" class="form-control" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)"  />
-                               
                                 <label class="form-label" for="form3Example2">Foto <span class="alert">(requerido)</span></label>
                                    <!--alerta foto-->
-                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched">
-                                    <p *ngIf="form.get('photo_url').hasError('required')" class="alert">
-                                        Cargue una foto
-                                    </p>
-                                    </div>
+                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
+                                    Cargue una foto
+                                   </div>
                                 <!--alerta foto-->
                             </div>
                             <div class="form-outline">
@@ -74,14 +64,14 @@
                             </div>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button" [disabled]="form.invalid" class="btn btn-dark">Siguiente</button>             
+                            <button type="button"  [disabled]="form.invalid" (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
                             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
                         </div>  
                   </form>
             </div>
       </ng-template>
 </div>
-    <!-- <ng-template #modalPresentacion let-c="close" let-d="dismiss">
+    <ng-template #modalPresentacion let-c="close" let-d="dismiss">
         <div class="modal-header">
            <h3>Confirmar Experiencia</h3>
             <fa-icon [icon]="faQuestionCircle" style="font-size:2em;"></fa-icon>
@@ -89,7 +79,7 @@
         <div class="modal-body">
             <div class="row m-8" style="margin-bottom:10px;">
                 <div class="col ">
-                    <div class="contenedor-img-modal"><img src={{imagenMostrar}} alt=""></div>
+                    <div class="contenedor-img-modal"><img src={{img}} alt="" class="imagen"></div>
                 </div>
                 <br>
                 <div class="col contenedor-presentacionModal">
@@ -103,7 +93,6 @@
             <p class="presentacionAcercaDeMi">{{form.get('descripcion_acerca').value}}</p>
            </div>
            <hr>
-           
            <div class="col ">
             <span><b> Github:</b> </span><span class="presentacionModal">{{form.get('path_git').value}}</span>
         </div>
@@ -116,7 +105,5 @@
             <button type="button"  [disabled]="form.invalid" (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
         </div>
-    </ng-template> -->
+    </ng-template>
          
-    <!-- [disabled]="form.invalid" -->
-    

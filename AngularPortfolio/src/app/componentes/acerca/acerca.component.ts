@@ -9,7 +9,9 @@ import Swal from 'sweetalert2';
 //Import Formularios Reactivos
 import {
   FormGroup,
+  FormControlName,
   FormBuilder,
+  FormControl,
   Validators,
 } from '@angular/forms';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
@@ -21,7 +23,8 @@ import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
   styleUrls: ['./acerca.component.css']
 })
 export class AcercaComponent implements OnInit {
-  
+   bannerComponent:BannerComponent
+
 //Variables
     //Iconos
       faPen = faPen;
@@ -33,14 +36,16 @@ export class AcercaComponent implements OnInit {
 
     //variable para manejar la imagen en base64
     img:String="";
-    imagenMostrar:String;
 
   
 //Constructor
   constructor(
               private modalEditAcerca:NgbModal,
               private formBuilder:FormBuilder,
-              private acercaService:AcercaServiceService
+              private acercaService:AcercaServiceService,
+            
+             
+              
               ) { 
 
     this.buildForm(); // metodo que instancia el formulario
@@ -48,11 +53,19 @@ export class AcercaComponent implements OnInit {
 
 
 //ngOnInit
-  ngOnInit() {
+
+
+
+  ngOnInit(): void {
     //metodo http get
+    
     this.acercaService.getPersonas().subscribe((data) => {
-      this.personas = data; 
+      this.personas = data;
+      
     });
+
+   
+ 
   }
 
 //Metodos
@@ -61,27 +74,29 @@ export class AcercaComponent implements OnInit {
 private buildForm() {
   this.form = this.formBuilder.group({
     id: [''],
-    nombre: ['',[Validators.required]],
-    apellido: ['',[Validators.required]],
+    nombre: ['',Validators.required],
+    apellido: ['',Validators.required],
     descripcion_acerca: [''],
-    photo_url:['',[Validators.required]],
+    photo_url:['',Validators.required],
     path_git:[''],
     path_link:['']
   });
 }
 
+
   //abrir modal de edicion AcercaDeMi 
   openEditAcerca(persona:Persona,modalPersona){
-    this.modalEditAcerca.open(modalPersona);
+      this.modalEditAcerca.open(modalPersona);
 
-    this.form.get('id').setValue(persona.id);
-    this.form.get('nombre').setValue(persona.nombre);
-    this.form.get('apellido').setValue(persona.apellido);
-    this.form.get('descripcion_acerca').setValue(persona.descripcion_acerca);
-    this.form.get('photo_url').setValue(persona.photo_url);
-    this.form.get('path_git').setValue(persona.path_git);
-    this.form.get('path_link').setValue(persona.path_link);   
-    console.log(this.form.value);
+    let personaModal:Persona;
+    personaModal=persona
+    this.form.get('id').setValue(personaModal.id);
+    this.form.get('nombre').setValue(personaModal.nombre);
+    this.form.get('apellido').setValue(personaModal.apellido);
+    this.form.get('descripcion_acerca').setValue(personaModal.descripcion_acerca);
+    this.form.get('photo_url').setValue(personaModal.photo_url);
+    this.form.get('path_git').setValue(personaModal.path_git);
+    this.form.get('path_link').setValue(personaModal.path_link);
     
     }
   
@@ -92,41 +107,29 @@ private buildForm() {
 
   //guardar imagen del input tipo file
   obtener($event:any){
+    //let img:String="";
     this.img=$event[0].base64;
-    this.form.value.photo_url=this.img;  
-    console.log(this.form.value); 
-    
-     
+    this.form.value.photo_url=this.img;
   }
 
   savePreview(event:Event, modalPresentacion){
     event.preventDefault();
     let personaActualizada:Persona;
-    personaActualizada=this.form.value
-    personaActualizada.photo_url=this.img
-    console.log(personaActualizada.photo_url);
-    //this.imagenMostrar=personaActualizada.photo_url
-
     this.modalEditAcerca.dismissAll();
     this.modalEditAcerca.open(modalPresentacion)
   }
   //guardar cambios acercaDeMi
   saveLast(event:Event){
     event.preventDefault();
-   
     let personaActualizada:Persona;
-    console.log(this.form.value);
-  
     this.modalEditAcerca.dismissAll();
-    
      if (this.form.valid){
-      this.form.value.photo_url=this.imagenMostrar;
-      personaActualizada=this.form.value;
+       personaActualizada = this.form.value;
+            
     //    //httpClient actualizar.
-   
+              
           this.acercaService.actualizarPersona(personaActualizada)
           .subscribe(data=>{
-            
               Swal.fire({
                 title:'Usuario actualizado',
                 text:'Bienvenido '+ personaActualizada.nombre,
@@ -136,9 +139,8 @@ private buildForm() {
                 showConfirmButton:false
               })
             this.ngOnInit();
-          
             //this.bannerComponent.refresBanner();
-            //window. location. reload();
+            window. location. reload();
           })
         }  
         //httpClient fin actualizar
