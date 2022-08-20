@@ -61,10 +61,10 @@ export class AcercaComponent implements OnInit {
 private buildForm() {
   this.form = this.formBuilder.group({
     id: [''],
-    nombre: ['',Validators.required],
-    apellido: ['',Validators.required],
+    nombre: ['',[Validators.required]],
+    apellido: ['',[Validators.required]],
     descripcion_acerca: [''],
-    photo_url:['',Validators.required],
+    photo_url:['',[Validators.required]],
     path_git:[''],
     path_link:['']
   });
@@ -81,7 +81,8 @@ private buildForm() {
     this.form.get('photo_url').setValue(persona.photo_url);
     this.form.get('path_git').setValue(persona.path_git);
     this.form.get('path_link').setValue(persona.path_link);   
-   
+    console.log(this.form.value);
+    
     }
   
   //cerrar modal de edicion AcercaDeMi
@@ -91,34 +92,35 @@ private buildForm() {
 
   //guardar imagen del input tipo file
   obtener($event:any){
-    //let img:String="";
     this.img=$event[0].base64;
-    this.form.value.photo_url=this.img;
+    this.form.value.photo_url=this.img;  
+    console.log(this.form.value); 
     
-    
+     
   }
 
   savePreview(event:Event, modalPresentacion){
     event.preventDefault();
     let personaActualizada:Persona;
     personaActualizada=this.form.value
+    personaActualizada.photo_url=this.img
+    console.log(personaActualizada.photo_url);
+    //this.imagenMostrar=personaActualizada.photo_url
+
     this.modalEditAcerca.dismissAll();
     this.modalEditAcerca.open(modalPresentacion)
-    personaActualizada.photo_url=this.img
-   // this.form.value.photo_url=this.img;
-    console.log(this.form.value);
-    this.imagenMostrar=personaActualizada.photo_url
   }
   //guardar cambios acercaDeMi
   saveLast(event:Event){
     event.preventDefault();
-    this.form.value.photo_url=this.img;
+   
     let personaActualizada:Persona;
     console.log(this.form.value);
   
     this.modalEditAcerca.dismissAll();
     
      if (this.form.valid){
+      this.form.value.photo_url=this.imagenMostrar;
       personaActualizada=this.form.value;
     //    //httpClient actualizar.
    

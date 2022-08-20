@@ -18,7 +18,7 @@
                 <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" novalidate  (ngSubmit)="savePreview($event,modalPresentacion)">
+                <form [formGroup]="form" novalidate  (ngSubmit)="saveLast($event)">
                     <input type="text" formControlName="id" hidden>
                      <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-8">
@@ -27,9 +27,11 @@
                                     <input type="text"  class="form-control" formControlName="nombre"/>
                                     <label class="form-label" for="form3Example1">Nombre</label>
                                     <!--alerta nombre-->
-                                    <div *ngIf="form.get('nombre').errors && form.get('nombre').touched" class="alert" role="alert">
-                                        Ingrese el nombre
-                                    </div>
+                                    <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
+                                        <p *ngIf="form.get('nombre').hasError('required')" class="alert">
+                                            Ingrese el nombre
+                                        </p>
+                                     </div>   
                                     <!--alerta nombre-->
                                 </div>
                             </div>
@@ -38,9 +40,11 @@
                                     <input type="text" class="form-control" formControlName="apellido"/>
                                     <label class="form-label" for="form3Example2">Apellido</label>
                                       <!--alerta apellido-->
-                                      <div *ngIf="form.get('apellido').errors && form.get('apellido').touched" class="alert alert-danger" role="alert">
-                                        Ingrese el apellido
-                                    </div>
+                                      <div *ngIf="form.get('apellido').errors && form.get('apellido').touched">
+                                        <p *ngIf="form.get('apellido').hasError('required')" class="alert">
+                                            Ingrese un apellido
+                                        </p>
+                                      </div>
                                     <!--alerta apellido-->
                                 </div>
                             </div>
@@ -53,9 +57,11 @@
                                
                                 <label class="form-label" for="form3Example2">Foto <span class="alert">(requerido)</span></label>
                                    <!--alerta foto-->
-                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
-                                    Cargue una foto
-                                   </div>
+                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched">
+                                    <p *ngIf="form.get('photo_url').hasError('required')" class="alert">
+                                        Cargue una foto
+                                    </p>
+                                    </div>
                                 <!--alerta foto-->
                             </div>
                             <div class="form-outline">
@@ -68,14 +74,14 @@
                             </div>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button"  (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
+                            <button type="button" [disabled]="form.invalid" class="btn btn-dark">Siguiente</button>             
                             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
                         </div>  
                   </form>
             </div>
       </ng-template>
 </div>
-    <ng-template #modalPresentacion let-c="close" let-d="dismiss">
+    <!-- <ng-template #modalPresentacion let-c="close" let-d="dismiss">
         <div class="modal-header">
            <h3>Confirmar Experiencia</h3>
             <fa-icon [icon]="faQuestionCircle" style="font-size:2em;"></fa-icon>
@@ -107,10 +113,10 @@
         </div>
         </div>
         <div class="modal-footer">
-            <button type="button" [disabled]="form.invalid"  (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
+            <button type="button"  [disabled]="form.invalid" (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
         </div>
-    </ng-template>
+    </ng-template> -->
          
     <!-- [disabled]="form.invalid" -->
     
