@@ -1,11 +1,14 @@
 <div class="container">
     <div class="row" *ngFor="let persona of personas">
         <div class="col-sm-12 col-md-4 contenedor-img">
-            <img [src]="persona.photo_url" alt="" class="imagen">
+            <img [src]='persona.photo_url' alt="" class="imagen">
         </div>
         <div class="col-sm-12 col-md-8 contenedor-texto">
             <h2>Acerca de mi:</h2>
-            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
+            <p>{{persona.descripcion_acerca}}</p>
+            <span (click)="openEditAcerca(persona,modalPersona)">
+                <fa-icon [icon]="faPen" class="iconAcerca"></fa-icon>
+            </span>   
         </div>
     </div>
       <ng-template #modalPersona let-c="close" let-d="dismiss">
@@ -15,7 +18,7 @@
                 <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
+                <form [formGroup]="form" novalidate  (ngSubmit)="savePreview($event,modalPresentacion)">
                     <input type="text" formControlName="id" hidden>
                      <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row mb-8">
@@ -47,6 +50,7 @@
                             </div>
                             <div class="form-outline">
                                 <input type="file" class="form-control" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)"  />
+                               
                                 <label class="form-label" for="form3Example2">Foto <span class="alert">(requerido)</span></label>
                                    <!--alerta foto-->
                                    <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
@@ -64,7 +68,7 @@
                             </div>
                         </div>
                         <div class="modal-footer"> 
-                            <button type="button"  [disabled]="form.invalid" (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
+                            <button type="button"  (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
                             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
                         </div>  
                   </form>
@@ -79,7 +83,7 @@
         <div class="modal-body">
             <div class="row m-8" style="margin-bottom:10px;">
                 <div class="col ">
-                    <div class="contenedor-img-modal"><img src="{{form.get('photo_url').value}}" alt="" class="imagen"></div>
+                    <div class="contenedor-img-modal"><img src={{imagenMostrar}} alt=""></div>
                 </div>
                 <br>
                 <div class="col contenedor-presentacionModal">
@@ -93,6 +97,7 @@
             <p class="presentacionAcercaDeMi">{{form.get('descripcion_acerca').value}}</p>
            </div>
            <hr>
+           
            <div class="col ">
             <span><b> Github:</b> </span><span class="presentacionModal">{{form.get('path_git').value}}</span>
         </div>
@@ -102,10 +107,10 @@
         </div>
         </div>
         <div class="modal-footer">
-            <button type="button"  [disabled]="form.invalid" (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
+            <button type="button" [disabled]="form.invalid"  (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
         </div>
     </ng-template>
          
-
+    <!-- [disabled]="form.invalid" -->
     

@@ -1,6 +1,7 @@
 import { Component,  OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { TokenService } from 'src/app/Services/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +10,41 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   
-  
-
-  visible:boolean=false;
+  textLogin:string="Login";
+  roles:string[];
+  isLogged:boolean=false;
   constructor(
-    private route:Router
+    private route:Router,
+    private tokenService: TokenService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
+    this.roles = this.tokenService.getAuthorities();
+      this.roles.forEach(rol => {
+
+        if (rol=== 'ROLE_ADMIN'){
+          this.textLogin="Admin Logeado"  
+          this.isLogged=true;
+  
+        }else{
+          if(rol==='ROLE_USER'){
+            this.textLogin="Usuario Logeado" 
+            this.isLogged=true; 
+          }
+        }
+      });
     
   }
- loginVisible(){
-  this.route.navigate(['login'])
- // this.visible=!this.visible;
+
+ irLogin(){
+  if (this.isLogged) {
+    this.route.navigate([' '])
+  } else {
+    this.route.navigate(['login'])
+  }
+  
+ 
  }
 
 }

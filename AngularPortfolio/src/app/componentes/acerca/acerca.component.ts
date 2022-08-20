@@ -9,9 +9,7 @@ import Swal from 'sweetalert2';
 //Import Formularios Reactivos
 import {
   FormGroup,
-  FormControlName,
   FormBuilder,
-  FormControl,
   Validators,
 } from '@angular/forms';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
@@ -23,8 +21,7 @@ import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
   styleUrls: ['./acerca.component.css']
 })
 export class AcercaComponent implements OnInit {
-   bannerComponent:BannerComponent
-
+  
 //Variables
     //Iconos
       faPen = faPen;
@@ -36,16 +33,14 @@ export class AcercaComponent implements OnInit {
 
     //variable para manejar la imagen en base64
     img:String="";
+    imagenMostrar:String;
 
   
 //Constructor
   constructor(
               private modalEditAcerca:NgbModal,
               private formBuilder:FormBuilder,
-              private acercaService:AcercaServiceService,
-            
-             
-              
+              private acercaService:AcercaServiceService
               ) { 
 
     this.buildForm(); // metodo que instancia el formulario
@@ -53,19 +48,11 @@ export class AcercaComponent implements OnInit {
 
 
 //ngOnInit
-
-
-
-  ngOnInit(): void {
+  ngOnInit() {
     //metodo http get
-    
     this.acercaService.getPersonas().subscribe((data) => {
-      this.personas = data;
-      
+      this.personas = data; 
     });
-
-   
- 
   }
 
 //Metodos
@@ -83,21 +70,18 @@ private buildForm() {
   });
 }
 
-
   //abrir modal de edicion AcercaDeMi 
   openEditAcerca(persona:Persona,modalPersona){
-      this.modalEditAcerca.open(modalPersona);
+    this.modalEditAcerca.open(modalPersona);
 
-    let personaModal:Persona;
-    personaModal=persona
-    this.form.get('id').setValue(personaModal.id);
-    this.form.get('nombre').setValue(personaModal.nombre);
-    this.form.get('apellido').setValue(personaModal.apellido);
-    this.form.get('descripcion_acerca').setValue(personaModal.descripcion_acerca);
-    this.form.get('photo_url').setValue(personaModal.photo_url);
-    this.form.get('path_git').setValue(personaModal.path_git);
-    this.form.get('path_link').setValue(personaModal.path_link);
-    
+    this.form.get('id').setValue(persona.id);
+    this.form.get('nombre').setValue(persona.nombre);
+    this.form.get('apellido').setValue(persona.apellido);
+    this.form.get('descripcion_acerca').setValue(persona.descripcion_acerca);
+    this.form.get('photo_url').setValue(persona.photo_url);
+    this.form.get('path_git').setValue(persona.path_git);
+    this.form.get('path_link').setValue(persona.path_link);   
+   
     }
   
   //cerrar modal de edicion AcercaDeMi
@@ -110,26 +94,37 @@ private buildForm() {
     //let img:String="";
     this.img=$event[0].base64;
     this.form.value.photo_url=this.img;
+    
+    
   }
 
   savePreview(event:Event, modalPresentacion){
     event.preventDefault();
     let personaActualizada:Persona;
+    personaActualizada=this.form.value
     this.modalEditAcerca.dismissAll();
     this.modalEditAcerca.open(modalPresentacion)
+    personaActualizada.photo_url=this.img
+   // this.form.value.photo_url=this.img;
+    console.log(this.form.value);
+    this.imagenMostrar=personaActualizada.photo_url
   }
   //guardar cambios acercaDeMi
   saveLast(event:Event){
     event.preventDefault();
+    this.form.value.photo_url=this.img;
     let personaActualizada:Persona;
+    console.log(this.form.value);
+  
     this.modalEditAcerca.dismissAll();
+    
      if (this.form.valid){
-       personaActualizada = this.form.value;
-            
+      personaActualizada=this.form.value;
     //    //httpClient actualizar.
-              
+   
           this.acercaService.actualizarPersona(personaActualizada)
           .subscribe(data=>{
+            
               Swal.fire({
                 title:'Usuario actualizado',
                 text:'Bienvenido '+ personaActualizada.nombre,
@@ -139,8 +134,9 @@ private buildForm() {
                 showConfirmButton:false
               })
             this.ngOnInit();
+          
             //this.bannerComponent.refresBanner();
-            window. location. reload();
+            //window. location. reload();
           })
         }  
         //httpClient fin actualizar

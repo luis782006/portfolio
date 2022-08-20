@@ -1,4 +1,4 @@
-<span *ngIf="isLogged; else loggedOut">Bienvenido</span>
+<span *ngIf="isLogged; else loggedOut"></span>
 
 <ng-template #loggedOut>
 
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <button style="color:darkseagreen;" class="btn btn-outline-success btn-block"
                                 [disabled]="!f.valid"><i class="fas fa-sign-in-alt"></i>Iniciar Sesión</button>
-                                <button routerLink="/" class="btn btn" style="color:darkseagreen" >Cancelar</button>
+                            <button routerLink="/" class="btn btn" style="color:darkseagreen" >Cancelar</button>
                         </div>
                     </span>
                 </form>

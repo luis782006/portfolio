@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginUsuario } from 'src/app/models/login-usuario';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TokenService } from 'src/app/Services/token.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -40,9 +40,25 @@ export class LoginComponent implements OnInit {
         this.tokenService.setUserName(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.toastr.success('Bienvenido ' + data.nombreUsuario, 'OK', {
-          timeOut: 9000, positionClass: 'toast-top-center'
-        });
+         
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            iconColor:'#0A0A23',
+            title: 'Bienvenido'
+            })
+        
         this.router.navigate(['']);
       },
       err => {
@@ -50,9 +66,26 @@ export class LoginComponent implements OnInit {
         //this.isLoginFail = true;
 
         this.errMsj = err.error.mensaje;
-        this.toastr.error(this.errMsj, 'Fail', {
-          timeOut: 9000,  positionClass: 'toast-top-center',
-        });
+       // this.toastr.error(this.errMsj, 'Fail', {
+          //timeOut: 9000,  positionClass: 'toast-top-center',
+       // });
+       const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+        icon: 'error',
+        iconColor:'#0A0A23',
+        title: 'Error en credenciales'
+        })
       }
     );
   }
