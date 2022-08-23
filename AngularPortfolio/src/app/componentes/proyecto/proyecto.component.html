@@ -1,7 +1,7 @@
 <div class="container">
     
     <div class="row encabezado-proyectos">
-        <p>Proyectos<span (click)="openAgregarProyecto(agregarProyecto)"><button class="iconProyectos">Agregar proyectos</button></span></p>
+        <p>Proyectos<span (click)="openAgregarProyecto(agregarProyecto)"><button *ngIf="isLogged" class="iconProyectos">Agregar proyectos</button></span></p>
     </div>
     <div class="row row-proyectos">
         <div class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
@@ -13,7 +13,7 @@
                     <h3>{{proyecto.nombre_proyecto}}</h3>
                     <p>{{proyecto.descripcion_proyecto}}</p>
                     
-                    <div class="card-footer">
+                    <div class="card-footer" *ngIf="isLogged">
                         <span (click)="openEliminarProyecto(proyecto,modalEliminarProyecto)" > <fa-icon [icon]="faTrash"></fa-icon></span>
                         <span (click)="openEditProyecto(proyecto,modalEditProyecto)"> <fa-icon [icon]="faPen"></fa-icon></span>
                     </div>

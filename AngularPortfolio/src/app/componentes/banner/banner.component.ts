@@ -15,7 +15,7 @@ export class BannerComponent implements OnInit {
 
   constructor(private acercaService:AcercaServiceService) { }
 
-  // refresBanner(){
+  //refresBanner(){
   //   this.ngOnInit()
   //   this.acercaService.getPersonas().subscribe((data) => {
   //      this.persona= data;
@@ -26,13 +26,24 @@ export class BannerComponent implements OnInit {
     
   // }
 
-  ngOnInit(): void {
-        this.acercaService.getPersonas().subscribe((data) => {
-          this.persona= data;
-          if (this.persona.length!=0) 
-          this.nombre=this.persona[0].nombre;
-          this.apellido=this.persona[0].apellido;
-        
-      });
+  reloadPerson(){
+    this.acercaService.getPersonas().subscribe((data) => {
+      this.persona= data;
+      if (this.persona.length!=0) 
+      this.nombre=this.persona[0].nombre;
+      this.apellido=this.persona[0].apellido;
+    
+   });
   }
+
+  ngOnInit(): void {
+      this.reloadPerson();
+      this.acercaService.getRefresh().subscribe((value) => {
+        if (value){
+          this.reloadPerson();
+        }
+      })
+  }
+  
+
 }

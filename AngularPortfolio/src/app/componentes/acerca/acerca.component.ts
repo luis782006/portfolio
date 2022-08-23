@@ -15,6 +15,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
+import { TokenService } from 'src/app/Services/token.service';
 
 
 @Component({
@@ -36,16 +37,20 @@ export class AcercaComponent implements OnInit {
 
     //variable para manejar la imagen en base64
     img:String="";
-
+    mostrarCargaFoto:boolean=false;
+    auxPhoto_url:string;
+    checkboxMostraFoto:boolean
+    //control token
+    roles:string[];
+    logged:string[]=[]
+    isNotLogged:boolean=false
   
 //Constructor
   constructor(
               private modalEditAcerca:NgbModal,
               private formBuilder:FormBuilder,
               private acercaService:AcercaServiceService,
-            
-             
-              
+              private tokenService: TokenService
               ) { 
 
     this.buildForm(); // metodo que instancia el formulario
@@ -61,10 +66,14 @@ export class AcercaComponent implements OnInit {
     
     this.acercaService.getPersonas().subscribe((data) => {
       this.personas = data;
-      
+    
     });
 
-   
+    this.logged=this.tokenService.getAuthorities()
+    if (this.logged.length==0) {
+      this.isNotLogged=true
+    }
+    
  
   }
 
@@ -86,8 +95,21 @@ private buildForm() {
 
   //abrir modal de edicion AcercaDeMi 
   openEditAcerca(persona:Persona,modalPersona){
-      this.modalEditAcerca.open(modalPersona);
-
+     
+    if (this.isNotLogged) {
+      Swal.fire({
+        title:'Actualizar Usuario',
+        titleText:'Lo sentimos. No posee permiso para modificar: ',
+        text: ''+persona.nombre,
+        icon:'error',
+        iconColor:'#0A0A23',
+        timer:5000,
+        showConfirmButton:false
+      })
+    } else {
+    this.modalEditAcerca.open(modalPersona);
+    console.log(this.isNotLogged);
+   
     let personaModal:Persona;
     personaModal=persona
     this.form.get('id').setValue(personaModal.id);
@@ -97,19 +119,36 @@ private buildForm() {
     this.form.get('photo_url').setValue(personaModal.photo_url);
     this.form.get('path_git').setValue(personaModal.path_git);
     this.form.get('path_link').setValue(personaModal.path_link);
+    this.auxPhoto_url=this.form.get('photo_url').value
+    }
+    
     
     }
-  
+    toggleMostrarCargaFoto(){
+
+       this.mostrarCargaFoto=!this.mostrarCargaFoto
+       if (this.mostrarCargaFoto) {
+        this.form.get('photo_url').setValue("")    
+       } else {
+        this.form.value.photo_url=this.auxPhoto_url
+        this.form.get('photo_url').setValue(this.auxPhoto_url);
+       }
+    }
+
   //cerrar modal de edicion AcercaDeMi
   cerrarModal(modal) {
     this.modalEditAcerca.dismissAll(modal);
+    this.mostrarCargaFoto=false
+    this.auxPhoto_url=this.form.get('photo_url').value
   }
 
   //guardar imagen del input tipo file
   obtener($event:any){
     //let img:String="";
     this.img=$event[0].base64;
-    this.form.value.photo_url=this.img;
+    this.form.get('photo_url').setValue(this.img);
+    this.mostrarCargaFoto=false
+    this.checkboxMostraFoto=false 
   }
 
   savePreview(event:Event, modalPresentacion){
@@ -117,6 +156,14 @@ private buildForm() {
     let personaActualizada:Persona;
     this.modalEditAcerca.dismissAll();
     this.modalEditAcerca.open(modalPresentacion)
+    if (this.mostrarCargaFoto){
+      this.img=this.auxPhoto_url
+    }else{
+      this.img=this.form.get('photo_url').value
+
+    }
+    
+  
   }
   //guardar cambios acercaDeMi
   saveLast(event:Event){
@@ -138,9 +185,10 @@ private buildForm() {
                 timer:2000,
                 showConfirmButton:false
               })
+            this.acercaService.setRefresh(true);
             this.ngOnInit();
             //this.bannerComponent.refresBanner();
-            window. location. reload();
+            //window. location. reload();
           })
         }  
         //httpClient fin actualizar

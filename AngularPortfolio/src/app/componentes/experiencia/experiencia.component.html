@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row encabezado-experiencia">
-        <p>Experiencia<span><button (click)="openAgregarExp(AgregarExp)" class="spanAcerca">Agregar Experiencia</button></span></p>
+        <p>Experiencia<span><button *ngIf="isLogged" (click)="openAgregarExp(AgregarExp)" class="spanAcerca">Agregar Experiencia</button></span></p>
     </div>
             <div class="row" *ngFor="let experiencia of experiencias;let impar = odd;let par = even;" [ngClass]="{experiencia1:par,experiencia2:impar}">  
                 <div class="col-sm-12 col-md-4 contenedor-img"> 
@@ -13,7 +13,7 @@
                     <p><span>Descripcion</span> :{{experiencia.descripcion_empresa}}</p>
                     <p>Fecha de Inicio:{{experiencia.inicio_empresa}}</p>
                     <p>Fecha de Termino:{{experiencia.fin_empresa}}</p>
-                    <div class="edicion-experiencia">  
+                    <div class="edicion-experiencia" *ngIf="isLogged">  
                         <span (click)="openEditExpe(experiencia,modalEditExp)"> <fa-icon [icon]="faPen"></fa-icon></span>
                         <span (click)="openELiminarExp(modalEliminaExp,experiencia)"> <fa-icon [icon]="faTrash"></fa-icon></span>
                         

@@ -9,5 +9,12 @@ export class AppComponent {
   title = 'AngularPortfolio';
   @Input() editAcercaVisible:boolean;
 
+  // ngOnInit(){
+  //   setTimeout(() => {console.log("Seccion expirada");
+    
+      
+  //   }, 5000);
+  // }
+
  
 }

@@ -5,6 +5,7 @@ import { faGraduationCap, faAnglesDown,faExclamationTriangle,faFilePen } from '@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Educacion } from 'src/app/models/Educacion';
 import { EducacionServiceService } from 'src/app/Services/educacion-service.service';
+import { TokenService } from 'src/app/Services/token.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -30,6 +31,10 @@ export class EducacionComponent implements OnInit {
     nombreEducacion:String;
     eduParaEliminar:Educacion
     selectedEducacion: any;
+    //token
+    isLogged:boolean;
+    isLoginFail:boolean;
+    roles: string[];
   
 
   constructor( 
@@ -37,7 +42,8 @@ export class EducacionComponent implements OnInit {
     private formBuilder:FormBuilder,
     private mAgregarEdu:NgbModal,
     private mEditEliminarEdu:NgbModal,
-    private mEliminaEdu:NgbModal
+    private mEliminaEdu:NgbModal,
+    private tokenService: TokenService
 
 
   ) { 
@@ -47,6 +53,13 @@ export class EducacionComponent implements OnInit {
   ngOnInit(): void {
     this.servicioEducacion.getEducacion().subscribe((data) => {
       this.educaciones=data;});
+
+      if(this.tokenService.getToken()){
+        this.isLogged = true;
+        this.isLoginFail = false;
+        this.roles = this.tokenService.getAuthorities();
+      }
+
   }
 
   buildForm(){

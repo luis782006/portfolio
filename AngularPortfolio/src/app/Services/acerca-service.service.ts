@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Persona } from '../models/Personas';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AcercaServiceService {
-
+private refresh:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   //constructor
   constructor(
             private servicio:HttpClient
@@ -18,8 +19,16 @@ export class AcercaServiceService {
 
     //metodos
     //lista todas las personas
+  
+    getRefresh(): Observable<boolean>{ // devuelve el valor del Observable
+      return this.refresh.asObservable()
+    } 
+    setRefresh(value:boolean):void { // se le pasa el valor al Observable
+      this.refresh.next(value);
+    }
   getPersonas(){
     return this.servicio.get<Persona[]>(this.url+'/listar');
+
   } 
   //busca personas por ID
   getPersonaId(id:any){

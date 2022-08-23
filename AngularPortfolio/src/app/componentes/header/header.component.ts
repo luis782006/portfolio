@@ -39,8 +39,11 @@ export class HeaderComponent implements OnInit {
 
  irLogin(){
   if (this.isLogged) {
+    this.tokenService.logOut();
+    window.location.reload();
     this.route.navigate([' '])
   } else {
+
     this.route.navigate(['login'])
   }
   

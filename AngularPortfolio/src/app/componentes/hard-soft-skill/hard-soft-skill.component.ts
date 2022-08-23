@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HardSoftServiceService } from 'src/app/Services/hard-soft-service.service';
+import { TokenService } from 'src/app/Services/token.service';
 
 @Component({
   selector: 'app-hard-soft-skill',
@@ -24,14 +25,18 @@ export class HardSoftSkillComponent implements OnInit {
   formAgregarHardSoft:FormGroup
   nombreHabilidadEliminar:String
   hardSoftParaEliminar:HardSoftSkill
-  
+  //tokenService
+  isLogged:boolean;
+  isLoginFail:boolean;
+  roles: string[];
 
   constructor(
     private modalAgregarHardSoft:NgbModal,
     private modalEditHardSoft:NgbModal,
     private modalEliminarHardSoft:NgbModal,
     private formBuilder:FormBuilder,
-    private servicioHardSoft:HardSoftServiceService
+    private servicioHardSoft:HardSoftServiceService,
+    private tokenService: TokenService
   ) { 
     this.buildForm(); // metodo que instancia el formulario agregar HardSoft
   }
@@ -39,6 +44,13 @@ export class HardSoftSkillComponent implements OnInit {
   ngOnInit(): void {
     this.servicioHardSoft.getHardSoftSkills().subscribe((data) => {
       this.hardSoftSkills=data;});
+
+      
+      if(this.tokenService.getToken()){
+        this.isLogged = true;
+        this.isLoginFail = false;
+        this.roles = this.tokenService.getAuthorities();
+       }
 
   }
   private buildForm() {

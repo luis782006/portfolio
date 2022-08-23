@@ -4,6 +4,7 @@ import {faPen, faTrash,faExclamationTriangle,faFilePen,faTrashCan,faQuestion} fr
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Proyectos } from 'src/app/models/Proyectos';
 import { ProyectoServiceService } from 'src/app/Services/proyecto-service.service';
+import { TokenService } from 'src/app/Services/token.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-proyecto',
@@ -22,13 +23,18 @@ export class ProyectoComponent implements OnInit {
   img:String="";
   nombreProyectoEliminar:String
   poryectoParaEliminar:Proyectos
+    //tokenService
+    isLogged:boolean;
+    isLoginFail:boolean;
+    roles: string[];
 
   constructor(
     private proyectoService:ProyectoServiceService,
     private modalAgregarProyecto:NgbModal,
     private formBuilder:FormBuilder,
     private modalEditarProyecto:NgbModal,
-    private modalEliminarProyecto:NgbModal
+    private modalEliminarProyecto:NgbModal,
+    private tokenService: TokenService
 
   ) { 
     this.buildForm(); // metodo que instancia el formulario agregar Proyecto
@@ -47,6 +53,13 @@ export class ProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.proyectoService.getProyecto().subscribe((data) => {
       this.proyectos=data;});
+
+      if(this.tokenService.getToken()){
+        this.isLogged = true;
+        this.isLoginFail = false;
+        this.roles = this.tokenService.getAuthorities();
+       }
+
   }
 
   openAgregarProyecto(modal){

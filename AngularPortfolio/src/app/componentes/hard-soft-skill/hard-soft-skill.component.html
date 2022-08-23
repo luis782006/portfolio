@@ -1,7 +1,7 @@
 
    <div class="container">
     <div class="row encabezado-hard-softskill">
-        <p>Hard & SoftSkill<span><button class="iconHard-Soft" (click)="openAgregarHardSoft(AgregarHardSoft)">Agregar Skill</button></span></p>
+        <p>Hard & SoftSkill<span><button *ngIf="isLogged" class="iconHard-Soft" (click)="openAgregarHardSoft(AgregarHardSoft)">Agregar Skill</button></span></p>
     </div>
     <div class="row contenedor">
         <div class="col-md-3 col-sm-12 contenedor-card" *ngFor="let hardSoftSkill of hardSoftSkills">
@@ -30,7 +30,7 @@
                   ></circle-progress>
                   <p>{{hardSoftSkill.nivel}}%</p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" *ngIf="isLogged">
                     <span (click)="openEditHardSoft(mEditHardSoft,hardSoftSkill)"> <fa-icon [icon]="faPen"   ></fa-icon></span>
                     <span (click)="openEliminarHardSoft(mEliminarHardSoft,hardSoftSkill)"> <fa-icon [icon]="faTrash"></fa-icon></span>
                 </div>

@@ -14,6 +14,7 @@
                 <!-- <button type="button" class="btn-close" aria-label="Close"  (click)="d('Cross click')"></button> -->
                 <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
             </div>
+
             <div class="modal-body">
                 <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
                     <input type="text" formControlName="id" hidden>
@@ -46,12 +47,29 @@
                                 <label class="form-label" for="form4Example3">Acerca de mi</label>
                             </div>
                             <div class="form-outline">
-                                <input type="file" class="form-control" accept="image/*"  alife-file-to-base64 (onFileChanged)="obtener($event)"  />
-                                <label class="form-label" for="form3Example2">Foto <span class="alert">(requerido)</span></label>
-                                   <!--alerta foto-->
-                                   <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
-                                    Cargue una foto
-                                   </div>
+                                <span>¿Desea cambiar la foto?</span>
+                                <input
+                                        type="checkbox"
+                                        [checked]='checkboxMostraFoto'
+                                        style="margin-left:10px;" 
+                                        (click)="toggleMostrarCargaFoto()"
+                                        >
+                                    <div *ngIf="mostrarCargaFoto">
+                                        <input type="file" class="form-control" accept="image/*"  
+                                            alife-file-to-base64
+                                            (onFileChanged)="obtener($event)" 
+                                         />
+   
+                                     <label class="form-label" for="form3Example2">Foto </label>
+                                     <p class="alert" *ngIf="mostrarCargaFoto"> Debe cargar una foto</p>
+                                     <p *ngIf="!mostrarCargaFoto">Foto cargada con exito</p>
+                                    <!--alerta foto-->
+                                    <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
+                                        <p *ngIf="form.get('photo_url').hasError('required')" class="alert">
+                                            Debe cargar una foto tuya.
+                                        </p>
+                                    </div>
+                                </div>
                                 <!--alerta foto-->
                             </div>
                             <div class="form-outline">

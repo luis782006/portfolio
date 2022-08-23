@@ -1,6 +1,6 @@
 <div class="container contenedor-acerca">
     <div class="row encabezado-educacion">
-        <p>Educacion<span (click)="openAgregarEdu(modalAgregaEdu)"><button class="iconEducacion">Agregar Educacion</button></span></p>
+        <p>Educacion<span (click)="openAgregarEdu(modalAgregaEdu)"><button *ngIf="isLogged" class="iconEducacion">Agregar Educacion</button></span></p>
     </div>
     <div class="row">
         <div class=" contenedor-educacion">
@@ -29,7 +29,7 @@
                              <div class="col-sm-12 col-md-8">   
                                  <p>Descripcion:{{educacion.descripcion}}</p>
                              </div>
-                             <div class="edicion-educacion">
+                             <div class="edicion-educacion" *ngIf="isLogged">
                                  <span (click)="editarEducacion(modalEditEdu,educacion)"><fa-icon [icon]="faPen" ></fa-icon></span> 
                                  <span (click)="eliminaEducacion(modalEliminarEdu,educacion)"><fa-icon [icon]="faTrash" ></fa-icon></span>
                              </div>

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExperienciaServiceService } from 'src/app/Services/experiencia-service.service';
 import {Experiencia} from '../../models/Experiencias'
 import Swal from 'sweetalert2';
+import { TokenService } from 'src/app/Services/token.service';
 
 @Component({
   selector: 'app-experiencia',
@@ -38,7 +39,10 @@ export class ExperienciaComponent implements OnInit {
    ejemplo:String
   //formulario
   formAgregarExp:FormGroup
-
+//token
+isLogged:boolean;
+isLoginFail:boolean;
+roles: string[];
   //variable para manejar la imagen en base64
   img:String="";
 
@@ -48,7 +52,8 @@ export class ExperienciaComponent implements OnInit {
     private modalAgregarExp:NgbModal,
     private formBuilder:FormBuilder,
     private modalEditarExp:NgbModal,
-    private modalEliminarExp:NgbModal
+    private modalEliminarExp:NgbModal,
+    private tokenService:TokenService
    //fin de injeciones
     ) { 
       
@@ -62,6 +67,12 @@ export class ExperienciaComponent implements OnInit {
     
       this.experienciaService.getExperiencia().subscribe((data) => {
         this.experiencias=data;});
+
+        if(this.tokenService.getToken()){
+          this.isLogged = true;
+          this.isLoginFail = false;
+          this.roles = this.tokenService.getAuthorities();
+        }
   
   }
   

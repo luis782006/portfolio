@@ -12,26 +12,26 @@ export class ProyectoServiceService {
   ) { }
 
   url='http://localhost:8080/proyecto'; //ruta+endpoint"experiencia""
-
+  apiLocal='https://portfoliolfs.herokuapp.com/proyecto'
 //metodos
 //lista todas las personas
     getProyecto(){
-    return this.servicioProyecto.get<Proyectos[]>(this.url+'/listar');
+    return this.servicioProyecto.get<Proyectos[]>(this.apiLocal+'/listar');
     } 
     //busca personas por ID
     getProyectoId(id:any){
-    return this.servicioProyecto.get<Proyectos>(this.url+'/buscar/'+id);
+    return this.servicioProyecto.get<Proyectos>(this.apiLocal+'/buscar/'+id);
     }
     addProyecto(proyecto:Proyectos){
-    return this.servicioProyecto.post<Proyectos>(this.url+"/crear",proyecto);
+    return this.servicioProyecto.post<Proyectos>(this.apiLocal+"/crear",proyecto);
     }
     //actualiza la persona
     actualizarProyecto(proyecto:Proyectos){ 
-    return this.servicioProyecto.put<Proyectos>(this.url+"/editar/"+proyecto.id,proyecto);
+    return this.servicioProyecto.put<Proyectos>(this.apiLocal+"/editar/"+proyecto.id,proyecto);
     }
     //elimina la persona.
     eliminarProyecto(proyecto:Proyectos){
-    return this.servicioProyecto.delete(this.url+"/eliminar/"+proyecto.id);
+    return this.servicioProyecto.delete(this.apiLocal+"/eliminar/"+proyecto.id);
     }
 }
 
