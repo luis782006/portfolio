@@ -66,26 +66,47 @@ export class LoginComponent implements OnInit {
         //this.isLoginFail = true;
 
         this.errMsj = err.error.mensaje;
+                
+        if (this.errMsj=="campos mal puestos"){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+    
+            Toast.fire({
+            icon: 'error',
+            iconColor:'#0A0A23',
+            title: 'Error de credenciales'
+            })
+        }else{
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+          Toast.fire({
+            icon: 'error',
+            iconColor:'#0A0A23',
+            title: 'Error de credenciales'
+            })
+        }
        // this.toastr.error(this.errMsj, 'Fail', {
           //timeOut: 9000,  positionClass: 'toast-top-center',
        // });
-       const Toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-        })
-
-        Toast.fire({
-        icon: 'error',
-        iconColor:'#0A0A23',
-        title: 'Error en credenciales'
-        })
+       
       }
     );
   }

@@ -4,7 +4,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HTTP_INTERCEPTORS
 import { catchError, Observable, throwError } from 'rxjs';
 import { TokenService } from '../Services/token.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,9 +19,28 @@ export class ProdInterceptorService implements HttpInterceptor {
   handleAuthError(err: HttpErrorResponse): Observable<any> {
     if (err.status === 401) {
       this.tokenService.logOut();
-      alert('La sesión ha expirado, por favor inicie sesión nuevamente.');
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
+        Toast.fire({
+        icon: 'error',
+        iconColor:'#0A0A23',
+        title: 'La sesión ha expirado, por favor inicie sesión nuevamente'
+        })
+
+
+      //alert('.');
       this.router.navigateByUrl('/login');
-      console.log("Error",err);
+      //console.log("Error",err);
       
       
     }

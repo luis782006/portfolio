@@ -27,12 +27,12 @@ export class HeaderComponent implements OnInit {
           this.textLogin="Admin Logeado"  
           this.isLogged=true;
   
-        }else{
-          if(rol==='ROLE_USER'){
-            this.textLogin="Usuario Logeado" 
-            this.isLogged=true; 
-          }
-        }
+        // }else{
+        //   if(rol==='ROLE_USER'){
+        //     this.textLogin="Usuario Logeado" 
+        //     this.isLogged=true; 
+        //   }
+         }
       });
     
   }

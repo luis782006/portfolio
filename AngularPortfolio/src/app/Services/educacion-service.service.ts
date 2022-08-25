@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Educacion } from '../models/Educacion';
 
 @Injectable({
@@ -13,26 +14,27 @@ export class EducacionServiceService {
 
   //fin constructor
 //variables
-url='http://localhost:8080/educacion'; //ruta+endpoint"personas""
-
+url='http://localhost:8080/'; //ruta+endpoint"personas""
+//url='https://portfoliolfs.herokuapp.com/'
+//apibase:string=environment.api
 //metodos
 //lista todas educacion
 getEducacion(){
-  return this.servicioEducacion.get<Educacion[]>(this.url+'/listar');
+  return this.servicioEducacion.get<Educacion[]>(this.url+'educacion/listar');
   } 
   //busca personas por ID
   getEducacionId(id:any){
-  return this.servicioEducacion.get<Educacion>(this.url+'/buscar/'+id);
+  return this.servicioEducacion.get<Educacion>(this.url+'educacion/buscar/'+id);
   }
   addEducacion(educacion:Educacion){
-  return this.servicioEducacion.post<Educacion>(this.url+"/crear",educacion);
+  return this.servicioEducacion.post<Educacion>(this.url+"educacion/crear",educacion);
   }
   //actualiza la persona
   actualizarEducacion(educacion:Educacion){ 
-  return this.servicioEducacion.put<Educacion>(this.url+"/editar/"+educacion.id,educacion);
+  return this.servicioEducacion.put<Educacion>(this.url+"educacion/editar/"+educacion.id,educacion);
   }
   //elimina la persona.
   eliminarEducacion(educacion:Educacion){
-  return this.servicioEducacion.delete(this.url+"/eliminar/"+educacion.id);
+  return this.servicioEducacion.delete(this.url+"educacion/eliminar/"+educacion.id);
   }
 }
