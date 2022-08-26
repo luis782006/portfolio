@@ -34,6 +34,7 @@ export class ProdInterceptorService implements HttpInterceptor {
         Toast.fire({
         icon: 'error',
         iconColor:'#0A0A23',
+        showConfirmButton:true,
         title: 'La sesión ha expirado, por favor inicie sesión nuevamente'
         })
 

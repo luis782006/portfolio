@@ -33,6 +33,7 @@ import { interceptorProvider } from './interceptors/persona-interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { HomeComponent } from './componentes/home/home.component';
     RegistroComponent,
     LoginComponent,
     HomeComponent,
+    FooterComponent,
     
   ],
 

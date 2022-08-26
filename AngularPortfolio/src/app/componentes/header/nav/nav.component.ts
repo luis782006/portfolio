@@ -26,16 +26,26 @@ export class NavComponent implements OnInit {
 
   ) { }
 
-  ngOnInit(): void {
+
+  reloadPerson(){
     this.acercaService.getPersonas().subscribe((data) => {
-      this.persona = data;
+      this.persona= data;
       if (this.persona.length!=0) 
-        this.path_git=this.persona[0].path_git
-        this.path_link=this.persona[0].path_link
-       
-    });
-    
+      this.path_git=this.persona[0].path_git;
+      this.path_git=this.persona[0].path_link;
+   });
   }
+
+  ngOnInit(): void {
+      this.reloadPerson();
+      this.acercaService.getRefresh().subscribe((value) => {
+        if (value){
+          this.reloadPerson();
+        }
+      })
+  }
+
+
 
  
 }

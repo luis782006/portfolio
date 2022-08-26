@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { faYoutube,faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import { Persona } from 'src/app/models/Personas';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
 
 @Component({
-  selector: 'app-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
 })
-export class BannerComponent implements OnInit {
+export class FooterComponent implements OnInit {
 
+  faYoutube= faYoutube;
+  faGithub= faGithub;
+  faLinkedin=faLinkedin;
   persona:Persona[];
   nombre:String;
   apellido:String;
-
-  constructor(private acercaService:AcercaServiceService) { }
-
+  path_git:String;
+  path_link:String
+  constructor(
+    private acercaService:AcercaServiceService
+  ) { } 
 
   reloadPerson(){
     this.acercaService.getPersonas().subscribe((data) => {
@@ -22,7 +28,8 @@ export class BannerComponent implements OnInit {
       if (this.persona.length!=0) 
       this.nombre=this.persona[0].nombre;
       this.apellido=this.persona[0].apellido;
-    
+      this.path_git=this.persona[0].path_git;
+      this.path_git=this.persona[0].path_link;
    });
   }
 
@@ -34,6 +41,5 @@ export class BannerComponent implements OnInit {
         }
       })
   }
-  
 
 }
