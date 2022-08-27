@@ -11,7 +11,7 @@ import { NuevoUsuario } from '../models/nuevo-usuario';
 })
 export class AuthService {
 
-  url='http://localhost:8080/'; //ruta+endpoint"experiencia""
+   url='http://localhost:8080/'; //ruta+endpoint"experiencia""
   //url='https://portfoliolfs.herokuapp.com/'
   //apibase:string=environment.api
   constructor(

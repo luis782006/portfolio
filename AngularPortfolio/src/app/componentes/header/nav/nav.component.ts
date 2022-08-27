@@ -32,7 +32,9 @@ export class NavComponent implements OnInit {
       this.persona= data;
       if (this.persona.length!=0) 
       this.path_git=this.persona[0].path_git;
-      this.path_git=this.persona[0].path_link;
+      this.path_link=this.persona[0].path_link;
+    
+      
    });
   }
 

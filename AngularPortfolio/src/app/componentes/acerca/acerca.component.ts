@@ -85,7 +85,7 @@ private buildForm() {
     id: [''],
     nombre: ['',Validators.required],
     apellido: ['',Validators.required],
-    descripcion_acerca: [''],
+    descripcion_acerca: ['',[,Validators.required,Validators.maxLength(350)]],
     photo_url:['',Validators.required],
     path_git:[''],
     path_link:['']

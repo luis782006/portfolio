@@ -22,16 +22,17 @@
                   </div>
                   <div class="row" [ngClass]="educacion==selectedEducacion?'selecionado1':'selecionado2'">
                        <div class=" row descripcionCurso">
-                         <div class="col-sm-12 col-md-4 contenedor-img">
+                         <div class="col contenedor-img">
                              <img src="{{educacion.photo_url_educacion}}" alt="Diploma">
                          </div>
                          <div class="col">
-                             <div class="col-sm-12 col-md-8">   
+                             <div class="col col-texto">   
+                                <h3>{{educacion.institucion}}</h3>
                                  <p>Descripcion:{{educacion.descripcion}}</p>
                              </div>
                              <div class="edicion-educacion" *ngIf="isLogged">
-                                 <span (click)="editarEducacion(modalEditEdu,educacion)"><fa-icon [icon]="faPen" ></fa-icon></span> 
-                                 <span (click)="eliminaEducacion(modalEliminarEdu,educacion)"><fa-icon [icon]="faTrash" ></fa-icon></span>
+                                 <span (click)="editarEducacion(modalEditEdu,educacion)"><fa-icon [icon]="faPen" class="iconEditarELiminar"></fa-icon></span> 
+                                 <span (click)="eliminaEducacion(modalEliminarEdu,educacion)"><fa-icon [icon]="faTrash" class="iconEditarELiminar" ></fa-icon></span>
                              </div>
                          </div>
                        </div>
@@ -85,7 +86,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
-                            <label class="form-label" for="form3Example2">Descripcion:</label>
+                            <label class="form-label" for="form3Example2" ><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
+                            <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
+                            <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
+                            <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
+                                Maximo de 255 caracteres
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -94,13 +100,8 @@
                         <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEdu($event)"  />
                         <label class="form-label" for="form3Example2">Certificado</label>
                     </div>
-                   </div>
-                
+                   </div>  
             </div>
-        
-            
-        
-        
         </form>
     </div>
     <div class="modal-footer">
@@ -151,8 +152,12 @@
                     <div class="col">
                         <div class="form-outline">
                             <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
-                            <label class="form-label" for="form3Example2">Descripcion:</label>
-                                
+                            <label class="form-label" for="form3Example2"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
+                            <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
+                            <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
+                            <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
+                                Maximo de 255 caracteres
+                            </p>   
                         </div>
                     </div>
                 </div>

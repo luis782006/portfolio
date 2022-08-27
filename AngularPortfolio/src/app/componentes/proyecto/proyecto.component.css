@@ -1,16 +1,12 @@
+
 .container{
     padding:0px;
 }
 .row{
     padding:0px;
-    margin: 0px;
+    margin: 0px;;
 }
-.row-proyectos{
-    background-color: var(--color-cajaS);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 .encabezado-proyectos{
     background-color:#0A0A23;
     color:#F5F6F7;
@@ -30,16 +26,17 @@
     font-size: 0.6em; 
     cursor: pointer; 
 }
-.contenedor-card{
+.contenedor{
     padding: 20px;
-    display:flex;
-    justify-content:center;
-     
+    background-color: #1B1B32; 
+    display: flex; 
+    justify-content: center;
 }
 .card{
-    margin-top: 20px;
-    min-height: 400px;
     
+    min-height: 400px;
+    margin:auto;
+    max-width: 34rem;
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end;
@@ -53,12 +50,12 @@
    width:100%;
     height:60%;
     overflow: hidden;
+    text-align: center;
 }
 .card-foto img{
-    object-fit: fill;
+    object-fit: cover;
     width:100%;
-    height:260px;
-    margin: 0px; 
+    padding:40px;
 }
 .card-contenedor{
     margin-bottom: 10px;;
@@ -73,23 +70,14 @@
     padding:5px 10px;
     border-radius: 5px;
 }
-.miModal-headerFooter{
-    background-color: var(--color-text);  
+.contenedor-card{ 
+    min-width:35%;
+    padding: 10px;
 }
-.contadorCadena{
-    float: right;
+
+.card-footer span fa-icon{
+    color:var(--color-text-btn)!important;
 }
-.alertaCamposRequeridos{
-    float: left;
-}
-.modal-footer{
-    display: flex;
-    justify-content: space-between;
-}
-.alert {
-    color:var(--color-text);
-    font-size: 0.8em;
-    background-color: var(--color-cajaS);
-    padding: 0.2em;
-    text-align: center;
+.card-footer span fa-icon:hover{
+    color:var(--color-text-btnH)!important;
 }

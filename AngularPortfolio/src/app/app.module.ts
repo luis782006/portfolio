@@ -11,7 +11,6 @@ import { LogoComponent } from './componentes/header/logo/logo.component';
 
 import { BannerComponent } from './componentes/banner/banner.component';
 import { AcercaComponent } from './componentes/acerca/acerca.component';
-import { EditAcercaComponent } from './componentes/edit-acerca/edit-acerca.component';
 // importaciones de terceros
 
 
@@ -45,7 +44,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
    
     BannerComponent,
     AcercaComponent,
-    EditAcercaComponent,
+   
     ExperienciaComponent,
     EducacionComponent,
     HardSoftSkillComponent,

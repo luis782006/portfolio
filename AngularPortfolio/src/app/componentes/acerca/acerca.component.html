@@ -1,13 +1,16 @@
 <div class="container">
-    <div class="row" *ngFor="let persona of personas">
+    <div class="row contenedor" *ngFor="let persona of personas">
         <div class="col-sm-12 col-md-4 contenedor-img">
             <img [src]="persona.photo_url" alt="" class="imagen">
         </div>
         <div class="col-sm-12 col-md-8 contenedor-texto">
             <h2>Acerca de mi:</h2>
-            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcerca"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
+            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcercaEditar"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
         </div>
     </div>
+
+
+    
       <ng-template #modalPersona let-c="close" let-d="dismiss">
             <div class="modal-header">
                 <h3>Acerca de mi</h3>
@@ -25,6 +28,7 @@
                                     <input type="text"  class="form-control" formControlName="nombre"/>
                                     <label class="form-label" for="form3Example1">Nombre</label>
                                     <!--alerta nombre-->
+                                    
                                     <div *ngIf="form.get('nombre').errors && form.get('nombre').touched" class="alert" role="alert">
                                         Ingrese el nombre
                                     </div>
@@ -45,6 +49,15 @@
                             <div class="form-outline ">
                                 <textarea class="form-control" rows="4" formControlName="descripcion_acerca" ></textarea>
                                 <label class="form-label" for="form4Example3">Acerca de mi</label>
+                                <label class="form-label contadorCadena"><small>{{ this.form.get('descripcion_acerca').value.length }}350</small></label>
+                                <div *ngIf="form.get('descripcion_acerca').errors && form.get('descripcion_acerca').touched">
+                                    <p *ngIf="form.get('descripcion_acerca').hasError('required')" class="alert">
+                                        Deje una descripcion.
+                                    </p>
+                                    <p *ngIf="form.get('descripcion_acerca').hasError('maxlength')" class="alert">
+                                        Maximo de 350 caracteres
+                                    </p>
+                                </div>
                             </div>
                             <div class="form-outline">
                                 <span>¿Desea cambiar la foto?</span>

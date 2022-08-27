@@ -78,8 +78,15 @@
 }
 .selecionado2{
     height:0;
-    
     display:none; 
+}
+.iconEditarELiminar{
+    color:var(--color-cajaS);
+    
+}
+.iconEditarEliminar:hover{
+   color: var(--color-cajaP);
+    
 }
 
 /* .descripcionCurso div:first-child{
@@ -97,13 +104,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    height:80%;
+    max-width:30rem;
+}
+.col-texto{
+    margin-top:0.5rem;
 }
 .contenedor-img img{
     /*border-radius: 50%;*/
     object-fit: cover;
     height:80%;
-    width:10rem;
+    min-width:13rem;
 }
 .edicion-educacion span{
     margin-left:10px;
@@ -138,6 +149,12 @@
     background-color: var(--color-cajaS);
     padding: 0.2em;
     text-align: center;
+}
+.edicion-educacion span fa-icon{
+    color:#f78514;
+}
+.edicion-educacion span fa-icon:hover{
+    color:#ad6013
 }
 @media screen and (max-width:320px) {
     .educacion{

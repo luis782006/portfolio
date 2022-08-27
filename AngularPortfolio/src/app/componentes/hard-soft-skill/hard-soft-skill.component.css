@@ -58,8 +58,11 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   
 }
+
 .card-footer span{
+    color:var(--color-text);
     margin-left:10px;
     float:right;
     border: 1px solid;
@@ -75,7 +78,14 @@
     font-size: 0.8em;
     color: #feac32;
 }
-
+.card-footer span fa-icon{
+    color:var(--color-text-btn);
+    
+}
+.card-footer span fa-icon:hover{
+   color: var(--color-text-btnH);
+    
+}
 .contadorCadena{
     float: right;
 }

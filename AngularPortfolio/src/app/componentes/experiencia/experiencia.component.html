@@ -14,8 +14,8 @@
                     <p>Fecha de Inicio:{{experiencia.inicio_empresa}}</p>
                     <p>Fecha de Termino:{{experiencia.fin_empresa}}</p>
                     <div class="edicion-experiencia" *ngIf="isLogged">  
-                        <span (click)="openEditExpe(experiencia,modalEditExp)"> <fa-icon [icon]="faPen"></fa-icon></span>
-                        <span (click)="openELiminarExp(modalEliminaExp,experiencia)"> <fa-icon [icon]="faTrash"></fa-icon></span>
+                        <span (click)="openEditExpe(experiencia,modalEditExp)"> <fa-icon [icon]="faPen" class="iconEditarELiminar"></fa-icon></span>
+                        <span (click)="openELiminarExp(modalEliminaExp,experiencia)"> <fa-icon [icon]="faTrash" class="iconEditarELiminar"></fa-icon></span>
                         
                     </div>
                 </div>          

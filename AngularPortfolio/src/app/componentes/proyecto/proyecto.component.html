@@ -1,9 +1,9 @@
-<div class="container">
+ <div class="container">
     
     <div class="row encabezado-proyectos">
         <p>Proyectos<span (click)="openAgregarProyecto(agregarProyecto)"><button *ngIf="isLogged" class="iconProyectos">Agregar proyectos</button></span></p>
     </div>
-    <div class="row row-proyectos">
+    <div class="row contenedor">
         <div class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
             <div class="card">
                 <div class="card-foto">
@@ -14,14 +14,40 @@
                     <p>{{proyecto.descripcion_proyecto}}</p>
                     
                     <div class="card-footer" *ngIf="isLogged">
-                        <span (click)="openEliminarProyecto(proyecto,modalEliminarProyecto)" > <fa-icon [icon]="faTrash"></fa-icon></span>
-                        <span (click)="openEditProyecto(proyecto,modalEditProyecto)"> <fa-icon [icon]="faPen"></fa-icon></span>
+                        <span (click)="openEliminarProyecto(proyecto,modalEliminarProyecto)" > <fa-icon [icon]="faTrash" class="iconEditarEliminar"></fa-icon></span>
+                        <span (click)="openEditProyecto(proyecto,modalEditProyecto)"> <fa-icon [icon]="faPen" class="iconEditarEliminar"></fa-icon></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="row contenedor row-proyectos">
+        <div class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
+            <div class="card">
+                <div class="card-foto">
+                    <img src="{{proyecto.photo_url}}" alt="">
+                </div>
+                <div class="card-contenedor">
+                    <h3>{{proyecto.nombre_proyecto}}</h3>
+                    <p>{{proyecto.descripcion_proyecto}}</p>
+                    
+                    <div class="card-footer" *ngIf="isLogged">
+                        <span (click)="openEliminarProyecto(proyecto,modalEliminarProyecto)" > <fa-icon [icon]="faTrash" class="iconEditarEliminar"></fa-icon></span>
+                        <span (click)="openEditProyecto(proyecto,modalEditProyecto)"> <fa-icon [icon]="faPen" class="iconEditarEliminar"></fa-icon></span>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>-->
 </div>
+
+
+<!-- <div class="card" style="max-width:200px;" *ngFor="let proyecto of proyectos">
+    <h1>{{proyecto.nombre_proyecto}}</h1>
+    <p>{{proyecto.descripcion_proyecto}}</p>
+    
+</div> -->
+
 <ng-template #agregarProyecto let-c="close" let-d="dismiss" >
     <div class="modal-header">
         <h3>Agregar Proyecto</h3>  

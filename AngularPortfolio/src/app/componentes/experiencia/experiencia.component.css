@@ -12,6 +12,14 @@
     color:#F5F6F7;
    
 }
+.edicion-experiencia span fa-icon{
+    color:var(--color-text-btn);
+}
+
+.edicion-experiencia span fa-icon:hover{
+    color:var(--color-text-btnH);
+}
+
 .encabezado-experiencia p{
     margin:0px;
     margin-left: 20px;

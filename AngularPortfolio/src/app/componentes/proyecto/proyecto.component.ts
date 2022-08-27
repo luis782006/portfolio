@@ -18,15 +18,20 @@ export class ProyectoComponent implements OnInit {
   faTrashCan=faTrashCan
   faExclamationTriangle=faExclamationTriangle
 
-  proyectos:Proyectos[];
+ 
   formProyecto:FormGroup;
   img:String="";
+
+
   nombreProyectoEliminar:String
   poryectoParaEliminar:Proyectos
     //tokenService
     isLogged:boolean;
     isLoginFail:boolean;
     roles: string[];
+
+    proyectos:Proyectos[];
+    
 
   constructor(
     private proyectoService:ProyectoServiceService,
@@ -53,6 +58,8 @@ export class ProyectoComponent implements OnInit {
   ngOnInit(): void {
     this.proyectoService.getProyecto().subscribe((data) => {
       this.proyectos=data;});
+
+
 
       if(this.tokenService.getToken()){
         this.isLogged = true;

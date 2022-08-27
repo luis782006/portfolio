@@ -28,11 +28,11 @@
                     [renderOnClick]="true"
                     
                   ></circle-progress>
-                  <p>{{hardSoftSkill.nivel}}%</p>
+                  
                 </div>
                 <div class="card-footer" *ngIf="isLogged">
-                    <span (click)="openEditHardSoft(mEditHardSoft,hardSoftSkill)"> <fa-icon [icon]="faPen"   ></fa-icon></span>
-                    <span (click)="openEliminarHardSoft(mEliminarHardSoft,hardSoftSkill)"> <fa-icon [icon]="faTrash"></fa-icon></span>
+                    <span (click)="openEditHardSoft(mEditHardSoft,hardSoftSkill)"> <fa-icon [icon]="faPen" class="iconEditarELiminar"  ></fa-icon></span>
+                    <span (click)="openEliminarHardSoft(mEliminarHardSoft,hardSoftSkill)"> <fa-icon [icon]="faTrash" class="iconEditarEliminar"></fa-icon></span>
                 </div>
             </div>
         </div>

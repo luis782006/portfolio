@@ -29,7 +29,7 @@ export class FooterComponent implements OnInit {
       this.nombre=this.persona[0].nombre;
       this.apellido=this.persona[0].apellido;
       this.path_git=this.persona[0].path_git;
-      this.path_git=this.persona[0].path_link;
+      this.path_link=this.persona[0].path_link;
    });
   }
 

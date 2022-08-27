@@ -67,7 +67,7 @@ export class EducacionComponent implements OnInit {
       id: [''],
       titulo: ['',[Validators.required]],
       institucion: [''],
-      descripcion: [''],
+      descripcion: ['',[Validators.maxLength(255)]],
       photo_url_educacion:['']
     });
   }
@@ -76,6 +76,7 @@ export class EducacionComponent implements OnInit {
     this.mAgregarEdu.open(modal)
     this.formEducacion.reset()
     this.formEducacion.get('titulo').setValue("")
+    this.formEducacion.get('descripcion').setValue("")
   }
 
   obtenerImgEdu($event:Event){

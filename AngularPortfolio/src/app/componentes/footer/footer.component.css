@@ -28,7 +28,6 @@
 .redes ul a{
     color:var(--color-text-btn);
     text-decoration: none;
-    transition: transform 2s;
 }
 .redes ul a:hover{
    color: var(--color-text-btnH);
