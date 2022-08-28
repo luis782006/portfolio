@@ -4,7 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginUsuario } from 'src/app/models/login-usuario';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TokenService } from 'src/app/Services/token.service';
+import {faEye,faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import { faThinkPeaks } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,8 +20,11 @@ export class LoginComponent implements OnInit {
   password: string;
   roles: string[] = [];
   errMsj: string;
-
-
+  faEye=faEye
+  faEyeSlash=faEyeSlash
+  ocultar:boolean=true;
+  ojitoAbierto:boolean=false;
+  ojitoCerrado:boolean=true;
   constructor(private tokenService: TokenService,private authService: AuthService,private router: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -28,6 +33,19 @@ export class LoginComponent implements OnInit {
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
     }
+  }
+
+  mostrarOcultar(){
+    this.ocultar=!this.ocultar;
+   if (this.ocultar) {
+    this.ojitoCerrado=true
+      this.ojitoAbierto=false
+
+   }else{
+    this.ojitoAbierto=true
+    this.ojitoCerrado=false
+
+   }
   }
 
   onLogin(): void{
@@ -111,5 +129,21 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
+  password_show_hide() {
+    // var x = document.getElementById("password") as HTMLFormElement;
+    // var show_eye = document.getElementById("show_eye");
+    // var hide_eye = document.getElementById("hide_eye");
+    // hide_eye.classList.remove("d-none");
+    
+    
+    // if (x. === "password") {
+    //   x.type = "text";
+    //   show_eye.style.display = "none";
+    //   hide_eye.style.display = "block";
+    // } else {
+    //   x.type = "password";
+    //   show_eye.style.display = "block";
+    //   hide_eye.style.display = "none";
+    // }
+  }
 }

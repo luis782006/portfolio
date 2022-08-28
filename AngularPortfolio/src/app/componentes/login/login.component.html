@@ -86,10 +86,20 @@
                             </div>
                         </div>
                         <div class="row ">
-                            <div class="form-group">
-                                <label for="password">Contraseña</label>
-                                <input type="password" name="password" id="password" class="form-control"
+                            <div class="form-group groupInputEyes">
+                                <!-- <input name="password" type="password" value="" class="input form-control" id="password" placeholder="password" required="true" aria-label="password" aria-describedby="basic-addon1" /> -->
+                             
+                                    <input [type]="ocultar? 'password':'text'" name="password" id="password" class="input form-control eyesInput "
                                     placeholder="ingresa contraseña" [(ngModel)]="password" required>
+                                    <span class="input-group-text posEyes" (click)=mostrarOcultar() >
+                                        <fa-icon *ngIf="ojitoAbierto" class="fas fa-eye"  [icon]="faEye" id="show_eye"></fa-icon>
+                                        <fa-icon *ngIf="ojitoCerrado" class="fas fa-eye"  [icon]="faEyeSlash" id="hide_eye"></fa-icon>
+                                   
+                                    </span> 
+                               
+                                <!-- <label for="password">Contraseña</label>   
+                                <input type="password" name="password" id="password" class="form-control"
+                                    placeholder="ingresa contraseña" [(ngModel)]="password" required> -->
                             </div>
                         </div>
                         <span style="margin: 10px;">
