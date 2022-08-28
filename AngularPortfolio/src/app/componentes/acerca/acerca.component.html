@@ -10,7 +10,7 @@
     </div>
 
 
-    
+
       <ng-template #modalPersona let-c="close" let-d="dismiss">
             <div class="modal-header">
                 <h3>Acerca de mi</h3>
@@ -22,7 +22,7 @@
                 <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
                     <input type="text" formControlName="id" hidden>
                      <!-- 2 column grid layout with text inputs for the first and last names -->
-                        <div class="row mb-8">
+                         <div class="row mb-8">
                             <div class="col">
                                 <div class="form-outline">
                                     <input type="text"  class="form-control" formControlName="nombre"/>
@@ -43,7 +43,7 @@
                                       <div *ngIf="form.get('apellido').errors && form.get('apellido').touched" class="alert alert-danger" role="alert">
                                         Ingrese el apellido
                                     </div>
-                                    <!--alerta apellido-->
+                                   <!--alerta apellido-->
                                 </div>
                             </div>
                             <div class="form-outline ">
