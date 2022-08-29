@@ -35,17 +35,17 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  mostrarOcultar(){
-    this.ocultar=!this.ocultar;
-   if (this.ocultar) {
-    this.ojitoCerrado=true
-      this.ojitoAbierto=false
+    mostrarOcultar(){
+      this.ocultar=!this.ocultar;
+    if (this.ocultar) {
+      this.ojitoCerrado=true
+        this.ojitoAbierto=false
 
-   }else{
-    this.ojitoAbierto=true
-    this.ojitoCerrado=false
+    }else{
+      this.ojitoAbierto=true
+      this.ojitoCerrado=false
 
-   }
+    }
   }
 
   onLogin(): void{

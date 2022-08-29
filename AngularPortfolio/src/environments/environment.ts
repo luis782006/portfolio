@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  //api:'https://portfoliolfs.herokuapp.com/',
-  //api:'http://localhost:8080'
+ 
+  api:'http://localhost:8080/',
+
+
+
+  urlFront:"http://localhost:4200/" //crear un component para mostrar el mensaje de enviado
 };
 
 /*

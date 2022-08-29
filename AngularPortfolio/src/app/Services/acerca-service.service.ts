@@ -16,8 +16,8 @@ private refresh:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   { }
   //fin constructor
  //variables
-    url='http://localhost:8080/'; //ruta+endpoint"personas""
-    //url='https://portfoliolfs.herokuapp.com/'
+    //url='http://localhost:8080/'; //ruta+endpoint"personas""
+    url:string=environment.api ///////////esto hacelo en todos los services.
     //metodos
     //lista todas las personas
     

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faYoutube,faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import { Persona } from 'src/app/models/Personas';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +18,8 @@ export class FooterComponent implements OnInit {
   nombre:String;
   apellido:String;
   path_git:String;
-  path_link:String
+  path_link:String;
+  urlFront:String=environment.urlFront
   constructor(
     private acercaService:AcercaServiceService
   ) { } 

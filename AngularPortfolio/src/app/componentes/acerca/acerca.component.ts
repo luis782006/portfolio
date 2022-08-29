@@ -5,6 +5,7 @@ import {Persona} from '../../models/Personas'
 import {BannerComponent} from '../banner/banner.component';
 //importaciones de terceros
 import Swal from 'sweetalert2';
+import * as AOS from 'aos';
 
 //Import Formularios Reactivos
 import {
@@ -74,7 +75,7 @@ export class AcercaComponent implements OnInit {
       this.isNotLogged=true
     }
     
- 
+    AOS.init();
   }
 
 //Metodos
