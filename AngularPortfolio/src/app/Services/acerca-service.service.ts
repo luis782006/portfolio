@@ -16,10 +16,12 @@ private refresh:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
   { }
   //fin constructor
  //variables
-    //url='http://localhost:8080/'; //ruta+endpoint"personas""
+   //url='http://localhost:8080/'; //ruta+endpoint"personas""
+    //url='https://portfoliolfs.herokuapp.com/'
     url:string=environment.api ///////////esto hacelo en todos los services.
     //metodos
     //lista todas las personas
+    
     
     getRefresh(): Observable<boolean>{ // devuelve el valor del Observable
       return this.refresh.asObservable()

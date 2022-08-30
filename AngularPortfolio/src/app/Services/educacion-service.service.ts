@@ -14,9 +14,9 @@ export class EducacionServiceService {
 
   //fin constructor
 //variables
-url='http://localhost:8080/'; //ruta+endpoint"personas""
+//url='http://localhost:8080/'; //ruta+endpoint"personas""
 //url='https://portfoliolfs.herokuapp.com/'
-//apibase:string=environment.api
+url:string=environment.api
 //metodos
 //lista todas educacion
 getEducacion(){

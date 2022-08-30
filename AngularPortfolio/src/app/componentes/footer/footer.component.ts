@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EnvironmentInjector, OnInit } from '@angular/core';
 import { faYoutube,faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import { Persona } from 'src/app/models/Personas';
 import { AcercaServiceService } from 'src/app/Services/acerca-service.service';
 import { environment } from 'src/environments/environment';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   apellido:String;
   path_git:String;
   path_link:String;
-  urlFront:String=environment.urlFront
+  url=environment.api
   constructor(
     private acercaService:AcercaServiceService
   ) { } 
@@ -44,4 +44,15 @@ export class FooterComponent implements OnInit {
       })
   }
 
+  enviar(){
+    Swal.fire({
+      title:'Mensaje Enviado',
+      titleText:'Me pondre en contacto con usted en la brevedad',
+      icon:'success',
+      iconColor:'#0A0A23',
+      timer:3000,
+      showConfirmButton:false
+    })
+    
+  }
 }

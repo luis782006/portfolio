@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <div class=" contenedor-educacion">
-            <div class="box-educacion" *ngFor="let educacion of educaciones;"  
+            <div data-aos="fade-left" class="box-educacion" *ngFor="let educacion of educaciones;"  
                 >      
                   <div class="row">
                        <div class="educacion" >
@@ -49,154 +49,160 @@
       
 </div>
 <ng-template #modalAgregaEdu let-c="close" let-d="dismiss">
-    <div class="modar-header modal-header">
-        <h3>Agregar Educacion</h3>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="formEducacion" novalidate (ngSubmit)="saveNuevaEducacion($event)"  >
-            <div class="row mb-8">
-                <div class="col">
-                    <input type="text" formControlName="id" hidden>
-                    <div class="form-outline">
-                        <input type="text"  class="form-control" formControlName="titulo"/>
-                        <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Titulo/Certificado</label>
-                        <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('titulo').value.length }}/50</small></label>
-                        <!--alerta nombre empresa-->
-                             <div *ngIf="formEducacion.get('titulo').errors && formEducacion.get('titulo').touched">
-                                <p *ngIf="formEducacion.get('titulo').hasError('required')" class="alert">
-                                    Ingrese el nombre de la empresa
-                                </p>
-                                <p *ngIf="formEducacion.get('titulo').hasError('maxlength')" class="alert">
-                                    Maximo de 50 caracteres
-                                </p>
-                            </div>
-                        <!--Alerta nombre empresa-->    
-                    </div>
-                </div>
-              
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" class="form-control" formControlName="institucion"/>
-                            <label class="form-label" for="form3Example2">Institucion</label>  
-                        </div>                         
-                    </div>
-                </div>
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
-                            <label class="form-label" for="form3Example2" ><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
-                            <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
-                            <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
-                            <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
-                                Maximo de 255 caracteres
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-8">
-                    <div class="col">
-                        <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEdu($event)"  />
-                        <label class="form-label" for="form3Example2">Certificado</label>
-                    </div>
-                   </div>  
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <span>
-            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-        </span>
-        <span>
-            <button type="button"  [disabled]="formEducacion.invalid" (click)="saveNuevaEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
-    </div>
-   
+   <div data-aos="flip-left" style="background-color:var(--color-text);">
+     <div class="modar-header modal-header">
+         <h3>Agregar Educacion</h3>
+     </div>
+     <div class="modal-body">
+         <form [formGroup]="formEducacion" novalidate (ngSubmit)="saveNuevaEducacion($event)"  >
+             <div class="row mb-8">
+                 <div class="col">
+                     <input type="text" formControlName="id" hidden>
+                     <div class="form-outline">
+                         <input type="text"  class="form-control" formControlName="titulo"/>
+                         <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Titulo/Certificado</label>
+                         <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('titulo').value.length }}/50</small></label>
+                         <!--alerta nombre empresa-->
+                              <div *ngIf="formEducacion.get('titulo').errors && formEducacion.get('titulo').touched">
+                                 <p *ngIf="formEducacion.get('titulo').hasError('required')" class="alert">
+                                     Ingrese el nombre de la empresa
+                                 </p>
+                                 <p *ngIf="formEducacion.get('titulo').hasError('maxlength')" class="alert">
+                                     Maximo de 50 caracteres
+                                 </p>
+                             </div>
+                         <!--Alerta nombre empresa-->    
+                     </div>
+                 </div>
+               
+                 <div class="row mb-8">
+                     <div class="col">
+                         <div class="form-outline">
+                             <input type="text" class="form-control" formControlName="institucion"/>
+                             <label class="form-label" for="form3Example2">Institucion</label>  
+                         </div>                         
+                     </div>
+                 </div>
+                 <div class="row mb-8">
+                     <div class="col">
+                         <div class="form-outline">
+                             <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
+                             <label class="form-label" for="form3Example2" ><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
+                             <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
+                             <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
+                             <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
+                                 Maximo de 255 caracteres
+                             </p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="row mb-8">
+                     <div class="col">
+                         <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEdu($event)"  />
+                         <label class="form-label" for="form3Example2">Certificado</label>
+                     </div>
+                    </div>  
+             </div>
+         </form>
+     </div>
+     <div class="modal-footer">
+         <span>
+             <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+         </span>
+         <span>
+             <button type="button"  [disabled]="formEducacion.invalid" (click)="saveNuevaEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+             <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+         </span>
+     </div>
+    
+   </div>
 
 </ng-template>
 
 
 <ng-template #modalEditEdu let-c="close" let-d="dismiss">
-    <div class="modal-header modal-header">
-        <h3>Editar Educacion</h3>
-        <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
-    </div>
-    <div class="modar-body">
-        <form [formGroup]="formEducacion" novalidate (ngSubmit)="saveNuevaEducacion($event)"  >
-            <div class="row mb-8">
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="text"  class="form-control" formControlName="titulo"/>
-                        <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Titulo/Certificado</label>
-                        <!--alerta nombre empresa-->
-                                <div *ngIf="formEducacion.get('titulo').errors && formEducacion.get('titulo').touched">
-                                <p *ngIf="formEducacion.get('titulo').hasError('required')" class="alert">
-                                    Ingrese nombre de diploma/certificado
-                                </p>
-                            </div>
-                        <!--Alerta nombre empresa-->    
-                    </div>
-                </div>
-                
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text" class="form-control" formControlName="institucion"/>
-                            <label class="form-label" for="form3Example2">Institucion</label>  
-                        </div>                         
-                    </div>
-                </div>
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
-                            <label class="form-label" for="form3Example2"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
-                            <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
-                            <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
-                            <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
-                                Maximo de 255 caracteres
-                            </p>   
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-8">
-                <div class="col">
-                    <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEdu($event)"  />
-                    <label class="form-label" for="form3Example2">Certificado</label>
-                    
-                </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <span>
-            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-        </span>
-        <span>
-            <button type="button"  [disabled]="formEducacion.invalid" (click)="saveEditEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
-    </div>
+ <div data-aos="flip-left" style="background-color:var(--color-text);">
+       <div class="modal-header modal-header">
+           <h3>Editar Educacion</h3>
+           <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
+       </div>
+       <div class="modar-body">
+           <form [formGroup]="formEducacion" novalidate (ngSubmit)="saveNuevaEducacion($event)"  >
+               <div class="row mb-8">
+                   <div class="col">
+                       <div class="form-outline">
+                           <input type="text"  class="form-control" formControlName="titulo"/>
+                           <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Titulo/Certificado</label>
+                           <!--alerta nombre empresa-->
+                                   <div *ngIf="formEducacion.get('titulo').errors && formEducacion.get('titulo').touched">
+                                   <p *ngIf="formEducacion.get('titulo').hasError('required')" class="alert">
+                                       Ingrese nombre de diploma/certificado
+                                   </p>
+                               </div>
+                           <!--Alerta nombre empresa-->    
+                       </div>
+                   </div>
+                   
+                   <div class="row mb-8">
+                       <div class="col">
+                           <div class="form-outline">
+                               <input type="text" class="form-control" formControlName="institucion"/>
+                               <label class="form-label" for="form3Example2">Institucion</label>  
+                           </div>                         
+                       </div>
+                   </div>
+                   <div class="row mb-8">
+                       <div class="col">
+                           <div class="form-outline">
+                               <textarea type="text" class="form-control" rows="4" formControlName="descripcion"></textarea>
+                               <label class="form-label" for="form3Example2"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion:</label>
+                               <label class="form-label contadorCadena"><small>{{ this.formEducacion.get('descripcion').value.length }}/255</small></label>
+                               <div *ngIf="formEducacion.get('descripcion').errors && formEducacion.get('descripcion').touched"></div>
+                               <p *ngIf="formEducacion.get('descripcion').hasError('maxlength')" class="alert">
+                                   Maximo de 255 caracteres
+                               </p>   
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row mb-8">
+                   <div class="col">
+                       <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEdu($event)"  />
+                       <label class="form-label" for="form3Example2">Certificado</label>
+                       
+                   </div>
+                   </div>
+               </div>
+           </form>
+       </div>
+       <div class="modal-footer">
+           <span>
+               <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+           </span>
+           <span>
+               <button type="button"  [disabled]="formEducacion.invalid" (click)="saveEditEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+               <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+           </span>
+       </div>
+ </div>
 </ng-template>
 
 <!--modal eliminar-->
 <ng-template #modalEliminarEdu let-c="close" let-d="dismiss">
-    <div class="modar-header modal-header">
-        <h3>Eliminar Educacion</h3>
-        <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
-    </div>
-    <div class="modar-body" style="padding:1rem;">
-        <p style="margin-bottom:1rem;"><b>¿Desea eliminar este conocimiento?</b></p>
-        <p><b>Titulo:</b>{{nombreEducacion}}</p>
-    </div>
-    <div class="modal-footer">
-        <span>
-            <button type="button" (click)="eliminarEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
-            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-            </span>
+    <div data-aos="flip-left" style="background-color:var(--color-text);">
+        <div class="modar-header modal-header">
+            <h3>Eliminar Educacion</h3>
+            <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
+        </div>
+        <div class="modar-body" style="padding:1rem;">
+            <p style="margin-bottom:1rem;"><b>¿Desea eliminar este conocimiento?</b></p>
+            <p><b>Titulo:</b>{{nombreEducacion}}</p>
+        </div>
+        <div class="modal-footer">
+            <span>
+                <button type="button" (click)="eliminarEducacion($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
+                <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+                </span>
+        </div>
     </div>
 </ng-template>
 

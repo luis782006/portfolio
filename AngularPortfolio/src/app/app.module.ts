@@ -35,6 +35,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +54,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     LoginComponent,
     HomeComponent,
     FooterComponent,
+   
     
   ],
 

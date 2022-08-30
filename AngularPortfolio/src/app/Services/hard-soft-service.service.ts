@@ -14,9 +14,9 @@ export class HardSoftServiceService {
   ) { }
   //fin constructor
 //variables
-url='http://localhost:8080/'; //ruta+endpoint"hardsoft""
+//url='http://localhost:8080/'; //ruta+endpoint"hardsoft""
 //url='https://portfoliolfs.herokuapp.com/'
-//apibase:string=environment.api
+url:string=environment.api
     //metodos
 //lista todas las personas
 getHardSoftSkills(){

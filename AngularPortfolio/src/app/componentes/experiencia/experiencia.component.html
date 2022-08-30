@@ -4,244 +4,252 @@
     <div class="row encabezado-experiencia">
         <p>Experiencia<span><button *ngIf="isLogged" (click)="openAgregarExp(AgregarExp)" class="spanAcerca">Agregar Experiencia</button></span></p>
     </div>
-            <div class="row" *ngFor="let experiencia of experiencias;let impar = odd;let par = even;" [ngClass]="{experiencia1:par,experiencia2:impar}">  
-                <div class="col-sm-12 col-md-4 contenedor-img"> 
-                    <img src="{{experiencia.photo_url_empresa}}" alt="Foto de Instalacion" class="imagenEmp">    
-                </div>
-                <div class="col-sm-12 col-md-8 descripcion-Empresa">
-                    <h2>{{experiencia.nombre_empresa}}</h2>
-                    <p><span>Descripcion</span> :{{experiencia.descripcion_empresa}}</p>
-                    <p>Fecha de Inicio:{{experiencia.inicio_empresa}}</p>
-                    <p>Fecha de Termino:{{experiencia.fin_empresa}}</p>
-                    <div class="edicion-experiencia" *ngIf="isLogged">  
-                        <span (click)="openEditExpe(experiencia,modalEditExp)"> <fa-icon [icon]="faPen" class="iconEditarELiminar"></fa-icon></span>
-                        <span (click)="openELiminarExp(modalEliminaExp,experiencia)"> <fa-icon [icon]="faTrash" class="iconEditarELiminar"></fa-icon></span>
-                        
-                    </div>
-                </div>          
-            </div>       
+        
+              <div  data-aos="fade-up" class="row" *ngFor="let experiencia of experiencias;let impar = odd;let par = even;" [ngClass]="{experiencia1:par ,experiencia2:impar}">  
+                  <div class="col-sm-12 col-md-4 contenedor-img"> 
+                      <img src="{{experiencia.photo_url_empresa}}" alt="Foto de Instalacion" class="imagenEmp">    
+                  </div>
+                  <div class="col-sm-12 col-md-8 descripcion-Empresa">
+                      <h2>{{experiencia.nombre_empresa}}</h2>
+                      <p><span>Descripcion</span> :{{experiencia.descripcion_empresa}}</p>
+                      <p>Fecha de Inicio:{{experiencia.inicio_empresa}}</p>
+                      <p>Fecha de Termino:{{experiencia.fin_empresa}}</p>
+                      <div class="edicion-experiencia" *ngIf="isLogged">  
+                          <span (click)="openEditExpe(experiencia,modalEditExp)"> <fa-icon [icon]="faPen" class="iconEditarELiminar"></fa-icon></span>
+                          <span (click)="openELiminarExp(modalEliminaExp,experiencia)"> <fa-icon [icon]="faTrash" class="iconEditarELiminar"></fa-icon></span>
+                         
+                      </div>
+                  </div>          
+              </div>    
+            
 </div>
 <!--Inicio Modal Agregar Info Experiencia-->
 <ng-template  id="templateModalExpId" #AgregarExp let-c="close" let-d="dismiss">
-    <div class="modal-header miModal-header">
-        <h3>Agregar Experiencia</h3>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="formAgregarExp" novalidate (ngSubmit)="saveNuevaEmpresa($event)"  >
-            <input type="text" formControlName="id" hidden>
-             <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text"  class="form-control" formControlName="nombre_empresa"/>
-                            <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre de la Empresa</label>
-                            <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('nombre_empresa').value.length }}/50</small></label>
-                            <!--alerta nombre empresa-->
-                                <div *ngIf="formAgregarExp.get('nombre_empresa').errors && formAgregarExp.get('nombre_empresa').touched">
-                                    <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('required')" class="alert">
-                                        Ingrese el nombre de la empresa
-                                    </p>
-                                    <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('maxlength')" class="alert">
-                                        Maximo de 50 caracteres
-                                    </p>
-                                </div>
-                            <!--Alerta nombre empresa-->    
-                        </div>
-                    </div>
-                  
+    <div data-aos="flip-left" style="background-color:var(--color-text);">
+        <div class="modal-header miModal-header">
+            <h3>Agregar Experiencia</h3>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formAgregarExp" novalidate (ngSubmit)="saveNuevaEmpresa($event)"  >
+                <input type="text" formControlName="id" hidden>
+                 <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="row mb-8">
                         <div class="col">
                             <div class="form-outline">
-                                <input type="date" class="form-control" formControlName="inicio_empresa"/>
-                                <label class="form-label" for="form3Example2">Fecha de Inicio</label>
-                                 
+                                <input type="text"  class="form-control" formControlName="nombre_empresa"/>
+                                <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre de la Empresa</label>
+                                <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('nombre_empresa').value.length }}/50</small></label>
+                                <!--alerta nombre empresa-->
+                                    <div *ngIf="formAgregarExp.get('nombre_empresa').errors && formAgregarExp.get('nombre_empresa').touched">
+                                        <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('required')" class="alert">
+                                            Ingrese el nombre de la empresa
+                                        </p>
+                                        <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('maxlength')" class="alert">
+                                            Maximo de 50 caracteres
+                                        </p>
+                                    </div>
+                                <!--Alerta nombre empresa-->    
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-outline">
-                                <input type="date" class="form-control" formControlName="fin_empresa"/>
-                                <label class="form-label" for="form3Example2">Fecha de termino</label>
-                                 
+                      
+                        <div class="row mb-8">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="date" class="form-control" formControlName="inicio_empresa"/>
+                                    <label class="form-label" for="form3Example2">Fecha de Inicio</label>
+                                     
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="date" class="form-control" formControlName="fin_empresa"/>
+                                    <label class="form-label" for="form3Example2">Fecha de termino</label>
+                                     
+                                </div>
                             </div>
                         </div>
-                    </div>
+                           
+                        <div class="form-outline ">
+                            <textarea class="form-control" rows="4" formControlName="descripcion_empresa" ></textarea>
+                            <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
+                            
+                            <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('descripcion_empresa').value.length }}/350</small></label>
+                            <!--alerta nombre empresa-->
+                            <div *ngIf="formAgregarExp.get('descripcion_empresa').errors && formAgregarExp.get('descripcion_empresa').touched">
+                                <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('required')" class="alert">
+                                    Describa sus funciones. Resuma las mismas en 350 caracteres
+                                </p>
+                                <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('maxlength')" class="alert">
+                                    Maximo de 350 caracteres. Resuma
+                                </p>
+                            </div>
+                        <!--Alerta nombre empresa-->    
+                        </div>
                        
-                    <div class="form-outline ">
-                        <textarea class="form-control" rows="4" formControlName="descripcion_empresa" ></textarea>
-                        <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
-                        
-                        <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('descripcion_empresa').value.length }}/350</small></label>
-                        <!--alerta nombre empresa-->
-                        <div *ngIf="formAgregarExp.get('descripcion_empresa').errors && formAgregarExp.get('descripcion_empresa').touched">
-                            <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('required')" class="alert">
-                                Describa sus funciones. Resuma las mismas en 350 caracteres
-                            </p>
-                            <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('maxlength')" class="alert">
-                                Maximo de 350 caracteres. Resuma
-                            </p>
+                        <div class="form-outline">
+                            <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEmp($event)" />
+                            <label class="form-label" for="form3Example2">Imagen de la Empresa </label>
+                              
                         </div>
-                    <!--Alerta nombre empresa-->    
+                        
                     </div>
-                   
-                    <div class="form-outline">
-                        <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEmp($event)" />
-                        <label class="form-label" for="form3Example2">Imagen de la Empresa </label>
-                          
-                    </div>
-                    
-                </div>
-    
-        <div class="modal-footer miModal-headerFooter"> 
-            <span>
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-            </span>
-            <span>
-                <button type="button"  [disabled]="formAgregarExp.invalid" (click)="saveNuevaEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-            </span>
-       
-        </div>  
-        </form>
-</div>
+        
+            <div class="modal-footer miModal-headerFooter"> 
+                <span>
+                    <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+                </span>
+                <span>
+                    <button type="button"  [disabled]="formAgregarExp.invalid" (click)="saveNuevaEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+                <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+                </span>
+           
+            </div>  
+            </form>
+        </div>
+    </div>
 </ng-template>  
 <!--Fin Modal Agregar Info Experiencia-->
 
 <!--Inicio Modal Editar Info Experiencia-->
 <ng-template #modalEditExp let-c="close" let-d="dismiss">
-    <div class="modal-header miModal-header">
-        <h3>Editar Experiencia</h3>
-        <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="formAgregarExp" novalidate   >
-            <input type="text" formControlName="id" hidden>
-             <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class="row mb-8">
-                    <div class="col">
-                        <div class="form-outline">
-                            <input type="text"  class="form-control" formControlName="nombre_empresa"/>
-                            <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre de la Empresa</label>
-                            <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('nombre_empresa').value.length }}/50</small></label>
-                            <!--alerta nombre empresa-->
-                                <div *ngIf="formAgregarExp.get('nombre_empresa').errors && formAgregarExp.get('nombre_empresa').touched">
-                                    <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('required')" class="alert">
-                                        Ingrese el nombre de la empresa
-                                    </p>
-                                    <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('maxlength')" class="alert">
-                                        Maximo de 50 caracteres
-                                    </p>
-                                </div>
-                            <!--Alerta nombre empresa-->    
-                        </div>
-                    </div>
-
-                    <div class="row mb-8">
-                        <div class="col" style="padding:0 10px;">
-                            <div class="form-outline">
-                                
-                                <!-- inicio manejo de fecha -->
-                                <span *ngIf=" fechaDisplayIn; then muestroInputIn else muestroLabelIn "></span>
-                                <span><input class="form-check-input-dark" name="inicio_empresa"
-                                    #checkFechaDisplay 
-                                    id=" checkFechaDisplay"
-                                    type="checkbox"
-                                    [checked]='fechaDisplayIn'
-                                    (click)=" toogleFechaDisplayIn (checkFechaDisplay.checked)"
-                                    formControlname=inicio_empresa
-                                    value={{ejemplo}}
-                                    />Modificar fecha
-                                </span>
-                                <ng-template #muestroInputIn>
-                                    <label class="form-label" for="form3Example2"><b>Fecha de Inicio:</b></label>
-                                    <input type="date" 
-                                    class="form-control" 
-                                    formControlName="inicio_empresa"  
-                                    
-                                    />
-                                </ng-template>
-                                <ng-template #muestroLabelIn>
-                                    <label class="form-label" for="form3Example2"><b>Fecha de Inicio:</b> </label>
-                                 <span>
-                                    {{fechaFinalIn}}
-                                 </span>
-                                </ng-template>  
-                                <!-- FIn manejo de fecha -->
-                            </div>
-                        </div>
-                        <div class="col" style="padding:0 0px;">
-                            <div class="form-outline">
-                                <span *ngIf=" fechaDisplayIn; then muestroInputOut else muestroLabelOut "></span>
-                                <ng-template #muestroInputOut>
-                                    <label class="form-label" for="form3Example2"><b>Fecha de baja:</b> </label>
-                                    <input type="date" 
-                                    class="form-control" 
-                                    formControlName="fin_empresa" 
-                                    />
-                                </ng-template>
-                                <ng-template #muestroLabelOut>
-                                    <label class="form-label" for="form3Example2"><b>Fecha de baja:</b></label>
-                                    <span>
-                                        {{fechaFinalOut}}
-                                    </span>
-                                </ng-template> 
-                            </div>
-                        </div>
-                    </div>
-                       
-                    <div class="form-outline ">
-                        <textarea class="form-control" rows="4" formControlName="descripcion_empresa" style="margin-top:10px;"></textarea>
-                        <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
-                        <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('descripcion_empresa').value.length }}/350</small></label>
-                        <!--alerta nombre empresa-->
-                        <div *ngIf="formAgregarExp.get('descripcion_empresa').errors && formAgregarExp.get('descripcion_empresa').touched">
-                            <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('required')" class="alert">
-                                Describa sus funciones. Resuma las mismas en 350 caracteres
-                            </p>
-                            <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('maxlength')" class="alert">
-                                Maximo de 350 caracteres. Resuma
-                            </p>
-                        </div>
-                    <!--Alerta nombre empresa-->    
-                    </div>
-                   
-                    <div class="form-outline">
-                        <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEmp($event)"  />
-                        <label class="form-label" for="form3Example2">Imagen de la Empresa </label>
-                          
-                    </div>
-                    
-                </div>
+ <div data-aos="flip-left" style="background-color:var(--color-text);">
+       <div class="modal-header miModal-header">
+           <h3>Editar Experiencia</h3>
+           <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
+       </div>
+       <div class="modal-body">
+           <form [formGroup]="formAgregarExp" novalidate   >
+               <input type="text" formControlName="id" hidden>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                   <div class="row mb-8">
+                       <div class="col">
+                           <div class="form-outline">
+                               <input type="text"  class="form-control" formControlName="nombre_empresa"/>
+                               <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre de la Empresa</label>
+                               <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('nombre_empresa').value.length }}/50</small></label>
+                               <!--alerta nombre empresa-->
+                                   <div *ngIf="formAgregarExp.get('nombre_empresa').errors && formAgregarExp.get('nombre_empresa').touched">
+                                       <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('required')" class="alert">
+                                           Ingrese el nombre de la empresa
+                                       </p>
+                                       <p *ngIf="formAgregarExp.get('nombre_empresa').hasError('maxlength')" class="alert">
+                                           Maximo de 50 caracteres
+                                       </p>
+                                   </div>
+                               <!--Alerta nombre empresa-->    
+                           </div>
+                       </div>
     
-        <div class="modal-footer miModal-headerFooter"> 
-            <span>
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-            </span>
-            <span>
-                <button type="button" [disabled]="formAgregarExp.invalid" (click)="saveEditEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-            </span>
+                       <div class="row mb-8">
+                           <div class="col" style="padding:0 10px;">
+                               <div class="form-outline">
+                                   
+                                   <!-- inicio manejo de fecha -->
+                                   <span *ngIf=" fechaDisplayIn; then muestroInputIn else muestroLabelIn "></span>
+                                   <span><input class="form-check-input-dark" name="inicio_empresa"
+                                       #checkFechaDisplay 
+                                       id=" checkFechaDisplay"
+                                       type="checkbox"
+                                       [checked]='fechaDisplayIn'
+                                       (click)=" toogleFechaDisplayIn (checkFechaDisplay.checked)"
+                                       formControlname=inicio_empresa
+                                       value={{ejemplo}}
+                                       />Modificar fecha
+                                   </span>
+                                   <ng-template #muestroInputIn>
+                                       <label class="form-label" for="form3Example2"><b>Fecha de Inicio:</b></label>
+                                       <input type="date" 
+                                       class="form-control" 
+                                       formControlName="inicio_empresa"  
+                                       
+                                       />
+                                   </ng-template>
+                                   <ng-template #muestroLabelIn>
+                                       <label class="form-label" for="form3Example2"><b>Fecha de Inicio:</b> </label>
+                                    <span>
+                                       {{fechaFinalIn}}
+                                    </span>
+                                   </ng-template>  
+                                   <!-- FIn manejo de fecha -->
+                               </div>
+                           </div>
+                           <div class="col" style="padding:0 0px;">
+                               <div class="form-outline">
+                                   <span *ngIf=" fechaDisplayIn; then muestroInputOut else muestroLabelOut "></span>
+                                   <ng-template #muestroInputOut>
+                                       <label class="form-label" for="form3Example2"><b>Fecha de baja:</b> </label>
+                                       <input type="date" 
+                                       class="form-control" 
+                                       formControlName="fin_empresa" 
+                                       />
+                                   </ng-template>
+                                   <ng-template #muestroLabelOut>
+                                       <label class="form-label" for="form3Example2"><b>Fecha de baja:</b></label>
+                                       <span>
+                                           {{fechaFinalOut}}
+                                       </span>
+                                   </ng-template> 
+                               </div>
+                           </div>
+                       </div>
+                          
+                       <div class="form-outline ">
+                           <textarea class="form-control" rows="4" formControlName="descripcion_empresa" style="margin-top:10px;"></textarea>
+                           <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
+                           <label class="form-label contadorCadena"><small>{{ this.formAgregarExp.get('descripcion_empresa').value.length }}/350</small></label>
+                           <!--alerta nombre empresa-->
+                           <div *ngIf="formAgregarExp.get('descripcion_empresa').errors && formAgregarExp.get('descripcion_empresa').touched">
+                               <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('required')" class="alert">
+                                   Describa sus funciones. Resuma las mismas en 350 caracteres
+                               </p>
+                               <p *ngIf="formAgregarExp.get('descripcion_empresa').hasError('maxlength')" class="alert">
+                                   Maximo de 350 caracteres. Resuma
+                               </p>
+                           </div>
+                       <!--Alerta nombre empresa-->    
+                       </div>
+                      
+                       <div class="form-outline">
+                           <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgEmp($event)"  />
+                           <label class="form-label" for="form3Example2">Imagen de la Empresa </label>
+                             
+                       </div>
+                       
+                   </div>
        
-        </div>  
-        </form>
-</div>
+           <div class="modal-footer miModal-headerFooter"> 
+               <span>
+                   <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+               </span>
+               <span>
+                   <button type="button" [disabled]="formAgregarExp.invalid" (click)="saveEditEmpresa($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+               <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+               </span>
+          
+           </div>  
+           </form>
+       </div>
+ </div >
 </ng-template>  
 <!--Fin Modal Editar Info Experiencia-->
 
 <!--Inicio Modal de Eliminar de info-->
 <ng-template #modalEliminaExp let-c="close" let-d="dismiss"  >
-    <div class="modal-header">
-        <h3>Eliminar Experiencia</h3>
-        <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
-    </div>
-    <div class="modal-body">
-        <p><b>¿Desea eliminar?</b></p>
-        <span><b> Empresa:</b></span><span class="presentacionModal"> {{nombreEmpresaEliminar}}</span>
-    </div> 
-    <div class="modal-footer miModal-headerFooter"> 
-        <span>
-        <button type="button" (click)="eliminarExp($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
-        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
-    </div>
+   <div data-aos="flip-left" style="background-color:var(--color-text);">
+     <div class="modal-header">
+         <h3>Eliminar Experiencia</h3>
+         <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
+     </div>
+     <div class="modal-body">
+         <p><b>¿Desea eliminar?</b></p>
+         <span><b> Empresa:</b></span><span class="presentacionModal"> {{nombreEmpresaEliminar}}</span>
+     </div> 
+     <div class="modal-footer miModal-headerFooter"> 
+         <span>
+         <button type="button" (click)="eliminarExp($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
+         <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+         </span>
+     </div>
+   </div>
 </ng-template>
 <!-- Fin Modal de presentacion de info-->

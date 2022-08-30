@@ -3,13 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
- 
-  api:'http://localhost:8080/',
+  production: true,
+  //api:'https://portfoliolfs.herokuapp.com/',
+   api:'http://localhost:8080/',
 
 
-
-  urlFront:"http://localhost:4200/" //crear un component para mostrar el mensaje de enviado
 };
 
 /*

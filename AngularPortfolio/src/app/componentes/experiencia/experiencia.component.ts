@@ -7,7 +7,9 @@ import { ExperienciaServiceService } from 'src/app/Services/experiencia-service.
 import {Experiencia} from '../../models/Experiencias'
 import Swal from 'sweetalert2';
 import { TokenService } from 'src/app/Services/token.service';
-import * as AOS from 'aos';
+import * as Aos from 'aos';
+import { AOS } from 'dist/angular-portfolio/scripts.9ccc2a1c86c359d3';
+
 @Component({
   selector: 'app-experiencia',
   templateUrl: './experiencia.component.html',
@@ -74,7 +76,8 @@ roles: string[];
           this.roles = this.tokenService.getAuthorities();
         }
         AOS.init();
-  }
+       
+  }  
   
   //metodo para armar el formulario
   private buildForm() {

@@ -3,6 +3,7 @@ import { FormGroup, Validators,FormBuilder } from '@angular/forms';
 import {faPen, faTrash,faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import { faGraduationCap, faAnglesDown,faExclamationTriangle,faFilePen } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AOS } from 'dist/angular-portfolio/scripts.9ccc2a1c86c359d3';
 import { Educacion } from 'src/app/models/Educacion';
 import { EducacionServiceService } from 'src/app/Services/educacion-service.service';
 import { TokenService } from 'src/app/Services/token.service';
@@ -59,7 +60,7 @@ export class EducacionComponent implements OnInit {
         this.isLoginFail = false;
         this.roles = this.tokenService.getAuthorities();
       }
-
+      AOS.init()
   }
 
   buildForm(){

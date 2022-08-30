@@ -4,10 +4,12 @@
         <p>Proyectos<span (click)="openAgregarProyecto(agregarProyecto)"><button *ngIf="isLogged" class="iconProyectos">Agregar proyectos</button></span></p>
     </div>
     <div class="row contenedor">
-        <div class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
+        <div data-aos="fade-down-right" class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
             <div class="card">
-                <div class="card-foto">
-                    <img src="{{proyecto.photo_url}}" alt="">
+                <div class="card-foto"> 
+                <a href="{{proyecto.link_url}}" target="_blank">
+                        <img src="{{proyecto.photo_url}}" alt="">
+                </a>
                 </div>
                 <div class="card-contenedor">
                     <h3>{{proyecto.nombre_proyecto}}</h3>
@@ -21,180 +23,162 @@
             </div>
         </div>
     </div>
-    <!-- <div class="row contenedor row-proyectos">
-        <div class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
-            <div class="card">
-                <div class="card-foto">
-                    <img src="{{proyecto.photo_url}}" alt="">
-                </div>
-                <div class="card-contenedor">
-                    <h3>{{proyecto.nombre_proyecto}}</h3>
-                    <p>{{proyecto.descripcion_proyecto}}</p>
-                    
-                    <div class="card-footer" *ngIf="isLogged">
-                        <span (click)="openEliminarProyecto(proyecto,modalEliminarProyecto)" > <fa-icon [icon]="faTrash" class="iconEditarEliminar"></fa-icon></span>
-                        <span (click)="openEditProyecto(proyecto,modalEditProyecto)"> <fa-icon [icon]="faPen" class="iconEditarEliminar"></fa-icon></span>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>-->
+   
 </div>
 
-
-<!-- <div class="card" style="max-width:200px;" *ngFor="let proyecto of proyectos">
-    <h1>{{proyecto.nombre_proyecto}}</h1>
-    <p>{{proyecto.descripcion_proyecto}}</p>
-    
-</div> -->
-
 <ng-template #agregarProyecto let-c="close" let-d="dismiss" >
-    <div class="modal-header">
-        <h3>Agregar Proyecto</h3>  
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="formProyecto" novalidate (ngSubmit)="saveNuevaProyecto($event)"  >
-            <input type="text" formControlName="id" hidden>
-            <div class="row mb-8">
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="text"  class="form-control" formControlName="nombre_proyecto"/>
-                        <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre Proyecto</label>
-                        <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('nombre_proyecto').value.length }}/50</small></label>
-                        <!--alerta nombre empresa-->
-                            <div *ngIf="formProyecto.get('nombre_proyecto').errors && formProyecto.get('nombre_proyecto').touched">
-                                <p *ngIf="formProyecto.get('nombre_proyecto').hasError('required')" class="alert">
-                                    Ingrese el nombre del proyecto
-                                </p>
-                                <p *ngIf="formProyecto.get('nombre_proyecto').hasError('maxlength')" class="alert">
-                                    Maximo de 50 caracteres
-                                </p>
-                            </div>
-                        <!--Alerta nombre empresa-->    
-                    </div>
-                </div>
-                <div class="form-outline ">
-                    <textarea class="form-control" rows="4" formControlName="descripcion_proyecto" ></textarea>
-                    <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
-                    
-                    <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('descripcion_proyecto').value.length }}/350</small></label>
-                    <!--alerta nombre empresa-->
-                    <div *ngIf="formProyecto.get('descripcion_proyecto').errors && formProyecto.get('descripcion_proyecto').touched">
-                        <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('required')" class="alert">
-                            Describa el proyecto. Resuma las mismas en 350 caracteres
-                        </p>
-                        <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('maxlength')" class="alert">
-                            Maximo de 350 caracteres. Resuma
-                        </p>
-                    </div>
-                <!--Alerta nombre empresa-->    
-                </div>
-                <div class="form-outline">
-                    <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgProyecto($event)" />
-                    <label class="form-label" for="form3Example2">Imagen del Proyecto </label>
-                      
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-outline">
-                    <input type="text" class="form-control" formControlName="link_url"/>
-                    <label class="form-label" for="form3Example2">Link del proyecto</label>
+   <div data-aos="flip-left" style="background-color:var(--color-text);">
+     <div  class="modal-header">
+         <h3>Agregar Proyecto</h3>  
+     </div>
+     <div class="modal-body">
+         <form [formGroup]="formProyecto" novalidate (ngSubmit)="saveNuevaProyecto($event)"  >
+             <input type="text" formControlName="id" hidden>
+             <div class="row mb-8">
+                 <div class="col">
+                     <div class="form-outline">
+                         <input type="text"  class="form-control" formControlName="nombre_proyecto"/>
+                         <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre Proyecto</label>
+                         <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('nombre_proyecto').value.length }}/50</small></label>
+                         <!--alerta nombre empresa-->
+                             <div *ngIf="formProyecto.get('nombre_proyecto').errors && formProyecto.get('nombre_proyecto').touched">
+                                 <p *ngIf="formProyecto.get('nombre_proyecto').hasError('required')" class="alert">
+                                     Ingrese el nombre del proyecto
+                                 </p>
+                                 <p *ngIf="formProyecto.get('nombre_proyecto').hasError('maxlength')" class="alert">
+                                     Maximo de 50 caracteres
+                                 </p>
+                             </div>
+                         <!--Alerta nombre empresa-->    
+                     </div>
+                 </div>
+                 <div class="form-outline ">
+                     <textarea class="form-control" rows="4" formControlName="descripcion_proyecto" ></textarea>
+                     <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
                      
-                </div>
-            </div>
-        </form> 
-    </div>
-    <div class="modal-footer">
-        <span>
-            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-        </span>
-        <span>
-            <button type="button"  [disabled]="formProyecto.invalid" (click)="saveNuevaProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
-    </div>
+                     <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('descripcion_proyecto').value.length }}/350</small></label>
+                     <!--alerta nombre empresa-->
+                     <div *ngIf="formProyecto.get('descripcion_proyecto').errors && formProyecto.get('descripcion_proyecto').touched">
+                         <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('required')" class="alert">
+                             Describa el proyecto. Resuma las mismas en 350 caracteres
+                         </p>
+                         <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('maxlength')" class="alert">
+                             Maximo de 350 caracteres. Resuma
+                         </p>
+                     </div>
+                 <!--Alerta nombre empresa-->    
+                 </div>
+                 <div class="form-outline">
+                     <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgProyecto($event)" />
+                     <label class="form-label" for="form3Example2">Imagen del Proyecto </label>
+                       
+                 </div>
+               </div>
+               <div class="col">
+                 <div class="form-outline">
+                     <input type="text" class="form-control" formControlName="link_url"/>
+                     <label class="form-label" for="form3Example2">Link del proyecto</label>
+                      
+                 </div>
+             </div>
+         </form> 
+     </div>
+     <div class="modal-footer">
+         <span>
+             <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+         </span>
+         <span>
+             <button type="button"  [disabled]="formProyecto.invalid" (click)="saveNuevaProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+         <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+         </span>
+     </div>
+   </div>
 </ng-template>
 
 <ng-template #modalEditProyecto let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h3>Agregar Proyecto</h3>  
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="formProyecto" novalidate (ngSubmit)="saveNuevaProyecto($event)"  >
-            <input type="text" formControlName="id" hidden>
-            <div class="row mb-8">
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="text"  class="form-control" formControlName="nombre_proyecto"/>
-                        <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre Proyecto</label>
-                        <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('nombre_proyecto').value.length }}/50</small></label>
-                        <!--alerta nombre empresa-->
-                            <div *ngIf="formProyecto.get('nombre_proyecto').errors && formProyecto.get('nombre_proyecto').touched">
-                                <p *ngIf="formProyecto.get('nombre_proyecto').hasError('required')" class="alert">
-                                    Ingrese el nombre del proyecto
-                                </p>
-                                <p *ngIf="formProyecto.get('nombre_proyecto').hasError('maxlength')" class="alert">
-                                    Maximo de 50 caracteres
-                                </p>
-                            </div>
-                        <!--Alerta nombre empresa-->    
-                    </div>
-                </div>
-                <div class="form-outline ">
-                    <textarea class="form-control" rows="4" formControlName="descripcion_proyecto" ></textarea>
-                    <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
-                    
-                    <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('descripcion_proyecto').value.length }}/350</small></label>
-                    <!--alerta nombre empresa-->
-                    <div *ngIf="formProyecto.get('descripcion_proyecto').errors && formProyecto.get('descripcion_proyecto').touched">
-                        <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('required')" class="alert">
-                            Describa el proyecto. Resuma las mismas en 350 caracteres
-                        </p>
-                        <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('maxlength')" class="alert">
-                            Maximo de 350 caracteres. Resuma
-                        </p>
-                    </div>
-                <!--Alerta nombre empresa-->    
-                </div>
-                <div class="form-outline">
-                    <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgProyecto($event)" />
-                    <label class="form-label" for="form3Example2">Imagen del Proyecto </label>
+  <div  data-aos="flip-left" style="background-color:var(--color-text);">
+      <div class="modal-header">
+          <h3>Agregar Proyecto</h3>  
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="formProyecto" novalidate (ngSubmit)="saveNuevaProyecto($event)"  >
+              <input type="text" formControlName="id" hidden>
+              <div class="row mb-8">
+                  <div class="col">
+                      <div class="form-outline">
+                          <input type="text"  class="form-control" formControlName="nombre_proyecto"/>
+                          <label class="form-label" for="form3Example1"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Nombre Proyecto</label>
+                          <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('nombre_proyecto').value.length }}/50</small></label>
+                          <!--alerta nombre empresa-->
+                              <div *ngIf="formProyecto.get('nombre_proyecto').errors && formProyecto.get('nombre_proyecto').touched">
+                                  <p *ngIf="formProyecto.get('nombre_proyecto').hasError('required')" class="alert">
+                                      Ingrese el nombre del proyecto
+                                  </p>
+                                  <p *ngIf="formProyecto.get('nombre_proyecto').hasError('maxlength')" class="alert">
+                                      Maximo de 50 caracteres
+                                  </p>
+                              </div>
+                          <!--Alerta nombre empresa-->    
+                      </div>
+                  </div>
+                  <div class="form-outline ">
+                      <textarea class="form-control" rows="4" formControlName="descripcion_proyecto" ></textarea>
+                      <label class="form-label" for="form4Example3"><fa-icon [icon]="faExclamationTriangle"></fa-icon>Descripcion</label>
                       
+                      <label class="form-label contadorCadena"><small>{{ this.formProyecto.get('descripcion_proyecto').value.length }}/350</small></label>
+                      <!--alerta nombre empresa-->
+                      <div *ngIf="formProyecto.get('descripcion_proyecto').errors && formProyecto.get('descripcion_proyecto').touched">
+                          <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('required')" class="alert">
+                              Describa el proyecto. Resuma las mismas en 350 caracteres
+                          </p>
+                          <p *ngIf="formProyecto.get('descripcion_proyecto').hasError('maxlength')" class="alert">
+                              Maximo de 350 caracteres. Resuma
+                          </p>
+                      </div>
+                  <!--Alerta nombre empresa-->    
+                  </div>
+                  <div class="form-outline">
+                      <input type="file" class="form-control"  accept="image/*"  alife-file-to-base64 (onFileChanged)="obtenerImgProyecto($event)" />
+                      <label class="form-label" for="form3Example2">Imagen del Proyecto </label>
+                        
+                  </div>
                 </div>
+                <div class="col">
+                  <div class="form-outline">
+                      <input type="text" class="form-control" formControlName="link_url"/>
+                      <label class="form-label" for="form3Example2">Link del proyecto</label>
+                       
+                  </div>
               </div>
-              <div class="col">
-                <div class="form-outline">
-                    <input type="text" class="form-control" formControlName="link_url"/>
-                    <label class="form-label" for="form3Example2">Link del proyecto</label>
-                     
-                </div>
-            </div>
-        </form> 
-    </div>
-    <div class="modal-footer">
-        <span>
-            <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
-        </span>
-        <span>
-            <button type="button"  [disabled]="formProyecto.invalid" (click)="saveEditProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
-        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
-    </div>
+          </form> 
+      </div>
+      <div class="modal-footer">
+          <span>
+              <fa-icon [icon]="faExclamationTriangle"></fa-icon> <span><b>Campos requeridos</b></span>
+          </span>
+          <span>
+              <button type="button"  [disabled]="formProyecto.invalid" (click)="saveEditProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Guardar</button>             
+          <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+          </span>
+      </div>
+  </div>
 </ng-template>
 
 <ng-template #modalEliminarProyecto let-c="close" let d="dismiss"> 
-    <div class="modal-header">
-        <h3>Eliminar Proyecto</h3>
-        <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
-    </div>
-    <div class="modal-body">
-        <p><b>¿Desea eliminar?</b></p>
-        <span><b> Nombre del Proyecto:</b></span><span class="presentacionModal"> {{nombreProyectoEliminar}}</span>
-    </div> 
-    <div class="modal-footer miModal-headerFooter"> 
-        <span>
-        <button type="button" (click)="eliminarProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
-        <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
-        </span>
+    <div data-aos="flip-left" style="background-color:var(--color-text);">
+        <div class="modal-header">
+            <h3>Eliminar Proyecto</h3>
+            <fa-icon [icon]="faTrashCan" style="font-size:2em;"></fa-icon>
+        </div>
+        <div class="modal-body">
+            <p><b>¿Desea eliminar?</b></p>
+            <span><b> Nombre del Proyecto:</b></span><span class="presentacionModal"> {{nombreProyectoEliminar}}</span>
+        </div> 
+        <div class="modal-footer miModal-headerFooter"> 
+            <span>
+            <button type="button" (click)="eliminarProyecto($event)" class="btn btn-dark" style="margin-right:5px;">Eliminar</button>             
+            <button type="button" class="btn btn-outline-dark" (click)="cerrarModal($event)">Cancelar</button>
+            </span>
+        </div>
     </div>
 </ng-template>

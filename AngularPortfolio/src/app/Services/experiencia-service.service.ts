@@ -14,9 +14,9 @@ export class ExperienciaServiceService {
 { }
 //fin constructor
 //variables
- url='http://localhost:8080/'; //ruta+endpoint"experiencia""
+ //url='http://localhost:8080/'; //ruta+endpoint"experiencia""
 //url='https://portfoliolfs.herokuapp.com/'
-//apibase:string=environment.api
+url:string=environment.api
 //metodos
 //lista todas las personas
     getExperiencia(){

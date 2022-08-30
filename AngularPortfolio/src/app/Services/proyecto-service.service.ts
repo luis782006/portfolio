@@ -14,9 +14,9 @@ export class ProyectoServiceService {
   ) { }
 
   //'; //ruta+endpoint"experiencia""
-   url='http://localhost:8080/';
+   //url='http://localhost:8080/';
   //url='https://portfoliolfs.herokuapp.com/'
-  //apibase:string=environment.api
+  url:string=environment.api
 //metodos
 //lista todas las personas
     getProyecto(){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {faPen, faTrash,faExclamationTriangle,faFilePen,faTrashCan,faQuestion} from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AOS } from 'dist/angular-portfolio/scripts.9ccc2a1c86c359d3';
 import { Proyectos } from 'src/app/models/Proyectos';
 import { ProyectoServiceService } from 'src/app/Services/proyecto-service.service';
 import { TokenService } from 'src/app/Services/token.service';
@@ -66,7 +67,7 @@ export class ProyectoComponent implements OnInit {
         this.isLoginFail = false;
         this.roles = this.tokenService.getAuthorities();
        }
-
+       AOS.init()
   }
 
   openAgregarProyecto(modal){
