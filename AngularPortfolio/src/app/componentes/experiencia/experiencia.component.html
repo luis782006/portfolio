@@ -146,7 +146,7 @@
                                    
                                    <!-- inicio manejo de fecha -->
                                    <span *ngIf=" fechaDisplayIn; then muestroInputIn else muestroLabelIn "></span>
-                                   <span><input class="form-check-input-dark" name="inicio_empresa"
+                                   <span *ngIf="!fechaDisplayIn"><input class="form-check-input-dark" name="inicio_empresa"
                                        #checkFechaDisplay 
                                        id=" checkFechaDisplay"
                                        type="checkbox"

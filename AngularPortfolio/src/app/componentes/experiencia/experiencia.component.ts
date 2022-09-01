@@ -199,13 +199,20 @@ roles: string[];
  
   public toogleFechaDisplayIn(value:boolean){
     console.log(this.fechaDisplayIn = value);
-  
+    if (value){
+      this.formAgregarExp.get('inicio_empresa').setValue("")
+      this.formAgregarExp.get('fin_empresa').setValue("")
 
+    }
 }
-public toogleFechaDisplayOut(value:boolean){
-  console.log(this.fechaDisplayOut = value);
+// public toogleFechaDisplayOut(value:boolean,fechaIn:string,fechaOut:string){
+//   console.log(this.fechaDisplayOut = value);
+//   console.log("Hola1"+ value)
+//   this.formAgregarExp.get('inicio_empresa').setValue(fechaIn)
+//   this.formAgregarExp.get('fin_empresa').setValue(fechaOut)
+//   console.log("Despues de cancelar"+ fechaIn + "fechaout "+fechaOut)
 
-}
+// }
 //Actualiza experiencia con el servicio http actualizarExperiencia
   saveEditEmpresa(event){
     event.preventDefault(); //cancela el reload.

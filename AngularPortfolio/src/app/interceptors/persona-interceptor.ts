@@ -62,22 +62,14 @@ export class ProdInterceptorService implements HttpInterceptor {
   return next.handle(intReq);
   
   }
-  // intercept(req: HttpRequest<any>,next: HttpHandler
-  // ): Observable<HttpEvent<any>> {
-  //   this.spinnerService.requestStarted();
-  //   return this.handler(next, req);
-  // }
-
   handler(next: any, req: any) {
     return next.handle(req).pipe(
       tap(
         (event) => {
           if (event instanceof HttpResponse) {
-            this.spinnerService.resetSpinner();
-          }
+         }
         },
         (error: HttpErrorResponse) => {
-          this.spinnerService.resetSpinner();
           throw error;
         }
       )
