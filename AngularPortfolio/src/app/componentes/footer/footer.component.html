@@ -1,0 +1,97 @@
+<div class="container">
+    
+    <div class="row contenedor-footer">
+        <div class="col-sm-12 col-md-6 contenedor-footer-redes">
+            <div class="redes">
+                <ul>
+                    <li><a href={{path_git}} target="_blank"> <fa-icon [icon]="faGithub" ></fa-icon></a></li>
+                    <li><a href={{path_link}} target="_blank"><fa-icon [icon]="faLinkedin"></fa-icon></a></li>
+                </ul>
+            </div>
+            <div class="footer-titulo">
+                <h6>{{nombre}} {{apellido}}</h6>
+                <h4>Argentina Programa</h4>
+                &copy; 2022 Derechos reservados del autor
+            </div>
+          
+            <br>
+        
+            <ngb-carousel  style="height:10em; margin-bottom: 10px;">
+                <ng-template ngbSlide >
+                    <div class="carousel-caption">
+                        <h5>La chica del frontend</h5>
+                        <a href="https://linkedin.com/in/yanina-loiacono-47228422a/" target="_blank">Yanny</a>
+                        <p>La estetica importa y mucho </p>
+                        
+                    </div>
+                    <div class=" carousel-contenedor-link">
+                       
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="carousel-caption">
+                        <h5>Mr Backend</h5>
+                        <a href="https://linkedin.com/in/iamnicolas/" target="_blank">Nico</a>
+                        <p>Fanatico del back</p>
+                        
+                    </div>
+                    <div class=" carousel-contenedor-link">
+                       
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="carousel-caption">
+                        <h5>Back o Front</h5>
+                        <a href="https://www.linkedin.com/in/francisco-adri%C3%A1n-alcoba/" target="_blank">Fran</a>
+                        <p>Disfruto ambos</p>
+                        
+                    </div>
+                    <div class=" carousel-contenedor-link">
+                       
+                    </div>
+                 </ng-template>
+                 <ng-template ngbSlide>
+                    <div class="carousel-caption">
+                        <h5>Java Man</h5>
+                        <a href="https://linkedin.com/in/burgosmanuel-dev" target="_blank">Manuel</a>
+                        <p>Hay que encontrar la linea justa</p>
+                        
+                    </div>
+                    <div class=" carousel-contenedor-link">
+                       
+                    </div>
+                 </ng-template>
+                 
+            </ngb-carousel>
+           
+           <h5 style="text-align:center;margin-bottom: 20px; color: var(--color-text);">Agradecimientos a mis compañeros.</h5>
+        </div>
+        <div class="col-sm-12 col-md-6 contenedor-form">
+          
+            <form action="https://formsubmit.co/ce2b16fa037e148552a8750197864de0" method="POST"  ngNoForm>
+                <div class="formulario">
+                    <div class="row mb-8">
+                        <div class="col">
+                            <div class="form-outline">
+                                <h5>Contactame por aqui:</h5>
+                                <input type="text" name="name" class="form-control" placeholder="Nombre completo" required>                          
+                            </div>
+                        </div>
+                        
+                     </div>
+                     <div class="col">
+                        <div class="form-outline">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required>                            
+                        </div>
+                    </div>
+                     <div class="form-outline">
+                        <textarea placeholder="Mensaje" class="form-control" name="message" rows="4" required></textarea>
+                      </div>
+                      <input type="hidden" name="_captcha" value="false"/>
+                      <input type="hidden" name="_next" [value]='url'/> 
+                      <button type="submit" (click)="enviar()" style="margin-top: 8px; background-color:#ffbc2f; color:#1B1B32;" class="btn btn-lg btn-dark btn-block">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

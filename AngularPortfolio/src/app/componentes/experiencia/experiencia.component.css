@@ -1,0 +1,114 @@
+.container{
+    padding:0px;
+    background-color: #1B1B32;
+}
+.row{
+    padding:0px 0px;
+    margin: 0px auto;
+    width:100%;
+    
+}
+
+
+.encabezado-experiencia{
+    background-color:#0A0A23;
+    color:#F5F6F7;
+   
+}
+.edicion-experiencia span fa-icon{
+    color:var(--color-text-btn);
+}
+
+.edicion-experiencia span fa-icon:hover{
+    color:var(--color-text-btnH);
+}
+
+.encabezado-experiencia p{
+    margin:0px;
+    margin-left: 20px;
+    padding: 10px 0px;
+    font-size: 1.5em;   
+}
+.encabezado-experiencia span{
+    float:right;
+    margin-right: 50px;
+}
+.spanAcerca{
+    border-radius:5px;
+    font-size: 0.6em; 
+}
+.experiencia1{
+    background-color: #1B1B32;
+    display:flex;
+    padding:20px;
+    flex-direction: row;
+}
+
+
+.experiencia2{
+    background-color: #1B1B32;
+    display:flex;
+    padding:20px;
+    flex-direction: row-reverse;
+}
+.logo{
+    padding: 0px;
+    background-color: #1B1B32;
+    height:200px;
+}
+.descripcion-Empresa{
+   padding:20px;
+   background-color: #0A0A23;
+   color:#F5F6F7;
+}
+.descripcion-Empresa span{
+    font-size:1.2em;
+    font-weight:600;
+}
+.edicion-experiencia span{
+    margin-left:20px;
+    float:right;
+    border: 1px solid;
+    padding:5px 10px;
+    border-radius: 5px;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}
+.miModal-headerFooter{
+    background-color: var(--color-text);  
+}
+.contadorCadena{
+    float: right;
+}
+.alertaCamposRequeridos{
+    float: left;
+}
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.btn-cancelar{
+    background-color: var(--color-text-btn);
+}
+/* .imagenEmp{
+    width:100%;
+    height:18.7rem; 
+    object-fit:fill;
+    object-position: center;
+} */
+.contenedor-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.contenedor-img img{
+    /*border-radius: 50%;*/
+    object-fit: cover;
+    height:100%;
+    width:16rem;
+}

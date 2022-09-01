@@ -1,9 +1,19 @@
-<div class="row header">
-    <div class="col-sm-12 col-md-4 logo">
-        <app-logo></app-logo>
-    </div>
-    <div class="col-sm-12 col-md-8 nav">
+<div class="container">
+    <div class="row header">
+        <div class="col-sm-4 col-md-4 logo">
+            <app-logo></app-logo>
+        </div>
+       <div class="col-sm-12 col-md-8 btn">
         <app-nav></app-nav>
+        <button (click)="irLogin()" 
+         class="animate__animated animate__shakeX animate__delay-0.5s animate__slow repeat-2	2" >{{textLogin}}</button>
+       
+        <!-- <button ngif (click)="loginVisible()"  class="animate__animated animate__shakeX  animate__delay-0.5s animate__slow">Logeado</button> -->
+        </div>
+       
     </div>
+</div>
+<div class="row ">
+    <!-- <app-login *ngIf="visible" class="login"> </app-login> -->
 </div>
 

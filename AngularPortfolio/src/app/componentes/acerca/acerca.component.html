@@ -1,0 +1,144 @@
+<div class="container">
+    <div  class="row contenedor" *ngFor="let persona of personas">
+        <div class="col-sm-12 col-md-4 contenedor-img">
+            <img [src]="persona.photo_url" alt="" class="imagen">
+        </div>
+        <div class="col-sm-12 col-md-8 contenedor-texto">
+            <h2>Acerca de mi:</h2>
+            <p>{{persona.descripcion_acerca}}</p><span> <fa-icon [icon]="faPen" class="iconAcercaEditar"  (click)="openEditAcerca(persona,modalPersona)"></fa-icon></span>   
+        </div>
+    </div>
+
+
+
+      <ng-template #modalPersona let-c="close" let-d="dismiss">
+           <div data-aos="flip-left" style="background-color:var(--color-text);">
+             <div class="modal-header">
+                 <h3>Acerca de mi</h3>
+                 <!-- <button type="button" class="btn-close" aria-label="Close"  (click)="d('Cross click')"></button> -->
+                 <fa-icon [icon]="faFilePen" style="font-size:2em;"></fa-icon>
+             </div>
+            
+             <div class="modal-body">
+                 <form [formGroup]="form" novalidate  > <!--(ngSubmit)="save($event)-->
+                     <input type="text" formControlName="id" hidden>
+                      <!-- 2 column grid layout with text inputs for the first and last names -->
+                          <div class="row mb-8">
+                             <div class="col">
+                                 <div class="form-outline">
+                                     <input type="text"  class="form-control" formControlName="nombre"/>
+                                     <label class="form-label" for="form3Example1">Nombre</label>
+                                     <!--alerta nombre-->
+                                     
+                                     <div *ngIf="form.get('nombre').errors && form.get('nombre').touched" class="alert" role="alert">
+                                         Ingrese el nombre
+                                     </div>
+                                     <!--alerta nombre-->
+                                 </div>
+                             </div>
+                             <div class="col">
+                                 <div class="form-outline">
+                                     <input type="text" class="form-control" formControlName="apellido"/>
+                                     <label class="form-label" for="form3Example2">Apellido</label>
+                                       <!--alerta apellido-->
+                                       <div *ngIf="form.get('apellido').errors && form.get('apellido').touched" class="alert alert-danger" role="alert">
+                                         Ingrese el apellido
+                                     </div>
+                                    <!--alerta apellido-->
+                                 </div>
+                             </div>
+                             <div class="form-outline ">
+                                 <textarea class="form-control" rows="4" formControlName="descripcion_acerca" ></textarea>
+                                 <label class="form-label" for="form4Example3">Acerca de mi</label>
+                                 <label class="form-label contadorCadena"><small>{{ this.form.get('descripcion_acerca').value.length }}350</small></label>
+                                 <div *ngIf="form.get('descripcion_acerca').errors && form.get('descripcion_acerca').touched">
+                                     <p *ngIf="form.get('descripcion_acerca').hasError('required')" class="alert">
+                                         Deje una descripcion.
+                                     </p>
+                                     <p *ngIf="form.get('descripcion_acerca').hasError('maxlength')" class="alert">
+                                         Maximo de 350 caracteres
+                                     </p>
+                                 </div>
+                             </div>
+                             <div class="form-outline">
+                                 <span>¿Desea cambiar la foto?</span>
+                                 <input
+                                         type="checkbox"
+                                         [checked]='checkboxMostraFoto'
+                                         style="margin-left:10px;" 
+                                         (click)="toggleMostrarCargaFoto()"
+                                         >
+                                     <div *ngIf="mostrarCargaFoto">
+                                         <input type="file" class="form-control" accept="image/*"  
+                                             alife-file-to-base64
+                                             (onFileChanged)="obtener($event)" 
+                                          />
+            
+                                      <label class="form-label" for="form3Example2">Foto </label>
+                                      <p class="alert" *ngIf="mostrarCargaFoto"> Debe cargar una foto</p>
+                                      <p *ngIf="!mostrarCargaFoto">Foto cargada con exito</p>
+                                     <!--alerta foto-->
+                                     <div *ngIf="form.get('photo_url').errors && form.get('photo_url').touched" class="alert" role="alert">
+                                         <p *ngIf="form.get('photo_url').hasError('required')" class="alert">
+                                             Debe cargar una foto tuya.
+                                         </p>
+                                     </div>
+                                 </div>
+                                 <!--alerta foto-->
+                             </div>
+                             <div class="form-outline">
+                                 <input type="text" class="form-control" formControlName="path_git"/>
+                                 <label class="form-label" for="form3Example2">Link Github</label>
+                             </div>
+                             <div class="form-outline">
+                                 <input type="text"  class="form-control" formControlName="path_link" />
+                                 <label class="form-label" for="form3Example2">Link LinkedIn</label>
+                             </div>
+                         </div>
+                         <div class="modal-footer"> 
+                             <button type="button"  [disabled]="form.invalid" (click)="savePreview($event,modalPresentacion)" class="btn btn-dark">Siguiente</button>             
+                             <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
+                         </div>  
+                   </form>
+             </div>
+           </div>
+      </ng-template>
+</div>
+    <ng-template #modalPresentacion let-c="close" let-d="dismiss">
+      <div data-aos="flip-left" style="background-color:var(--color-text);">
+          <div class="modal-header">
+             <h3>Confirmar Experiencia</h3>
+              <fa-icon [icon]="faQuestionCircle" style="font-size:2em;"></fa-icon>
+          </div>
+          <div class="modal-body">
+              <div class="row m-8" style="margin-bottom:10px;">
+                  <div class="col ">
+                      <div class="contenedor-img-modal"><img src={{img}} alt="" class="imagen"></div>
+                  </div>
+                  <br>
+                  <div class="col contenedor-presentacionModal">
+                      <span><b> Nombre:</b></span><span class="presentacionModal"> {{form.get('nombre').value}}</span>
+                      <br>
+                      <span><b>Apellido:</b></span><span class="presentacionModal">{{form.get('apellido').value}}</span>
+                  </div>
+             </div>        
+             <div>
+              <span><b>Acerca de mi:</b></span>
+              <p class="presentacionAcercaDeMi">{{form.get('descripcion_acerca').value}}</p>
+             </div>
+             <hr>
+             <div class="col ">
+              <span><b> Github:</b> </span><span class="presentacionModal">{{form.get('path_git').value}}</span>
+          </div>
+          <br>
+          <div class="col ">
+              <span><b>LinkedIn:</b></span><span class="presentacionModal">{{form.get('path_link').value}}</span>
+          </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button"  [disabled]="form.invalid" (click)="saveLast($event)" class="btn btn-dark">Guardar</button>             
+              <button type="button" class="btn btn-outline-dark"(click)="cerrarModal($event)">Cancelar</button>
+          </div>
+      </div>
+    </ng-template>
+         

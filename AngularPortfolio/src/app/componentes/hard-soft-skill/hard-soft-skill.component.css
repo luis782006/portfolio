@@ -1,0 +1,117 @@
+.container{
+    padding:0px;
+}
+.row{
+    padding:0px;
+    margin: 0px;;
+}
+
+.encabezado-hard-softskill{
+    background-color:#0A0A23;
+    color:#F5F6F7;
+}
+.encabezado-hard-softskill p{
+    margin:0px;
+    margin-left: 20px;
+    padding: 10px 0px;
+    font-size: 1.5em;   
+}
+.encabezado-hard-softskill span{
+    float:right;
+    margin-right: 50px;
+}
+.iconHard-Soft{
+    border-radius:5px;
+    font-size: 0.6em; 
+    cursor: pointer; 
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+    background-color: #1B1B32;
+    
+   
+}
+.card{
+   
+    min-width: 80%;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+    background-color: #66687a;
+    color:#0A0A23;
+    min-width: 80%;
+    font-size: 2.0em;
+    box-shadow:  6px 10px 26px -2px #060624;
+    
+    padding:0;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover{
+    transform:  translateY(-10px); 
+}
+.contenedor-card{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+
+.card-footer span{
+    color:var(--color-text);
+    margin-left:10px;
+    float:right;
+    border: 1px solid;
+    padding:5px 10px;
+    border-radius: 5px;
+    font-size: 0.5em; 
+}
+.card-header{
+    background-color: #0A0A23;
+    width:100%;
+    border-radius: 0 0 0 50%;
+    text-align: center;
+    font-size: 0.8em;
+    color: #feac32;
+}
+.card-footer span fa-icon{
+    color:var(--color-text-btn);
+    
+}
+.card-footer span fa-icon:hover{
+   color: var(--color-text-btnH);
+    
+}
+.contadorCadena{
+    float: right;
+}
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.alert {
+    color:var(--color-text);
+    font-size: 0.8em;
+    background-color: var(--color-cajaS);
+    padding: 0.2em;
+    text-align: center;
+}
+.card-footer{
+    background-color: #0A0A23;
+    width:100%;
+    border-radius: 5% 50% 0 0%;
+    font-size: 0.8em;
+    color: #feac32;
+}
+.card-footer span{
+    float:left;
+}
+.card-contenedor p{
+    text-align: center;
+    font-size: 0.5em;
+    color: #0A0A23;
+}
