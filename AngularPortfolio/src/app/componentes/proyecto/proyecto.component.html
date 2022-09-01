@@ -4,7 +4,7 @@
         <p>Proyectos<span (click)="openAgregarProyecto(agregarProyecto)"><button *ngIf="isLogged" class="iconProyectos">Agregar proyectos</button></span></p>
     </div>
     <div class="row contenedor">
-        <div data-aos="fade-down-right" class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
+        <div data-aos="zoom-in" class="col-sm-12 col-md-6 contenedor-card" *ngFor="let proyecto of proyectos">
             <div class="card">
                 <div class="card-foto"> 
                 <a href="{{proyecto.link_url}}" target="_blank">

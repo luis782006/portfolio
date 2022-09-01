@@ -47,7 +47,7 @@ export class FooterComponent implements OnInit {
   enviar(){
     Swal.fire({
       title:'Mensaje Enviado',
-      titleText:'Me pondre en contacto con usted en la brevedad',
+      text:'Me pondre en contacto con usted en la brevedad',
       icon:'success',
       iconColor:'#0A0A23',
       timer:3000,

@@ -34,6 +34,9 @@ export class ExperienciaComponent implements OnInit {
 
   fechaDisplayIn:boolean=false;
   fechaDisplayOut:boolean=false;
+  auxFechanIn:string
+  auxFechaOut:string
+
   fechaFinalIn:String
   fechaFinalOut:String
   fechaIn:String
@@ -75,7 +78,7 @@ roles: string[];
           this.isLoginFail = false;
           this.roles = this.tokenService.getAuthorities();
         }
-        AOS.init();
+       // AOS.init();
        
   }  
   
@@ -196,6 +199,7 @@ roles: string[];
  
   public toogleFechaDisplayIn(value:boolean){
     console.log(this.fechaDisplayIn = value);
+  
 
 }
 public toogleFechaDisplayOut(value:boolean){

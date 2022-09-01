@@ -33,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
 
 
 
@@ -54,6 +55,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     LoginComponent,
     HomeComponent,
     FooterComponent,
+    SpinnerComponent,
    
     
   ],

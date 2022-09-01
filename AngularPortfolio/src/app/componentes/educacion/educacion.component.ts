@@ -51,6 +51,7 @@ export class EducacionComponent implements OnInit {
     this.buildForm(); // metodo que instancia el formulario agregar Experiencia
   }
 
+
   ngOnInit(): void {
     this.servicioEducacion.getEducacion().subscribe((data) => {
       this.educaciones=data;});
@@ -60,7 +61,7 @@ export class EducacionComponent implements OnInit {
         this.isLoginFail = false;
         this.roles = this.tokenService.getAuthorities();
       }
-      AOS.init()
+     // AOS.init()
   }
 
   buildForm(){

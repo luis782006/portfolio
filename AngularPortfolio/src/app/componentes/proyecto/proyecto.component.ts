@@ -67,7 +67,7 @@ export class ProyectoComponent implements OnInit {
         this.isLoginFail = false;
         this.roles = this.tokenService.getAuthorities();
        }
-       AOS.init()
+       //AOS.init()
   }
 
   openAgregarProyecto(modal){
